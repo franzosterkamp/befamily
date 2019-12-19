@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import HeaderButton from './HeaderButton';
-import list from '../../assets/svg/list.svg';
-import map from '../../assets/svg/map.svg';
-import Img from './HeaderImg';
+import MapIcon from '../../icons/Map';
+import ListIcon from '../../icons/List';
 
 const Header = styled.header`
   display: flex;
@@ -20,6 +19,8 @@ const LeftButton = styled(HeaderButton)`
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
 `;
 
 export default function HeaderNav() {
@@ -27,13 +28,13 @@ export default function HeaderNav() {
     <Header>
       <LeftButton>
         <Wrapper>
-          <Img src={map}></Img>
+          <MapIcon />
           <p>Karte</p>
         </Wrapper>
       </LeftButton>
       <HeaderButton>
         <Wrapper>
-          <Img src={list}></Img>
+          <ListIcon />
           <p>Liste</p>
         </Wrapper>
       </HeaderButton>

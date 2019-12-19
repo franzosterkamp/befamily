@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import FooterButton from './FooterButton';
-import add from '../../assets/svg/add.svg';
-import sort from '../../assets/svg/sort.svg';
-import menu from '../../assets/svg/menu.svg';
+import AddIcon from '../../icons/Add';
+import SortIcon from '../../icons/Sort';
+import MenuIcon from '../../icons/Menu';
 
 const Footer = styled.footer`
   display: flex;
@@ -29,19 +29,19 @@ export default function FooterBar() {
     <Footer>
       <FooterButton>
         <Wrapper>
-          <img src={add} />
+          <AddIcon />
           <p>Add</p>
         </Wrapper>
       </FooterButton>
       <MiddleButton>
         <Wrapper>
-          <img src={sort} />
+          <SortIcon />
           <p>Sort</p>
         </Wrapper>
       </MiddleButton>
       <FooterButton>
         <Wrapper>
-          <img src={menu} />
+          <MenuIcon />
           <p>Menu</p>
         </Wrapper>
       </FooterButton>
