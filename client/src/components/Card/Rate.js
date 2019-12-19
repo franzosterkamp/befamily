@@ -27,10 +27,6 @@ const YellowBall = styled(Ball)`
   height: 1.5rem;
 `;
 
-const Img = styled.img`
-  background-color: white;
-`;
-
 export default function Rate() {
   return (
     <Container>
