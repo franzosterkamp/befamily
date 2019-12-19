@@ -1,16 +1,15 @@
 import styled from '@emotion/styled';
 
-const Button = styled.button`
-  text-decoration: none;
+const FooterButton = styled.button`
   color: ${props => props.theme.colors.text};
   text-align: center;
-  width: 50%;
+  width: 33%;
   height: 100%;
   text-transform: uppercase;
   background-color: ${props => props.theme.colors.primary};
   border: none;
   outline: none;
-  font-size: 14px;
+  font-size: 12px;
 `;
 
-export default Button;
+export default FooterButton;

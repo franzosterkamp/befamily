@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import HeaderButton from './HeaderButton';
-import list from '../assets/svg/list.svg';
-import map from '../assets/svg/map.svg';
+import list from '../../assets/svg/list.svg';
+import map from '../../assets/svg/map.svg';
 import Img from './HeaderImg';
 
 const Header = styled.header`
