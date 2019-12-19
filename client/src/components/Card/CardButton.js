@@ -4,7 +4,6 @@ const CardButton = styled.button`
   height: fit-content;
   width: fit-content;
   background-color: ${props => props.theme.colors.special};
-  /* margin: 2% 5% 5% 75%; */
   border-radius: 5px;
   padding: 2px 10px;
   margin-top: 8px;
