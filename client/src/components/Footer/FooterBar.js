@@ -5,7 +5,7 @@ import add from '../../assets/svg/add.svg';
 import sort from '../../assets/svg/sort.svg';
 import menu from '../../assets/svg/menu.svg';
 
-const Footer = styled.header`
+const Footer = styled.footer`
   display: flex;
   justify-content: space-evenly;
   background-color: ${props => props.theme.colors.primary};
