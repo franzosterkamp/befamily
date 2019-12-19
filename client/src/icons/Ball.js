@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Svg = styled.svg`
-  fill: rgb(80%, 80%, 80%);
+  fill: ${props => props.theme.colors.text};
 `;
 
 export default function Ball(props) {
