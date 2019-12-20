@@ -17,7 +17,7 @@ const Container = styled.div`
   width: 90%;
   max-width: 360px;
   margin: auto;
-  height: 160px;
+  height: 140px;
   display: flex;
   justify-content: flex-start;
   border-radius: 10px;
@@ -39,9 +39,9 @@ const Title = styled.p`
 `;
 
 const BadgeWrapper = styled.div`
-  margin-top: 10px;
+  margin-top: 8px;
   display: flex;
-  justify-content: space-evenly;
+  align-content: flex-start;
   flex-wrap: wrap;
 `;
 
