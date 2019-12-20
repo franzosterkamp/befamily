@@ -9,6 +9,8 @@ const CardButton = styled.button`
   margin-top: 8px;
   align-self: flex-end;
   margin-right: 2%;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
   outline: none;
 `;
 

@@ -23,6 +23,7 @@ const Container = styled.div`
   border-radius: 10px;
   background-color: white;
   border: 1px solid black;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 
 const ContentWrapper = styled.div`

@@ -8,6 +8,7 @@ const Badege = styled.span`
   padding: 5px;
   border-radius: 10px;
   margin: 3px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 
 export default Badege;
