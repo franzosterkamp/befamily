@@ -23,7 +23,7 @@ const NormalBall = styled(Ball)`
 `;
 
 const YellowBall = styled(Ball)`
-  fill: #ffd626;
+  fill: ${props => props.theme.colors.rate};
   width: 1.5rem;
   height: 1.5rem;
 `;
