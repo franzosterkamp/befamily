@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import mapboxgl from 'mapbox-gl';
+import React from './node_modules/react';
+import styled from './node_modules/@emotion/styled';
+import mapboxgl from './node_modules/mapbox-gl';
 
 const MapContainer = styled.div`
   width: 500px;

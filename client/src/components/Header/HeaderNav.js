@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from './node_modules/react';
+import styled from './node_modules/@emotion/styled';
 import HeaderButton from './HeaderButton';
 import MapIcon from '../../icons/Map';
 import ListIcon from '../../icons/List';
