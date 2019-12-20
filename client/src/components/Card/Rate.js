@@ -14,6 +14,7 @@ const P = styled.p`
   font-size: 0.8rem;
   margin-right: 5px;
   font-weight: bold;
+  font-style: italic;
 `;
 
 const NormalBall = styled(Ball)`

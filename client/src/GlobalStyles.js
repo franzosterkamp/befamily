@@ -16,6 +16,7 @@ function GlobalStyles() {
           font-size: 16px;
           margin: 0;
           background: ${theme.colors.background};
+          font-family: 'Roboto', sans-serif;
         }
       `}
     />
