@@ -3,7 +3,7 @@ import Badge from './Badge';
 import Image from './CardImage';
 import Rate from './Rate';
 import styled from '@emotion/styled';
-import playplace from '../../assets/Images/Spielplatz.png';
+import playplace from '../../assets/images/Spielplatz.png';
 import CardButton from './CardButton';
 
 const ImageWrapper = styled.div`

@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderNav from '../components/Header/HeaderNav';
+import HeaderNav from '../components/header/HeaderNav';
 
 export default {
   title: 'HeaderNav'

@@ -1,5 +1,5 @@
 import React from 'react';
-import FooterBar from '../components/Footer/FooterBar';
+import FooterBar from '../components/footer/FooterBar';
 
 export default {
   title: 'FooterBar'
