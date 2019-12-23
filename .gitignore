@@ -19,6 +19,7 @@ storybook-staric
 .env.test.local
 .env.production.local
 .env
+db.json
 
 npm-debug.log*
 yarn-debug.log*

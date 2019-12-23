@@ -28,8 +28,8 @@ export default function Map() {
     position: absolute;
     background-color: transparent;
     fill: ${mapStyle === 'mapbox://styles/mapbox/streets-v11'
-      ? props => props.theme.colors.rate
-      : props => props.theme.colors.special};
+      ? props => props.theme.colors.primary
+      : props => props.theme.colors.secondary};
   `;
 
   const mapData = {

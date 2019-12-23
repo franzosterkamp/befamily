@@ -5,6 +5,6 @@ export default {
   title: 'Map'
 };
 
-export function GeneralInput() {
+export function MapBox() {
   return <Map></Map>;
 }

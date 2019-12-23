@@ -1,0 +1,17 @@
+{
+  "places": [
+    {
+      "name": "Test",
+      "category": "Spielplatz",
+      "detail": "ist a test",
+      "age": "0-2Jahre",
+      "street": "testeste",
+      "city": "testest",
+      "zip": "324234",
+      "web": "",
+      "rate": 2,
+      "img": "C:\\fakepath\\Bildschirmfoto 2019-12-19 um 11.59.27.png",
+      "id": 1
+    }
+  ]
+}
