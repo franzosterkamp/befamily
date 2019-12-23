@@ -1,0 +1,30 @@
+{
+  "places": [
+    {
+      "name": "Spielplatz Nippes",
+      "category": "Spielplatz",
+      "detail": "blablalba",
+      "age": "0-2 Jahre",
+      "street": "Josefine-Clouth-Straße 26",
+      "city": "Köln",
+      "zip": "50733",
+      "web": "vava",
+      "rate": 3,
+      "img": "C:\\fakepath\\Bildschirmfoto 2019-12-19 um 11.59.27.png",
+      "id": 1
+    },
+    {
+      "name": "Peter Schoofs",
+      "category": "Schwimmbad",
+      "detail": "babababababa",
+      "age": "ab 11 Jahre",
+      "street": "PeterStr.2",
+      "city": "Belrin",
+      "zip": "5464365",
+      "web": "",
+      "rate": 3,
+      "img": "C:\\fakepath\\Bildschirmfoto 2019-12-13 um 15.58.26.png",
+      "id": 2
+    }
+  ]
+}

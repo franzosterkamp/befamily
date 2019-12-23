@@ -53,9 +53,9 @@ const RateInput = styled.input`
 
 export default function AddPlace() {
   const [name, setName] = React.useState('');
-  const [category, setCategory] = React.useState('');
+  const [category, setCategory] = React.useState('Spielplatz');
   const [detail, setDetail] = React.useState('');
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState('0-2 Jahre');
   const [street, setStreet] = React.useState('');
   const [city, setCity] = React.useState('');
   const [zip, setZip] = React.useState('');
@@ -63,8 +63,29 @@ export default function AddPlace() {
   const [rate, setRate] = React.useState(null);
   const [img, setImg] = React.useState(null);
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    await fetch('http://localhost:3004/places', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, category, detail, age, street, city, zip, web, rate, img })
+    });
+    setName('');
+    setCategory('Spielplatz');
+    setDetail('');
+    setAge('0-2 Jahre');
+    setStreet('');
+    setCity('');
+    setZip('');
+    setWeb('');
+    setRate(null);
+    setImg(null);
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Headline>Neuen Ort eintragen</Headline>
 
       <Label>
@@ -86,7 +107,7 @@ export default function AddPlace() {
       </Label>
       <Label>
         Beschreibung
-        <TextArea onChange={event => setDetail(event.target.value)} value={detail} rows="15" />
+        <TextArea onChange={event => setDetail(event.target.value)} value={detail} rows="10" />
       </Label>
       <Label>
         Altersgruppe
@@ -127,12 +148,7 @@ export default function AddPlace() {
       </Label>
       <Label>
         Webseite
-        <Input
-          onChange={event => setWeb(event.target.value)}
-          value={web}
-          type="text"
-          required="true"
-        />
+        <Input onChange={event => setWeb(event.target.value)} value={web} type="text" />
       </Label>
       <Headline>Bewertung</Headline>
       <Rate>
@@ -153,7 +169,6 @@ export default function AddPlace() {
           type="file"
           accept="image/*"
           value={img}
-          capture="camera"
           onChange={event => setImg(event.target.value)}
         />
       </Label>
