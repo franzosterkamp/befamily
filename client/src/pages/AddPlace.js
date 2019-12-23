@@ -52,16 +52,25 @@ const RateInput = styled.input`
 `;
 
 export default function AddPlace() {
-  const [name, setName] = React.useState('');
-  const [category, setCategory] = React.useState('Spielplatz');
-  const [detail, setDetail] = React.useState('');
-  const [age, setAge] = React.useState('0-2 Jahre');
-  const [street, setStreet] = React.useState('');
-  const [city, setCity] = React.useState('');
-  const [zip, setZip] = React.useState('');
-  const [web, setWeb] = React.useState('');
-  const [rate, setRate] = React.useState(null);
-  const [img, setImg] = React.useState(null);
+  const [place, setPlace] = React.useState({
+    name: '',
+    category: 'Spielplatz',
+    detail: '',
+    age: '0-2Jahre',
+    street: '',
+    city: '',
+    zip: '',
+    web: '',
+    rate: '',
+    img: ''
+  });
+
+  function handleChange(event) {
+    setPlace({
+      ...place,
+      [event.target.name]: event.target.value
+    });
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -70,18 +79,20 @@ export default function AddPlace() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, category, detail, age, street, city, zip, web, rate, img })
+      body: JSON.stringify(place)
     });
-    setName('');
-    setCategory('Spielplatz');
-    setDetail('');
-    setAge('0-2 Jahre');
-    setStreet('');
-    setCity('');
-    setZip('');
-    setWeb('');
-    setRate(null);
-    setImg(null);
+    setPlace({
+      name: '',
+      category: 'Spielplatz',
+      detail: '',
+      age: '0-2Jahre',
+      street: '',
+      city: '',
+      zip: '',
+      web: '',
+      rate: '',
+      img: ''
+    });
   }
 
   return (
@@ -90,16 +101,11 @@ export default function AddPlace() {
 
       <Label>
         Name des Ortes
-        <Input
-          type="text"
-          required="true"
-          value={name}
-          onChange={event => setName(event.target.value)}
-        />
+        <Input type="text" name="name" required="true" value={place.name} onChange={handleChange} />
       </Label>
       <Label>
         Kategorie
-        <select onChange={event => setCategory(event.target.value)} value={category}>
+        <select name="category" onChange={handleChange} value={place.category}>
           <option value="Spielplatz">Spielplatz</option>
           <option value="Schwimmbad">Schwimmbad</option>
           <option value="Cafe">Cafe</option>
@@ -107,11 +113,11 @@ export default function AddPlace() {
       </Label>
       <Label>
         Beschreibung
-        <TextArea onChange={event => setDetail(event.target.value)} value={detail} rows="10" />
+        <TextArea name="detail" onChange={handleChange} value={place.detail} rows="10" />
       </Label>
       <Label>
         Altersgruppe
-        <select onChange={event => setAge(event.target.value)} value={age}>
+        <select name="age" onChange={handleChange} value={place.age}>
           <option value="0-2 Jahre">0-2 Jahre</option>
           <option value="3-6 Jahre">3-6 Jahre</option>
           <option value="7-10 Jahre">7-10 Jahre</option>
@@ -122,33 +128,24 @@ export default function AddPlace() {
       <Label>
         Straße/Hausnummer
         <Input
-          onChange={event => setStreet(event.target.value)}
-          value={street}
+          onChange={handleChange}
+          value={place.street}
+          name="street"
           type="text"
           required="true"
         />
       </Label>
       <Label>
         Ort
-        <Input
-          onChange={event => setCity(event.target.value)}
-          value={city}
-          type="text"
-          required="true"
-        />
+        <Input onChange={handleChange} name="city" value={place.city} type="text" required="true" />
       </Label>
       <Label>
         Postleitzahl
-        <Input
-          onChange={event => setZip(event.target.value)}
-          value={zip}
-          type="text"
-          required="true"
-        />
+        <Input onChange={handleChange} name="zip" value={place.zip} type="text" required="true" />
       </Label>
       <Label>
         Webseite
-        <Input onChange={event => setWeb(event.target.value)} value={web} type="text" />
+        <Input onChange={handleChange} name="web" value={place.web} type="text" />
       </Label>
       <Headline>Bewertung</Headline>
       <Rate>
@@ -156,9 +153,15 @@ export default function AddPlace() {
           <RateInput
             key={value}
             type="button"
+            name="rate"
             value={value}
-            active={value === rate}
-            onClick={() => setRate(value)}
+            active={value === place.rate}
+            onClick={event =>
+              setPlace({
+                ...place,
+                rate: value
+              })
+            }
           />
         ))}
       </Rate>
@@ -167,9 +170,10 @@ export default function AddPlace() {
       <Label>
         <CameraInput
           type="file"
+          name="img"
           accept="image/*"
-          value={img}
-          onChange={event => setImg(event.target.value)}
+          value={place.img}
+          onChange={handleChange}
         />
       </Label>
       <Button>bestätigen</Button>
