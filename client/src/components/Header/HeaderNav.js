@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import HeaderButton from './HeaderButton';
+import { ListButton, MapButton } from './HeaderButton';
 import MapIcon from '../../icons/Map';
 import ListIcon from '../../icons/List';
+import { useLocation } from 'react-router-dom';
 
 const Header = styled.header`
   display: flex;
@@ -14,9 +15,6 @@ const Header = styled.header`
 
   width: 100%;
 `;
-const LeftButton = styled(HeaderButton)`
-  border-right: 2px ${props => props.theme.colors.text} solid;
-`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,20 +24,21 @@ const Wrapper = styled.div`
 `;
 
 export default function HeaderNav() {
+  const location = useLocation();
   return (
     <Header>
-      <LeftButton to="/">
+      <MapButton to="/" active={location.pathname === '/'}>
         <Wrapper>
           <MapIcon />
           <p>Karte</p>
         </Wrapper>
-      </LeftButton>
-      <HeaderButton to="/list">
+      </MapButton>
+      <ListButton to="/list" active={location.pathname === '/list'}>
         <Wrapper>
           <ListIcon />
           <p>Liste</p>
         </Wrapper>
-      </HeaderButton>
+      </ListButton>
     </Header>
   );
 }
