@@ -124,7 +124,7 @@ export default function AddPlace() {
           <option value="ab 11 Jahre">ab 11 Jahre</option>
         </select>
       </Label>
-      <Headline>Adresse</Headline>
+      <Headline> Adresse </Headline>
       <Label>
         Straße/Hausnummer
         <Input

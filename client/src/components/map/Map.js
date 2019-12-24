@@ -4,9 +4,13 @@ import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../../icons/Satellite';
 
 const MapContainer = styled.div`
-  width: 500px;
+  width: 100%;
   height: 500px;
   position: absolute;
+`;
+
+const Marker = styled.div`
+  color: red;
 `;
 
 mapboxgl.accessToken =
@@ -49,10 +53,29 @@ export default function Map() {
 
   React.useEffect(() => {
     const map = new mapboxgl.Map(mapData);
+
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      })
+    );
+
     map.on('move', () => {
       setLng(map.getCenter().lng.toFixed(4));
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
+    });
+
+    map.on('click', event => {
+      const coords = `lat: ${event.lngLat.lat}  lng: ${event.lngLat.lng}`;
+      const popup = new mapboxgl.Popup().setText(coords);
+      let marker = new mapboxgl.Marker(Marker)
+        .setLngLat(event.lngLat)
+        .setPopup(popup)
+        .addTo(map);
     });
   }, [mapStyle]);
 
@@ -60,6 +83,7 @@ export default function Map() {
     <MapContainer id="map_container">
       <MapButton onClick={handleClickMap}>
         <SatelliteIcon />
+        <Marker id="marker" />
       </MapButton>
     </MapContainer>
   );
