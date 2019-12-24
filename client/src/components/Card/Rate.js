@@ -33,7 +33,6 @@ export default function Rate({ rate }) {
 
   function Rating(rate) {
     const intRate = parseInt(rate);
-    console.log(intRate);
     let count = 0;
     while (count < intRate) {
       balls.push(<YellowBall key={count} />);
@@ -42,7 +41,6 @@ export default function Rate({ rate }) {
     while (count < 5) {
       balls.push(<NormalBall key={count} />);
       count++;
-      console.log(balls);
     }
     return balls;
   }
