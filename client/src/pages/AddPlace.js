@@ -73,6 +73,7 @@ export default function AddPlace() {
   }
 
   async function handleSubmit(event) {
+    console.log(place);
     event.preventDefault();
     await fetch('http://localhost:3004/places', {
       method: 'POST',
@@ -89,6 +90,7 @@ export default function AddPlace() {
       street: '',
       city: '',
       zip: '',
+      quarter: '',
       web: '',
       rate: '',
       img: ''
@@ -142,6 +144,16 @@ export default function AddPlace() {
       <Label>
         Postleitzahl
         <Input onChange={handleChange} name="zip" value={place.zip} type="text" required="true" />
+      </Label>
+      <Label>
+        Stadtteil
+        <Input
+          onChange={handleChange}
+          name="quarter"
+          value={place.quarter}
+          type="text"
+          required="true"
+        />
       </Label>
       <Label>
         Webseite
