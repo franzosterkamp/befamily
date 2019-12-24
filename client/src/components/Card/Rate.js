@@ -28,16 +28,28 @@ const YellowBall = styled(Ball)`
   height: 1.5rem;
 `;
 
-export default function Rate() {
+export default function Rate({ rate }) {
+  const balls = [];
+
+  function Rating(rate) {
+    const intRate = parseInt(rate);
+    let count = 0;
+    while (count < intRate) {
+      balls.push(<YellowBall key={count} />);
+      count++;
+    }
+    while (count < 5) {
+      balls.push(<NormalBall key={count} />);
+      count++;
+    }
+    return balls;
+  }
+
   return (
     <Container>
       <P>Bewertung: </P>
-      <P>4,2</P>
-      <YellowBall />
-      <YellowBall />
-      <YellowBall />
-      <YellowBall />
-      <NormalBall />
+      <P>{rate}</P>
+      {Rating(rate)}
     </Container>
   );
 }

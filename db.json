@@ -1,17 +1,46 @@
 {
   "places": [
     {
-      "name": "Test",
+      "name": "Schwimmbad Lentpark",
       "category": "Spielplatz",
-      "detail": "ist a test",
+      "detail": "Ein tolles Schwimmbad.",
       "age": "0-2Jahre",
-      "street": "testeste",
-      "city": "testest",
-      "zip": "324234",
+      "street": "Peter-Straße 5",
+      "city": "Köln",
+      "zip": "50773",
+      "quarter": "Nippes",
       "web": "",
-      "rate": 2,
+      "rate": 4,
       "img": "C:\\fakepath\\Bildschirmfoto 2019-12-19 um 11.59.27.png",
-      "id": 1
+      "id": 2
+    },
+    {
+      "name": "Spielplatz Breitestraße",
+      "category": "Spielplatz",
+      "detail": "Schöner Spielplatz für die älteren Kinder.",
+      "age": "3-6 Jahre",
+      "street": "Breitestraße 22",
+      "city": "Köln",
+      "zip": "50667",
+      "quarter": "Innendstadt",
+      "web": "",
+      "rate": 5,
+      "img": "C:\\fakepath\\Bildschirmfoto 2019-12-19 um 11.59.27.png",
+      "id": 3
+    },
+    {
+      "name": "Spielplatz Venloerstraße",
+      "category": "Spielplatz",
+      "detail": "Super Spielpatz für die Kids.",
+      "age": "3-6 Jahre",
+      "street": "Venloer Straße 433",
+      "city": "Köln",
+      "zip": "50825",
+      "quarter": "Ehrenfeld",
+      "web": "",
+      "rate": 3,
+      "img": "C:\\fakepath\\Bildschirmfoto 2019-12-19 um 11.59.27.png",
+      "id": 4
     }
   ]
 }

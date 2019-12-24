@@ -13,7 +13,6 @@ const ImageWrapper = styled.div`
 `;
 
 const Container = styled.div`
-  margin-top: 30%;
   width: 90%;
   max-width: 360px;
   margin: auto;
@@ -24,6 +23,8 @@ const Container = styled.div`
   background-color: white;
   border: 1px solid black;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 15px;
+  margin-top: 5px;
 `;
 
 const ContentWrapper = styled.div`
@@ -45,18 +46,18 @@ const BadgeWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function Card() {
+export default function Card({ name, age, rate, quarter }) {
   return (
     <Container>
       <ImageWrapper>
         <Image src={playplace}></Image>
       </ImageWrapper>
       <ContentWrapper>
-        <Title>Spielplatz Breitestraße</Title>
-        <Rate />
+        <Title>{name}</Title>
+        <Rate rate={rate} />
         <BadgeWrapper>
-          <Badge>ab 0 Jahre</Badge>
-          <Badge>Ehrenfeld</Badge>
+          <Badge>{age}</Badge>
+          <Badge>{quarter}</Badge>
           <Badge>2 km</Badge>
         </BadgeWrapper>
         <CardButton>mehr</CardButton>

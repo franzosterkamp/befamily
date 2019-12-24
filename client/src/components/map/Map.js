@@ -72,7 +72,7 @@ export default function Map() {
     map.on('click', event => {
       const coords = `lat: ${event.lngLat.lat}  lng: ${event.lngLat.lng}`;
       const popup = new mapboxgl.Popup().setText(coords);
-      let marker = new mapboxgl.Marker(Marker)
+      new mapboxgl.Marker(Marker)
         .setLngLat(event.lngLat)
         .setPopup(popup)
         .addTo(map);
