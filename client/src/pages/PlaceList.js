@@ -5,8 +5,6 @@ import Card from '../components/card/Card';
 const Container = styled.div`
   display: flex;
   flex-flow: column;
-  width: 100%;
-  height: 100%;
 `;
 
 export default function Placelist() {

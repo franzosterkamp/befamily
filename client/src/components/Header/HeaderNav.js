@@ -9,7 +9,7 @@ const Header = styled.header`
   justify-content: space-evenly;
   background-color: ${props => props.theme.colors.primary};
   align-items: center;
-  height: 60px;
+  height: 50px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
   width: 100%;
@@ -28,13 +28,13 @@ const Wrapper = styled.div`
 export default function HeaderNav() {
   return (
     <Header>
-      <LeftButton>
+      <LeftButton to="/">
         <Wrapper>
           <MapIcon />
           <p>Karte</p>
         </Wrapper>
       </LeftButton>
-      <HeaderButton>
+      <HeaderButton to="/list">
         <Wrapper>
           <ListIcon />
           <p>Liste</p>

@@ -4,11 +4,18 @@ import Input from '../components/general/Input';
 import TextArea from '../components/general/TextInput';
 import Button from '../components/general/Button';
 
+const Container = styled.div`
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+`;
+
 const Form = styled.form`
+  margin-bottom: 10px;
   display: flex;
   flex-flow: column;
   align-items: center;
-  max-width: 700px;
 `;
 
 const CameraInput = styled(Input)`
@@ -26,10 +33,10 @@ const Label = styled.label`
 
 const Headline = styled.div`
   width: 100%;
+  margin-bottom: 20px;
   height: 30px;
   line-height: 30px;
-  margin-bottom: 20px;
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.text};
   text-align: center;
   font-size: 1rem;
   border-bottom: solid 2px black;
@@ -48,7 +55,7 @@ const RateInput = styled.input`
   border-radius: 8px;
   color: black;
   outline: none;
-  background: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.special)};
+  background: ${props => (props.active ? props.theme.colors.special : props.theme.colors.primary)};
 `;
 
 export default function AddPlace() {
@@ -98,97 +105,111 @@ export default function AddPlace() {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Headline>Neuen Ort eintragen</Headline>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Headline>Neuen Ort eintragen</Headline>
 
-      <Label>
-        Name des Ortes
-        <Input type="text" name="name" required="true" value={place.name} onChange={handleChange} />
-      </Label>
-      <Label>
-        Kategorie
-        <select name="category" onChange={handleChange} value={place.category}>
-          <option value="Spielplatz">Spielplatz</option>
-          <option value="Schwimmbad">Schwimmbad</option>
-          <option value="Cafe">Cafe</option>
-        </select>
-      </Label>
-      <Label>
-        Beschreibung
-        <TextArea name="detail" onChange={handleChange} value={place.detail} rows="10" />
-      </Label>
-      <Label>
-        Altersgruppe
-        <select name="age" onChange={handleChange} value={place.age}>
-          <option value="0-2 Jahre">0-2 Jahre</option>
-          <option value="3-6 Jahre">3-6 Jahre</option>
-          <option value="7-10 Jahre">7-10 Jahre</option>
-          <option value="ab 11 Jahre">ab 11 Jahre</option>
-        </select>
-      </Label>
-      <Headline> Adresse </Headline>
-      <Label>
-        Straße/Hausnummer
-        <Input
-          onChange={handleChange}
-          value={place.street}
-          name="street"
-          type="text"
-          required="true"
-        />
-      </Label>
-      <Label>
-        Ort
-        <Input onChange={handleChange} name="city" value={place.city} type="text" required="true" />
-      </Label>
-      <Label>
-        Postleitzahl
-        <Input onChange={handleChange} name="zip" value={place.zip} type="text" required="true" />
-      </Label>
-      <Label>
-        Stadtteil
-        <Input
-          onChange={handleChange}
-          name="quarter"
-          value={place.quarter}
-          type="text"
-          required="true"
-        />
-      </Label>
-      <Label>
-        Webseite
-        <Input onChange={handleChange} name="web" value={place.web} type="text" />
-      </Label>
-      <Headline>Bewertung</Headline>
-      <Rate>
-        {[1, 2, 3, 4, 5].map(value => (
-          <RateInput
-            key={value}
-            type="button"
-            name="rate"
-            value={value}
-            active={value === place.rate}
-            onClick={event =>
-              setPlace({
-                ...place,
-                rate: value
-              })
-            }
+        <Label>
+          Name des Ortes
+          <Input
+            type="text"
+            name="name"
+            required="true"
+            value={place.name}
+            onChange={handleChange}
           />
-        ))}
-      </Rate>
-      <Headline>Foto</Headline>
+        </Label>
+        <Label>
+          Kategorie
+          <select name="category" onChange={handleChange} value={place.category}>
+            <option value="Spielplatz">Spielplatz</option>
+            <option value="Schwimmbad">Schwimmbad</option>
+            <option value="Cafe">Cafe</option>
+          </select>
+        </Label>
+        <Label>
+          Beschreibung
+          <TextArea name="detail" onChange={handleChange} value={place.detail} rows="10" />
+        </Label>
+        <Label>
+          Altersgruppe
+          <select name="age" onChange={handleChange} value={place.age}>
+            <option value="0-2 Jahre">0-2 Jahre</option>
+            <option value="3-6 Jahre">3-6 Jahre</option>
+            <option value="7-10 Jahre">7-10 Jahre</option>
+            <option value="ab 11 Jahre">ab 11 Jahre</option>
+          </select>
+        </Label>
+        <Headline> Adresse </Headline>
+        <Label>
+          Straße/Hausnummer
+          <Input
+            onChange={handleChange}
+            value={place.street}
+            name="street"
+            type="text"
+            required="true"
+          />
+        </Label>
+        <Label>
+          Ort
+          <Input
+            onChange={handleChange}
+            name="city"
+            value={place.city}
+            type="text"
+            required="true"
+          />
+        </Label>
+        <Label>
+          Postleitzahl
+          <Input onChange={handleChange} name="zip" value={place.zip} type="text" required="true" />
+        </Label>
+        <Label>
+          Stadtteil
+          <Input
+            onChange={handleChange}
+            name="quarter"
+            value={place.quarter}
+            type="text"
+            required="true"
+          />
+        </Label>
+        <Label>
+          Webseite
+          <Input onChange={handleChange} name="web" value={place.web} type="text" />
+        </Label>
+        <Headline>Bewertung</Headline>
+        <Rate>
+          {[1, 2, 3, 4, 5].map(value => (
+            <RateInput
+              key={value}
+              type="button"
+              name="rate"
+              value={value}
+              active={value === place.rate}
+              onClick={event =>
+                setPlace({
+                  ...place,
+                  rate: value
+                })
+              }
+            />
+          ))}
+        </Rate>
+        <Headline>Foto</Headline>
 
-      <Label>
-        <CameraInput
-          type="file"
-          name="img"
-          accept="image/*"
-          value={place.img}
-          onChange={handleChange}
-        />
-      </Label>
-      <Button>bestätigen</Button>
-    </Form>
+        <Label>
+          <CameraInput
+            type="file"
+            name="img"
+            accept="image/*"
+            value={place.img}
+            onChange={handleChange}
+          />
+        </Label>
+        <Button>bestätigen</Button>
+      </Form>
+    </Container>
   );
 }

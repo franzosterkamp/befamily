@@ -7,17 +7,18 @@ import MenuIcon from '../../icons/Menu';
 
 const Footer = styled.footer`
   display: flex;
-  justify-content: space-evenly;
   background-color: ${props => props.theme.colors.primary};
-  align-items: center;
-  height: 60px;
+  height: 40px;
   width: 100%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  height: 100%;
+  align-items: center;
+  text-align: center;
 `;
 
 const MiddleButton = styled(FooterButton)`
@@ -28,7 +29,7 @@ const MiddleButton = styled(FooterButton)`
 export default function FooterBar() {
   return (
     <Footer>
-      <FooterButton>
+      <FooterButton to="/add">
         <Wrapper>
           <AddIcon />
           <p>Add</p>

@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 const Svg = styled.svg`
   fill: ${props => props.theme.colors.text};
-  margin-top: 8px;
 `;
 
 export default function Ball(props) {
