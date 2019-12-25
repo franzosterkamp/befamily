@@ -5,8 +5,7 @@ import SatelliteIcon from '../../icons/Satellite';
 
 const MapContainer = styled.div`
   width: 100%;
-  height: 500px;
-  position: absolute;
+  height: 100%;
 `;
 
 const Marker = styled.div`
@@ -32,8 +31,8 @@ export default function Map() {
     position: absolute;
     background-color: transparent;
     fill: ${mapStyle === 'mapbox://styles/mapbox/streets-v11'
-      ? props => props.theme.colors.primary
-      : props => props.theme.colors.secondary};
+      ? props => props.theme.colors.secondary
+      : props => props.theme.colors.background};
   `;
 
   const mapData = {
