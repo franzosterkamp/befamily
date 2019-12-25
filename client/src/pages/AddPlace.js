@@ -3,62 +3,52 @@ import styled from '@emotion/styled';
 import Input from '../components/general/Input';
 import TextArea from '../components/general/TextInput';
 import Button from '../components/general/Button';
-
-const Container = styled.div`
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-  width: 100%;
-`;
-
-const Form = styled.form`
-  margin-bottom: 10px;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-`;
-
-const CameraInput = styled(Input)`
-  width: 300px;
-  font-size: 0.8rem;
-`;
-
-const Label = styled.label`
-  font-weight: bold;
-  font-size: 0.9rem;
-  display: block;
-  width: 150px;
-  margin-bottom: 15px;
-`;
-
-const Headline = styled.div`
-  width: 100%;
-  margin-bottom: 20px;
-  height: 30px;
-  line-height: 30px;
-  background-color: ${props => props.theme.colors.text};
-  text-align: center;
-  font-size: 1rem;
-  border-bottom: solid 2px black;
-`;
-
-const Rate = styled.div`
-  margin-bottom: 15px;
-  display: flex;
-`;
-
-const RateInput = styled.input`
-  width: 30px;
-  height: 30px;
-  margin: 0px 5px;
-  border: none;
-  border-radius: 8px;
-  color: black;
-  outline: none;
-  background: ${props => (props.active ? props.theme.colors.special : props.theme.colors.primary)};
-`;
+import AddMarkerMap from '../components/map/AddMarkerMap';
+import {
+  Container,
+  Form,
+  CameraInput,
+  Label,
+  Headline,
+  Rate,
+  RateInput,
+  HeadlineWrapper
+} from '../components/general/AddPlaceComponents';
 
 export default function AddPlace() {
+  const [adressClicked, setAdressClicked] = React.useState(false);
+  const [mapClicked, setMapClicked] = React.useState(false);
+
+  const AdressContainer = styled.div`
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: auto;
+    height: 180px;
+    display: ${adressClicked ? 'block' : 'none'};
+  `;
+
+  const MapContainer = styled.div`
+    width: 100%;
+    height: 200px;
+    display: ${mapClicked ? 'block' : 'none'};
+  `;
+
+  const MapHeadline = styled.div`
+    width: 50%;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: ${props => (mapClicked ? props.theme.colors.rate : props.theme.colors.text)};
+  `;
+
+  const AdressHeadline = styled.div`
+    width: 50%;
+    font-size: 1rem;
+    border: 1px solid black;
+    background-color: ${props =>
+      adressClicked ? props.theme.colors.rate : props.theme.colors.text};
+  `;
+
   const [place, setPlace] = React.useState({
     name: '',
     category: 'Spielplatz',
@@ -79,8 +69,17 @@ export default function AddPlace() {
     });
   }
 
+  function handleAdressClick() {
+    setAdressClicked(!adressClicked);
+    setMapClicked(false);
+  }
+
+  function handleMapClick() {
+    setMapClicked(!mapClicked);
+    setAdressClicked(false);
+  }
+
   async function handleSubmit(event) {
-    console.log(place);
     event.preventDefault();
     await fetch('http://localhost:3004/places', {
       method: 'POST',
@@ -140,31 +139,45 @@ export default function AddPlace() {
             <option value="ab 11 Jahre">ab 11 Jahre</option>
           </select>
         </Label>
-        <Headline> Adresse </Headline>
-        <Label>
-          Straße/Hausnummer
-          <Input
-            onChange={handleChange}
-            value={place.street}
-            name="street"
-            type="text"
-            required="true"
-          />
-        </Label>
-        <Label>
-          Ort
-          <Input
-            onChange={handleChange}
-            name="city"
-            value={place.city}
-            type="text"
-            required="true"
-          />
-        </Label>
-        <Label>
-          Postleitzahl
-          <Input onChange={handleChange} name="zip" value={place.zip} type="text" required="true" />
-        </Label>
+        <HeadlineWrapper>
+          <AdressHeadline onClick={handleAdressClick}>Adresse</AdressHeadline>
+          <MapHeadline onClick={handleMapClick}> Karte </MapHeadline>
+        </HeadlineWrapper>
+        <AdressContainer>
+          <Label>
+            Straße/Hausnummer
+            <Input
+              onChange={handleChange}
+              value={place.street}
+              name="street"
+              type="text"
+              required="true"
+            />
+          </Label>
+          <Label>
+            Ort
+            <Input
+              onChange={handleChange}
+              name="city"
+              value={place.city}
+              type="text"
+              required="true"
+            />
+          </Label>
+          <Label>
+            Postleitzahl
+            <Input
+              onChange={handleChange}
+              name="zip"
+              value={place.zip}
+              type="text"
+              required="true"
+            />
+          </Label>
+        </AdressContainer>
+        <MapContainer>
+          <AddMarkerMap />
+        </MapContainer>
         <Label>
           Stadtteil
           <Input
