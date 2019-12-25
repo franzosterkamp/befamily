@@ -35,22 +35,15 @@ export default function Map() {
       : props => props.theme.colors.background};
   `;
 
-  const mapData = {
-    container: 'map_container',
-    style: mapStyle,
-    center: [lng, lat],
-    zoom: zoom
-  };
+  function createMap() {
+    let marker = null;
 
-  function handleClickMap() {
-    if (mapStyle === 'mapbox://styles/mapbox/streets-v11') {
-      setMapStyle('mapbox://styles/mapbox/satellite-v9');
-    } else {
-      setMapStyle('mapbox://styles/mapbox/streets-v11');
-    }
-  }
-
-  React.useEffect(() => {
+    const mapData = {
+      container: 'map_container',
+      style: mapStyle,
+      center: [lng, lat],
+      zoom: zoom
+    };
     const map = new mapboxgl.Map(mapData);
 
     map.addControl(
@@ -71,11 +64,35 @@ export default function Map() {
     map.on('click', event => {
       const coords = `lat: ${event.lngLat.lat}  lng: ${event.lngLat.lng}`;
       const popup = new mapboxgl.Popup().setText(coords);
-      new mapboxgl.Marker(Marker)
-        .setLngLat(event.lngLat)
-        .setPopup(popup)
-        .addTo(map);
+
+      if (marker === null) {
+        marker = new mapboxgl.Marker(Marker)
+          .setLngLat(event.lngLat)
+          .setPopup(popup)
+          .addTo(map);
+      } else {
+        marker.remove();
+        marker = new mapboxgl.Marker(Marker)
+          .setLngLat(event.lngLat)
+          .setPopup(popup)
+          .addTo(map);
+      }
     });
+
+    return map;
+  }
+
+  function handleClickMap() {
+    if (mapStyle === 'mapbox://styles/mapbox/streets-v11') {
+      setMapStyle('mapbox://styles/mapbox/satellite-v9');
+    } else {
+      setMapStyle('mapbox://styles/mapbox/streets-v11');
+    }
+  }
+
+  React.useEffect(() => {
+    const newMap = createMap();
+    console.log(newMap);
   }, [mapStyle]);
 
   return (
