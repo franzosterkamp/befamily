@@ -91,7 +91,7 @@ export default function Map() {
   }
 
   React.useEffect(() => {
-    const newMap = createMap();
+    createMap();
   }, [mapStyle]);
 
   return (

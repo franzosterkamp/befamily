@@ -110,13 +110,7 @@ export default function AddPlace() {
 
         <Label>
           Name des Ortes
-          <Input
-            type="text"
-            name="name"
-            required="true"
-            value={place.name}
-            onChange={handleChange}
-          />
+          <Input type="text" name="name" required value={place.name} onChange={handleChange} />
         </Label>
         <Label>
           Kategorie
@@ -151,28 +145,16 @@ export default function AddPlace() {
               value={place.street}
               name="street"
               type="text"
-              required="true"
+              required
             />
           </Label>
           <Label>
             Ort
-            <Input
-              onChange={handleChange}
-              name="city"
-              value={place.city}
-              type="text"
-              required="true"
-            />
+            <Input onChange={handleChange} name="city" value={place.city} type="text" required />
           </Label>
           <Label>
             Postleitzahl
-            <Input
-              onChange={handleChange}
-              name="zip"
-              value={place.zip}
-              type="text"
-              required="true"
-            />
+            <Input onChange={handleChange} name="zip" value={place.zip} type="text" required />
           </Label>
         </AdressContainer>
         <MapContainer>

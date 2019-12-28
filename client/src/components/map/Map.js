@@ -36,8 +36,6 @@ export default function Map() {
   `;
 
   function createMap() {
-    let marker = null;
-
     const mapData = {
       container: 'map_container',
       style: mapStyle,
@@ -59,24 +57,6 @@ export default function Map() {
       setLng(map.getCenter().lng.toFixed(4));
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
-    });
-
-    map.on('click', event => {
-      const coords = `lat: ${event.lngLat.lat}  lng: ${event.lngLat.lng}`;
-      const popup = new mapboxgl.Popup().setText(coords);
-
-      if (marker === null) {
-        marker = new mapboxgl.Marker(Marker)
-          .setLngLat(event.lngLat)
-          .setPopup(popup)
-          .addTo(map);
-      } else {
-        marker.remove();
-        marker = new mapboxgl.Marker(Marker)
-          .setLngLat(event.lngLat)
-          .setPopup(popup)
-          .addTo(map);
-      }
     });
 
     return map;
