@@ -12,28 +12,29 @@ const Marker = styled.div`
   color: red;
 `;
 
+const MapButton = styled.button`
+  z-index: 1;
+  margin: 15px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  border-radius: 5px;
+  position: absolute;
+  background-color: transparent;
+  fill: ${props =>
+    props.mapStyle === 'mapbox://styles/mapbox/streets-v11'
+      ? props => props.theme.colors.secondary
+      : props => props.theme.colors.background};
+`;
+
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZnJhbno4NiIsImEiOiJjazRkeTF5b20wNTdoM2tuNmU5eG1kbDdqIn0.a-iKeML6h5r1j51BuXjvuA';
 
-export default function Map() {
+export default function Map(props) {
   const [lng, setLng] = React.useState(6.960279);
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
-
-  const MapButton = styled.button`
-    z-index: 1;
-    margin: 15px;
-    border: none;
-    outline: none;
-    padding: 0px;
-    border-radius: 5px;
-    position: absolute;
-    background-color: transparent;
-    fill: ${mapStyle === 'mapbox://styles/mapbox/streets-v11'
-      ? props => props.theme.colors.secondary
-      : props => props.theme.colors.background};
-  `;
 
   function createMap() {
     const mapData = {
@@ -71,12 +72,12 @@ export default function Map() {
   }
 
   React.useEffect(() => {
-    const newMap = createMap();
+    createMap();
   }, [mapStyle]);
 
   return (
     <MapContainer id="map_container">
-      <MapButton onClick={handleClickMap}>
+      <MapButton onClick={handleClickMap} mapStyle={mapStyle}>
         <SatelliteIcon />
         <Marker id="marker" />
       </MapButton>

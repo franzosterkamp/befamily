@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { ListButton, MapButton } from './HeaderButton';
+import { ListButton, MapButton } from './HeaderButtons';
 import MapIcon from '../../icons/Map';
 import ListIcon from '../../icons/List';
 import { useLocation } from 'react-router-dom';
@@ -30,13 +30,13 @@ export default function HeaderNav() {
       <MapButton to="/" active={location.pathname === '/'}>
         <Wrapper>
           <MapIcon />
-          <p>Karte</p>
+          <p>Map</p>
         </Wrapper>
       </MapButton>
       <ListButton to="/list" active={location.pathname === '/list'}>
         <Wrapper>
           <ListIcon />
-          <p>Liste</p>
+          <p>Places</p>
         </Wrapper>
       </ListButton>
     </Header>
