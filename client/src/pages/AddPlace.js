@@ -11,44 +11,20 @@ import {
   Label,
   Headline,
   Rate,
-  RateInput,
-  HeadlineWrapper
+  RateInput
 } from '../components/general/AddPlaceComponents';
 
+const MapContainer = styled.div`
+  width: 100%;
+  height: 200px;
+  max-width: 300px;
+  margin: 5px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  border: 2px solid black;
+`;
+
 export default function AddPlace() {
-  const [adressClicked, setAdressClicked] = React.useState(false);
-  const [mapClicked, setMapClicked] = React.useState(false);
-
-  const AdressContainer = styled.div`
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    margin: auto;
-    height: 180px;
-    display: ${adressClicked ? 'block' : 'none'};
-  `;
-
-  const MapContainer = styled.div`
-    width: 100%;
-    height: 200px;
-    display: ${mapClicked ? 'block' : 'none'};
-  `;
-
-  const MapHeadline = styled.div`
-    width: 50%;
-    font-size: 1rem;
-    border: 1px solid black;
-    background-color: ${props => (mapClicked ? props.theme.colors.rate : props.theme.colors.text)};
-  `;
-
-  const AdressHeadline = styled.div`
-    width: 50%;
-    font-size: 1rem;
-    border: 1px solid black;
-    background-color: ${props =>
-      adressClicked ? props.theme.colors.rate : props.theme.colors.text};
-  `;
-
   const [place, setPlace] = React.useState({
     name: '',
     category: 'Spielplatz',
@@ -67,16 +43,6 @@ export default function AddPlace() {
       ...place,
       [event.target.name]: event.target.value
     });
-  }
-
-  function handleAdressClick() {
-    setAdressClicked(!adressClicked);
-    setMapClicked(false);
-  }
-
-  function handleMapClick() {
-    setMapClicked(!mapClicked);
-    setAdressClicked(false);
   }
 
   async function handleSubmit(event) {
@@ -133,33 +99,24 @@ export default function AddPlace() {
             <option value="ab 11 Jahre">ab 11 Jahre</option>
           </select>
         </Label>
-        <HeadlineWrapper>
-          <AdressHeadline onClick={handleAdressClick}>Adresse</AdressHeadline>
-          <MapHeadline onClick={handleMapClick}> Karte </MapHeadline>
-        </HeadlineWrapper>
-        <AdressContainer>
-          <Label>
-            Straße/Hausnummer
-            <Input
-              onChange={handleChange}
-              value={place.street}
-              name="street"
-              type="text"
-              required
-            />
-          </Label>
-          <Label>
-            Ort
-            <Input onChange={handleChange} name="city" value={place.city} type="text" required />
-          </Label>
-          <Label>
-            Postleitzahl
-            <Input onChange={handleChange} name="zip" value={place.zip} type="text" required />
-          </Label>
-        </AdressContainer>
+        <Headline>Karte</Headline>
         <MapContainer>
           <AddMarkerMap />
         </MapContainer>
+        <Headline> Adresse </Headline>
+        <Label>
+          Straße/Hausnummer
+          <Input onChange={handleChange} value={place.street} name="street" type="text" required />
+        </Label>
+        <Label>
+          Ort
+          <Input onChange={handleChange} name="city" value={place.city} type="text" required />
+        </Label>
+        <Label>
+          Postleitzahl
+          <Input onChange={handleChange} name="zip" value={place.zip} type="text" required />
+        </Label>
+
         <Label>
           Stadtteil
           <Input
@@ -183,7 +140,7 @@ export default function AddPlace() {
               name="rate"
               value={value}
               active={value === place.rate}
-              onClick={event =>
+              onClick={() =>
                 setPlace({
                   ...place,
                   rate: value

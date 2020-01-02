@@ -21,10 +21,9 @@ const Container = styled.div`
   justify-content: flex-start;
   border-radius: 10px;
   background-color: white;
-  border: 1px solid black;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   margin-bottom: 15px;
-  margin-top: 5px;
+  margin-top: 15px;
 `;
 
 const ContentWrapper = styled.div`

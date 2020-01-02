@@ -54,13 +54,3 @@ export const RateInput = styled.input`
   outline: none;
   background: ${props => (props.active ? props.theme.colors.rate : props.theme.colors.special)};
 `;
-
-export const HeadlineWrapper = styled.div`
-  width: 100%;
-  height: 30px;
-  display: flex;
-  text-align: center;
-  line-height: 30px;
-  justify-content: space-around;
-  margin-bottom: 10px;
-`;

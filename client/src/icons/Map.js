@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const Svg = styled.svg`
-  fill: ${props => props.theme.colors.text};
-`;
+const Svg = styled.svg``;
 
 export default function Map(props) {
   return (

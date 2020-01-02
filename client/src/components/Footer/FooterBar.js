@@ -32,19 +32,19 @@ export default function FooterBar() {
       <FooterButton to="/add">
         <Wrapper>
           <AddIcon />
-          <p>Add</p>
+          <p>Neu</p>
         </Wrapper>
       </FooterButton>
       <MiddleButton>
         <Wrapper>
           <SortIcon />
-          <p>Sort</p>
+          <p>Filter</p>
         </Wrapper>
       </MiddleButton>
       <FooterButton>
         <Wrapper>
           <MenuIcon />
-          <p>Menu</p>
+          <p>Menü</p>
         </Wrapper>
       </FooterButton>
     </Footer>

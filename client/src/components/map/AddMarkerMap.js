@@ -9,7 +9,22 @@ const MapContainer = styled.div`
 `;
 
 const Marker = styled.div`
-  color: red;
+  background: red;
+`;
+
+const MapButton = styled.button`
+  z-index: 1;
+  margin: 15px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  border-radius: 5px;
+  position: absolute;
+  background-color: transparent;
+  fill: ${props =>
+    props.mapStyle === 'mapbox://styles/mapbox/streets-v11'
+      ? props => props.theme.colors.secondary
+      : props => props.theme.colors.background};
 `;
 
 mapboxgl.accessToken =
@@ -20,20 +35,6 @@ export default function Map() {
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
-
-  const MapButton = styled.button`
-    z-index: 1;
-    margin: 15px;
-    border: none;
-    outline: none;
-    padding: 0px;
-    border-radius: 5px;
-    position: absolute;
-    background-color: transparent;
-    fill: ${mapStyle === 'mapbox://styles/mapbox/streets-v11'
-      ? props => props.theme.colors.secondary
-      : props => props.theme.colors.background};
-  `;
 
   function createMap() {
     let marker = null;
@@ -96,10 +97,10 @@ export default function Map() {
 
   return (
     <MapContainer id="map_container">
-      <MapButton onClick={handleClickMap}>
+      <MapButton onClick={handleClickMap} mapStyle={mapStyle}>
         <SatelliteIcon />
-        <Marker id="marker" />
       </MapButton>
+      <Marker id="marker" />
     </MapContainer>
   );
 }
