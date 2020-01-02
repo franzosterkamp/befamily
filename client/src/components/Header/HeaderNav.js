@@ -30,13 +30,13 @@ export default function HeaderNav() {
       <MapButton to="/" active={location.pathname === '/'}>
         <Wrapper>
           <MapIcon />
-          <p>Map</p>
+          <p>Karte</p>
         </Wrapper>
       </MapButton>
       <ListButton to="/list" active={location.pathname === '/list'}>
         <Wrapper>
           <ListIcon />
-          <p>Places</p>
+          <p>Orte</p>
         </Wrapper>
       </ListButton>
     </Header>
