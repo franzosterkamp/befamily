@@ -9,6 +9,7 @@ import FooterBar from './components/footer/FooterBar';
 import Map from './components//map/Map';
 import PlaceList from './pages/PlaceList';
 import AddPage from './pages/AddPlace';
+import Landingpage from './pages/LandingPage';
 
 const Container = styled.div`
   display: flex;
@@ -31,6 +32,9 @@ function App() {
           <Main>
             <Switch>
               <Route exact path="/">
+                <Landingpage />
+              </Route>
+              <Route path="/card">
                 <Map />
               </Route>
               <Route path="/list">
