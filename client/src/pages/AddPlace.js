@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Input from '../components/general/Input';
 import TextArea from '../components/general/TextInput';
 import { Button } from '../components/general/Button';
+import { MapContainer } from '../components/general/Container';
 import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
   Container,
@@ -13,16 +13,6 @@ import {
   Rate,
   RateInput
 } from '../components/general/AddPlaceComponents';
-
-const MapContainer = styled.div`
-  width: 100%;
-  height: 200px;
-  max-width: 300px;
-  margin: 5px;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  border: 2px solid black;
-`;
 
 export default function AddPlace() {
   const [place, setPlace] = React.useState({
@@ -47,6 +37,7 @@ export default function AddPlace() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     await fetch('http://localhost:3004/places', {
       method: 'POST',
       headers: {
@@ -54,6 +45,7 @@ export default function AddPlace() {
       },
       body: JSON.stringify(place)
     });
+
     setPlace({
       name: '',
       category: 'Spielplatz',
