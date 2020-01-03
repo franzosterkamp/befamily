@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import Card from '../components/card/Card';
 import useGetFetch from '../hooks/useFetch';
 import { PlacesContainer } from '../components/general/Container';
