@@ -1,14 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import Ball from '../../icons/Ball';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 30px;
-  align-content: top;
-`;
+import { RateContainer } from '../general/Container';
 
 const P = styled.p`
   font-size: 0.8rem;
@@ -20,6 +13,7 @@ const P = styled.p`
 const NormalBall = styled(Ball)`
   width: 1.5rem;
   height: 1.5rem;
+  fill: ${props => props.theme.colors.norate};
 `;
 
 const YellowBall = styled(Ball)`
@@ -46,10 +40,10 @@ export default function Rate({ rate }) {
   }
 
   return (
-    <Container>
+    <RateContainer>
       <P>Bewertung: </P>
       <P>{rate}</P>
       {Rating(rate)}
-    </Container>
+    </RateContainer>
   );
 }

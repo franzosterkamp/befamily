@@ -38,3 +38,18 @@ export const InfoButton = styled.button`
   background-color: ${props =>
     props.isClicked ? props.theme.colors.primary : props.theme.colors.special};
 `;
+
+export const MapButton = styled.button`
+  z-index: 1;
+  margin: 15px;
+  border: none;
+  outline: none;
+  padding: 0px;
+  border-radius: 5px;
+  position: absolute;
+  background-color: transparent;
+  fill: ${props =>
+    props.mapStyle === 'mapbox://styles/mapbox/streets-v11'
+      ? props => props.theme.colors.secondary
+      : props => props.theme.colors.background};
+`;

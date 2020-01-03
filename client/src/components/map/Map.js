@@ -2,29 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../../icons/Satellite';
+import { MapButton } from '../general/Button';
 
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const Marker = styled.div`
-  color: red;
-`;
-
-const MapButton = styled.button`
-  z-index: 1;
-  margin: 15px;
-  border: none;
-  outline: none;
-  padding: 0px;
-  border-radius: 5px;
-  position: absolute;
-  background-color: transparent;
-  fill: ${props =>
-    props.mapStyle === 'mapbox://styles/mapbox/streets-v11'
-      ? props => props.theme.colors.secondary
-      : props => props.theme.colors.background};
 `;
 
 mapboxgl.accessToken =
@@ -79,7 +61,6 @@ export default function Map(props) {
     <MapContainer id="map_container">
       <MapButton onClick={handleClickMap} mapStyle={mapStyle}>
         <SatelliteIcon />
-        <Marker id="marker" />
       </MapButton>
     </MapContainer>
   );
