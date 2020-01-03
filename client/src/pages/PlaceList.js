@@ -4,7 +4,7 @@ import useGetFetch from '../hooks/useFetch';
 import { PlacesContainer } from '../components/general/Container';
 
 export default function Placelist() {
-  const url = 'http://localhost:3004/places';
+  const url = '/api/places';
   const places = useGetFetch(url);
 
   return (

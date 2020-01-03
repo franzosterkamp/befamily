@@ -38,7 +38,7 @@ export default function AddPlace() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    await fetch('http://localhost:3004/places', {
+    await fetch('/api/places', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
