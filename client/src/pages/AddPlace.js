@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Input from '../components/general/Input';
 import TextArea from '../components/general/TextInput';
-import Button from '../components/general/Button';
+import { Button } from '../components/general/Button';
 import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
   Container,

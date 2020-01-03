@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
-const Button = styled.button`
+export const Button = styled.button`
   min-width: 20px;
   min-height: 10px;
   height: fit-content;
@@ -14,4 +15,26 @@ const Button = styled.button`
   font-weight: bold;
 `;
 
-export default Button;
+export const StartButton = styled(Link)`
+  width: fit-content;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 10%;
+  height: fit-content;
+  border-radius: 7px;
+  padding: 10px;
+  color: ${props => props.theme.colors.text};
+  background-color: ${props => props.theme.colors.secondary};
+`;
+
+export const InfoButton = styled.button`
+  outline: none;
+  border: none;
+  margin-top: 10%;
+  width: 30px;
+  height: 30px;
+  padding: auto;
+  border-radius: 50%;
+  background-color: ${props =>
+    props.isClicked ? props.theme.colors.primary : props.theme.colors.special};
+`;
