@@ -16,6 +16,7 @@ export default function Placelist() {
           age={place.age}
           quarter={place.quarter}
           rate={place.rate}
+          img={place.img}
         />
       ))}
     </PlacesContainer>

@@ -3,7 +3,6 @@ import Badge from './Badge';
 import Image from './CardImage';
 import Rate from './Rate';
 import styled from '@emotion/styled';
-import playplace from '../../assets/images/Spielplatz.png';
 import CardButton from './CardButton';
 
 const ImageWrapper = styled.div`
@@ -45,11 +44,11 @@ const BadgeWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function Card({ name, age, rate, quarter }) {
+export default function Card({ name, age, rate, quarter, img }) {
   return (
     <Container>
       <ImageWrapper>
-        <Image src={playplace}></Image>
+        <Image src={img}></Image>
       </ImageWrapper>
       <ContentWrapper>
         <Title>{name}</Title>
