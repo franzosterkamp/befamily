@@ -25,13 +25,23 @@ export default function AddPlace() {
     zip: '',
     web: '',
     rate: '',
-    img: ''
+    img: '',
+    lng: 0,
+    lat: 0
   });
 
   function handleChange(event) {
     setPlace({
       ...place,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      lng: JSON.parse(sessionStorage.getItem('markerlng')),
+      lat: JSON.parse(sessionStorage.getItem('markerlat'))
+    });
+  }
+
+  function setLngLat(lng, lat) {
+    setPlace({
+      ...place
     });
   }
 
@@ -57,7 +67,9 @@ export default function AddPlace() {
       quarter: '',
       web: '',
       rate: '',
-      img: ''
+      img: '',
+      lng: '',
+      lat: ''
     });
   }
 
