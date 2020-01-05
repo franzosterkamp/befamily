@@ -51,7 +51,7 @@ export default function Map(props) {
         .setHTML(`<h4>${place.name}</h4>`)
         .setMaxWidth('200px')
         .addTo(map);
-      let marker = new mapboxgl.Marker(Marker)
+      new mapboxgl.Marker(Marker)
         .setLngLat([place.lng, place.lat])
         .addTo(map)
         .setPopup(popup)
