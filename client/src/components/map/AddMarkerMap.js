@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../../icons/Satellite';
 import { MapButton } from '../general/Button';
-import useStorage from '../../hooks/useStorage';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -52,6 +51,7 @@ export default function Map() {
       const popup = new mapboxgl.Popup().setText(coords);
       sessionStorage.setItem('markerlat', event.lngLat.lat);
       sessionStorage.setItem('markerlng', event.lngLat.lng);
+      console.log(event.lngLat);
 
       if (marker === null) {
         marker = new mapboxgl.Marker(Marker)

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
-import SatelliteIcon from '../../icons/Satellite';
-import { MapButton } from '../general/Button';
+import SatelliteIcon from '../icons/Satellite';
+import { MapButton } from '../components/general/Button';
+import useFetch from '../hooks/useFetch';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -17,6 +18,8 @@ export default function Map(props) {
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
+  const places = useFetch('/api/places');
+  console.log(places);
 
   function createMap() {
     const mapData = {
@@ -41,8 +44,6 @@ export default function Map(props) {
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
     });
-
-    return map;
   }
 
   function handleClickMap() {

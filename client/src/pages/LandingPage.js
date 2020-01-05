@@ -30,8 +30,8 @@ export default function Landingpage() {
       <FamilyIcon />
       <Headline>
         <HighlightSpecial>be</HighlightSpecial>
-        <HighlightRate>fami</HighlightRate>
-        <HighlightSecondary>ly</HighlightSecondary>
+        <HighlightRate>fam</HighlightRate>
+        <HighlightSecondary>ily</HighlightSecondary>
       </Headline>
       <StartButton to="/card">Los gehts!</StartButton>
       <InfoButton onClick={() => setIsClicked(!isClicked)} isClicked={isClicked}>
