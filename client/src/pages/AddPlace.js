@@ -39,12 +39,6 @@ export default function AddPlace() {
     });
   }
 
-  function setLngLat(lng, lat) {
-    setPlace({
-      ...place
-    });
-  }
-
   async function handleSubmit(event) {
     event.preventDefault();
 

@@ -57,8 +57,6 @@ export default function Map(props) {
         .setPopup(popup)
         .togglePopup();
     });
-
-    console.log(places);
   }
 
   function handleClickMap() {
