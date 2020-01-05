@@ -30,3 +30,21 @@ export const bounce = keyframes`
     animation-name: bounce;
     transform-origin: center bottom;
   }`;
+
+export const pulse = keyframes`
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.35, 1.35, 1.35);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+
+
+.pulse {
+  animation-name: pulse;
+}`;

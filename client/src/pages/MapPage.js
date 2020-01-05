@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
-import SatelliteIcon from '../../icons/Satellite';
-import { MapButton } from '../general/Button';
+import SatelliteIcon from '../icons/Satellite';
+import { MapButton } from '../components/general/Button';
 
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+const Marker = styled.div``;
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZnJhbno4NiIsImEiOiJjazRkeTF5b20wNTdoM2tuNmU5eG1kbDdqIn0.a-iKeML6h5r1j51BuXjvuA';
@@ -18,7 +20,7 @@ export default function Map(props) {
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
 
-  function createMap() {
+  async function createMap() {
     const mapData = {
       container: 'map_container',
       style: mapStyle,
@@ -42,7 +44,19 @@ export default function Map(props) {
       setZoom(map.getZoom().toFixed(2));
     });
 
-    return map;
+    const response = await fetch('/api/places');
+    const places = await response.json();
+    places.map(place => {
+      let popup = new mapboxgl.Popup({ closeButton: false })
+        .setHTML(`<h4>${place.name}</h4>`)
+        .setMaxWidth('200px')
+        .addTo(map);
+      new mapboxgl.Marker(Marker)
+        .setLngLat([place.lng, place.lat])
+        .addTo(map)
+        .setPopup(popup)
+        .togglePopup();
+    });
   }
 
   function handleClickMap() {
@@ -61,6 +75,7 @@ export default function Map(props) {
     <MapContainer id="map_container">
       <MapButton onClick={handleClickMap} mapStyle={mapStyle}>
         <SatelliteIcon />
+        <Marker id="marker"></Marker>
       </MapButton>
     </MapContainer>
   );
