@@ -4,6 +4,7 @@ import Image from './CardImage';
 import Rate from './Rate';
 import styled from '@emotion/styled';
 import CardButton from './CardButton';
+import image from '../../images/places.png';
 
 const ImageWrapper = styled.div`
   width: 35%;
@@ -48,7 +49,7 @@ export default function Card({ name, age, rate, quarter, img }) {
   return (
     <Container>
       <ImageWrapper>
-        <Image src={img}></Image>
+        <Image src={image}></Image>
       </ImageWrapper>
       <ContentWrapper>
         <Title>{name}</Title>

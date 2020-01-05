@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../icons/Satellite';
 import { MapButton } from '../components/general/Button';
-import useGetFetch from '../hooks/useFetch';
 
 const MapContainer = styled.div`
   width: 100%;
