@@ -2,7 +2,9 @@ import React from 'react';
 import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../icons/Satellite';
+import image from '../images/places.png';
 import { MapButton } from '../components/general/Button';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -14,7 +16,7 @@ const Marker = styled.div``;
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZnJhbno4NiIsImEiOiJjazRkeTF5b20wNTdoM2tuNmU5eG1kbDdqIn0.a-iKeML6h5r1j51BuXjvuA';
 
-export default function Map(props) {
+export default function Map() {
   const [lng, setLng] = React.useState(6.960279);
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
@@ -29,15 +31,6 @@ export default function Map(props) {
     };
     const map = new mapboxgl.Map(mapData);
 
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true
-      })
-    );
-
     map.on('move', () => {
       setLng(map.getCenter().lng.toFixed(4));
       setLat(map.getCenter().lat.toFixed(4));
@@ -48,15 +41,37 @@ export default function Map(props) {
     const places = await response.json();
     places.map(place => {
       let popup = new mapboxgl.Popup({ closeButton: false })
-        .setHTML(`<h4>${place.name}</h4>`)
-        .setMaxWidth('200px')
+        .setHTML(
+          `
+        <img src=${image}/>
+        <div>
+        <h5> ${place.name}</h5>
+        <span>Kategorie: ${place.category}</span>
+        <div>
+        <span>Bewertung: ${place.rate} / 5</span>
+        <button>...</button>
+        </div>
+        </div>`
+        )
+        .setMaxWidth('250px')
         .addTo(map);
+
       new mapboxgl.Marker(Marker)
         .setLngLat([place.lng, place.lat])
         .addTo(map)
         .setPopup(popup)
         .togglePopup();
     });
+
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+          timeout: 1000
+        },
+        trackUserLocation: true
+      })
+    );
   }
 
   function handleClickMap() {
@@ -75,8 +90,8 @@ export default function Map(props) {
     <MapContainer id="map_container">
       <MapButton onClick={handleClickMap} mapStyle={mapStyle}>
         <SatelliteIcon />
-        <Marker id="marker"></Marker>
       </MapButton>
+      <Marker id="marker"></Marker>
     </MapContainer>
   );
 }
