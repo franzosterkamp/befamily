@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../../icons/Satellite';
 import { MapButton } from '../general/Button';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -34,7 +35,8 @@ export default function Map() {
     map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
-          enableHighAccuracy: true
+          enableHighAccuracy: true,
+          timeout: 1000
         },
         trackUserLocation: true
       })
