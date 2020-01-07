@@ -59,7 +59,7 @@ export default function AddPlace() {
       zip: '',
       quarter: '',
       web: '',
-      rate: '',
+      rate: [],
       img: '',
       lng: '',
       lat: ''
@@ -136,11 +136,11 @@ export default function AddPlace() {
               type="button"
               name="rate"
               value={value}
-              active={value === place.rate}
+              active={value === place.rate[0]}
               onClick={() =>
                 setPlace({
                   ...place,
-                  rate: value
+                  rate: [value]
                 })
               }
             />

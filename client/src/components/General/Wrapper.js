@@ -10,7 +10,7 @@ export const ButtonWrapper = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   width: 100%;
-  display: flex;
+  display: ${props => (props.rateClicked ? 'none' : 'flex')};
   justify-content: space-around;
 `;
 
