@@ -1,8 +1,9 @@
 import React from 'react';
 import image from '../images/places.png';
 import styled from '@emotion/styled';
-import { Container } from '../components/general/Container';
-import { Rate } from '../components/card/Rate';
+import { DetailContainer } from '../components/general/Container';
+import useGetFetch from '../hooks/useFetch';
+import { useParams } from 'react-router-dom';
 
 const ImageWrapper = styled.div`
   width: 100%;
@@ -17,37 +18,38 @@ const Img = styled.img`
   object-position: center;
 `;
 
-const Titel = styled.h3``;
+const Titel = styled.span`
+  width: 90%;
+  padding: 10px;
+  font-size: 1.3rem;
+  text-align: center;
+  /* border-bottom: 1px black solid; */
+`;
 
 const Description = styled.article`
   height: 200px;
   width: 90%;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 8px;
   margin-top: 10px;
   padding: 5px;
   overflow: auto;
 `;
 
-const AgeWrapper = styled.div`
-  margin-top: 20px;
+const Wrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 90%;
-  border-bottom: 1px black solid;
   padding: 10px 0px 10px 0;
 `;
 
-const AgeData = styled.div`
+const Parameter = styled.div`
   margin: 5px;
-
-  width: 25%;
+  width: 150px;
 `;
 
-const Age = styled.div`
-  justify-self: flex-end;
-
-  width: 25%;
+const Data = styled.div`
+  margin: 5px;
 `;
 
 const RateButton = styled.button`
@@ -70,15 +72,16 @@ const ButtonWrapper = styled.div`
   justify-content: space-around;
 `;
 const Adress = styled.span`
-  font-size: 1rem;
+  width: 150px;
+
   margin: 5px;
-  margin-right: 10%;
-  justify-self: flex-end;
+  font-size: 1rem;
 `;
 
 const AdressWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  margin: 5px;
   width: 90%;
   border-bottom: 1px black solid;
   border-top: 1px black solid;
@@ -101,58 +104,41 @@ const City = styled.span`
   margin: 5px;
 `;
 
-const CatergoryWrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  padding: 10px 0px 10px 0;
-`;
-
-const Category = styled.div`
-  justify-self: flex-end;
-  width: 25%;
-`;
-
-const CategoryData = styled.div`
-  margin: 5px;
-  margin-left: 0px;
-  width: 25%;
-`;
-
 export default function DetailPage() {
+  const id = useParams();
+  const place = useGetFetch(`api/places/${id.placeId}`);
+
   return (
-    <Container>
+    <DetailContainer>
       <ImageWrapper>
         <Img src={image} />
       </ImageWrapper>
-      <Titel>Spielplatz Nippes</Titel>
-      <Description>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis facere voluptate, eos
-        sed non aliquam illum sapiente sunt quo explicabo vero autem hic aspernatur culpa
-        exercitationem numquam repudiandae expedita placeat. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Reiciendis facere voluptate, eos sed non aliquam illum sapiente sunt quo
-        explicabo vero autem hic aspernatur culpa exercitationem numquam repudiandae expedita
-        placeat.
-      </Description>
-      <AgeWrapper>
-        <Age>Alter:</Age> <AgeData>0-2 Jahre</AgeData>
-      </AgeWrapper>
-      <CatergoryWrapper>
-        <Category>Kategorie:</Category>
-        <CategoryData>Spielplatz</CategoryData>
-      </CatergoryWrapper>
+      <Titel>{place.name}</Titel>
+      <Description>{place.detail}</Description>
+      <Wrapper>
+        <Parameter>Alter:</Parameter> <Data>{place.age}</Data>
+      </Wrapper>
+      <Wrapper>
+        <Parameter>Kategorie:</Parameter>
+        <Data>{place.category}</Data>
+      </Wrapper>
+      <Wrapper>
+        <Parameter>Webseite:</Parameter> <Data>{place.web}</Data>
+      </Wrapper>
       <AdressWrapper>
         <Adress>Adresse:</Adress>
         <AdressBox>
-          <Street>Max-Starße. 1 </Street>
-          <Zip>50733 </Zip>
-          <City>Köln Nippes</City>
+          <Street>{place.street} </Street>
+          <Zip>{place.zip} </Zip>
+          <City>
+            {place.city} {place.quarter}
+          </City>
         </AdressBox>
       </AdressWrapper>
       <ButtonWrapper>
         <RateButton>Bewerten</RateButton>
         <CommentButton>Kommentar</CommentButton>
       </ButtonWrapper>
-    </Container>
+    </DetailContainer>
   );
 }

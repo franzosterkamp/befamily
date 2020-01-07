@@ -10,6 +10,7 @@ import Map from './pages/MapPage';
 import PlaceList from './pages/PlaceList';
 import AddPage from './pages/AddPlace';
 import Landingpage from './pages/LandingPage';
+import DetailPage from './pages/Detailpage';
 
 const Container = styled.div`
   display: flex;
@@ -42,6 +43,9 @@ function App() {
               </Route>
               <Route path="/add">
                 <AddPage />
+              </Route>
+              <Route path="/:placeId">
+                <DetailPage />
               </Route>
             </Switch>
           </Main>

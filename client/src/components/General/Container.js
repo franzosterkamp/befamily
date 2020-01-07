@@ -7,6 +7,12 @@ export const Container = styled.div`
   margin-top: 10%;
 `;
 
+export const DetailContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+`;
+
 export const RateContainer = styled.div`
   display: flex;
   justify-content: space-evenly;

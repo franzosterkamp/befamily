@@ -3,8 +3,8 @@ import Badge from './Badge';
 import Image from './CardImage';
 import Rate from './Rate';
 import styled from '@emotion/styled';
-import CardButton from './CardButton';
 import image from '../../images/places.png';
+import CardLink from './CardButton';
 
 const ImageWrapper = styled.div`
   width: 35%;
@@ -45,7 +45,7 @@ const BadgeWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function Card({ name, age, rate, quarter, img }) {
+export default function Card({ name, age, rate, quarter, img, id }) {
   return (
     <Container>
       <ImageWrapper>
@@ -59,7 +59,7 @@ export default function Card({ name, age, rate, quarter, img }) {
           <Badge>{quarter}</Badge>
           <Badge>2 km</Badge>
         </BadgeWrapper>
-        <CardButton>mehr</CardButton>
+        <CardLink to={`/${id}`}>mehr</CardLink>
       </ContentWrapper>
     </Container>
   );
