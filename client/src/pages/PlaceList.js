@@ -11,7 +11,8 @@ export default function Placelist() {
     <PlacesContainer>
       {places.map(place => (
         <Card
-          key={place.id}
+          key={place._id}
+          id={place._id}
           name={place.name}
           age={place.age}
           quarter={place.quarter}
