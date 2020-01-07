@@ -1,10 +1,22 @@
 import styled from '@emotion/styled';
 
+export const Rate = styled.div`
+  margin-bottom: 15px;
+  display: flex;
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
   margin-top: 10%;
+`;
+
+export const AddPlaceContainer = styled.div`
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
 `;
 
 export const DetailContainer = styled.div`

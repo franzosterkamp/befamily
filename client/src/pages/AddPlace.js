@@ -2,17 +2,16 @@ import React from 'react';
 import Input from '../components/general/Input';
 import TextArea from '../components/general/TextInput';
 import { Button } from '../components/general/Button';
-import { MapContainer } from '../components/general/Container';
+import { Label } from '../components/general/Label';
 import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
-  Container,
-  Form,
-  CameraInput,
-  Label,
-  Headline,
-  Rate,
-  RateInput
-} from '../components/general/AddPlaceComponents';
+  AddPlaceContainer as Container,
+  MapContainer,
+  RateContainer
+} from '../components/general/Container';
+import { CameraInput } from '../components/general/Input';
+import { AddPlaceHeadline as Headline } from '../components/general/Headline';
+import { RateInput, Form } from '../components/general/Input';
 
 export default function AddPlace() {
   const [place, setPlace] = React.useState({
@@ -130,7 +129,7 @@ export default function AddPlace() {
           <Input onChange={handleChange} name="web" value={place.web} type="text" />
         </Label>
         <Headline>Bewertung</Headline>
-        <Rate>
+        <RateContainer>
           {[1, 2, 3, 4, 5].map(value => (
             <RateInput
               key={value}
@@ -146,7 +145,7 @@ export default function AddPlace() {
               }
             />
           ))}
-        </Rate>
+        </RateContainer>
         <Headline>Foto</Headline>
 
         <Label>

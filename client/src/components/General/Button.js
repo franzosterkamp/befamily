@@ -53,3 +53,15 @@ export const MapButton = styled.button`
       ? props => props.theme.colors.secondary
       : props => props.theme.colors.background};
 `;
+
+export const RateButton = styled.button`
+  width: 30%;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: ${props => props.theme.colors.rate};
+`;
+
+export const CommentButton = styled(RateButton)`
+  background-color: ${props => props.theme.colors.secondary};
+`;
