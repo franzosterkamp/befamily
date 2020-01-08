@@ -26,7 +26,8 @@ export default function Rate({ rate }) {
   const balls = [];
 
   function Rating(rate) {
-    const intRate = parseInt(rate);
+    const intRate = parseFloat(rate);
+    Math.round(intRate);
     let count = 0;
     while (count < intRate) {
       balls.push(<YellowBall key={count} />);

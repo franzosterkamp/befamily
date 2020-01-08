@@ -59,9 +59,23 @@ export const RateButton = styled.button`
   height: 40px;
   border: none;
   border-radius: 8px;
+  font-size: 0.8rem;
+  font-style: bold;
   background-color: ${props => props.theme.colors.rate};
 `;
 
 export const CommentButton = styled(RateButton)`
   background-color: ${props => props.theme.colors.secondary};
+`;
+
+export const SubmitButton = styled(RateButton)`
+  width: fit-content;
+  font-size: 0.85rem;
+  height: 30px;
+`;
+
+export const CancelButton = styled(CommentButton)`
+  width: fit-content;
+  font-size: 0.85rem;
+  height: 30px;
 `;
