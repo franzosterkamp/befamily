@@ -33,6 +33,12 @@ export const RateContainer = styled.div`
   align-content: top;
 `;
 
+export const RateDetailContainer = styled(RateContainer)`
+  display: ${props => (props.rateClicked ? 'block' : 'none')};
+  margin: 30px;
+  height: fit-content;
+`;
+
 export const PlacesContainer = styled.div`
   display: flex;
   flex-flow: column;

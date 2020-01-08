@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { dbInit } = require('./lib/database');
-const { getPlaces, setPlaces, getPlaceById } = require('./lib/places');
+const { getPlaces, setPlaces, getPlaceById, updateRate } = require('./lib/places');
 const app = express();
 const db = process.env.DB_NAME;
 const url = process.env.DB_URL;
@@ -32,7 +32,16 @@ app.get('/api/places/:placeId', async (req, res) => {
 
 app.post('/api/places', (req, res) => {
   const placesData = req.body;
+  console.log(placesData);
   setPlaces(placesData);
+  res.end();
+});
+
+app.patch(`/api/places/:placeId`, (req, res) => {
+  console.log(req.body);
+  const placeId = req.params.placeId;
+  const newRate = req.body;
+  updateRate(newRate, placeId);
   res.end();
 });
 

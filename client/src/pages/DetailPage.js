@@ -1,6 +1,7 @@
 import React from 'react';
 import image from '../images/places.png';
-import { DetailContainer } from '../components/general/Container';
+import { DetailContainer, RateDetailContainer } from '../components/general/Container';
+import { RateInput } from '../components/general/Input';
 import useGetFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import { Titel } from '../components/general/Headline';
@@ -12,7 +13,12 @@ import {
   ButtonWrapper,
   AdressBox
 } from '../components/general/Wrapper';
-import { CommentButton, RateButton } from '../components/general/Button';
+import {
+  CommentButton,
+  RateButton,
+  CancelButton,
+  SubmitButton
+} from '../components/general/Button';
 import {
   Img,
   Description,
@@ -26,9 +32,23 @@ import {
 
 export default function DetailPage() {
   const id = useParams();
-  console.log(id.placeId);
 
   const place = useGetFetch(`/api/places/${id.placeId}`);
+
+  const [newRate, setNewRate] = React.useState(0);
+  const [rateClicked, setRateClicked] = React.useState(false);
+
+  async function handleSubmit() {
+    setRateClicked(!rateClicked);
+
+    await fetch(`/api/places/${id.placeId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ newRate })
+    });
+  }
 
   return (
     <DetailContainer>
@@ -60,10 +80,25 @@ export default function DetailPage() {
           </City>
         </AdressBox>
       </AdressWrapper>
-      <ButtonWrapper>
-        <RateButton>Bewerten</RateButton>
+      <ButtonWrapper rateClicked={rateClicked}>
+        <RateButton onClick={() => setRateClicked(!rateClicked)}>Bewerten</RateButton>
         <CommentButton>Kommentar</CommentButton>
       </ButtonWrapper>
+      <RateDetailContainer rateClicked={rateClicked}>
+        {[1, 2, 3, 4, 5].map(value => (
+          <RateInput
+            key={value}
+            type="button"
+            value={value}
+            active={value === newRate}
+            onClick={() => setNewRate(value)}
+          />
+        ))}
+        <ButtonWrapper>
+          <SubmitButton onClick={handleSubmit}>Bewerten</SubmitButton>
+          <CancelButton onClick={() => setRateClicked(!rateClicked)}>Abbrechen</CancelButton>
+        </ButtonWrapper>
+      </RateDetailContainer>
     </DetailContainer>
   );
 }

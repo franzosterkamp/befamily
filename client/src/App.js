@@ -10,7 +10,7 @@ import Map from './pages/MapPage';
 import PlaceList from './pages/PlaceList';
 import AddPage from './pages/AddPlace';
 import Landingpage from './pages/LandingPage';
-import DetailPage from './pages/Detailpage';
+import DetailPage from './pages/DetailPage';
 
 const Container = styled.div`
   display: flex;
