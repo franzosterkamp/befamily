@@ -5,7 +5,6 @@ import { RateInput } from '../components/general/Input';
 import useGetFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import { Titel } from '../components/general/Headline';
-import styled from '@emotion/styled';
 import DetailRate from '../components/general/DetailRate';
 import {
   ImageWrapper,

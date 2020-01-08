@@ -27,7 +27,6 @@ export default function DetailRate({ rate }) {
 
   function Rating(rate) {
     const intRate = parseFloat(rate);
-    Math.round(intRate);
     console.log(intRate);
     let count = 0;
     while (count < intRate) {
