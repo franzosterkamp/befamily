@@ -4,8 +4,6 @@ import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../icons/Satellite';
 import { MapButton } from '../components/general/Button';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import image from '../images/places.png';
-import useGetFetch from '../hooks/useFetch';
 
 const MapContainer = styled.div`
   width: 100%;
