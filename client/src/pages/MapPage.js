@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../icons/Satellite';
-import image from '../images/places.png';
 import { MapButton } from '../components/general/Button';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -39,20 +38,21 @@ export default function Map() {
 
     const response = await fetch('/api/places');
     const places = await response.json();
+
     places.map(place => {
+      const html = `
+      <img src="${place.img}" />
+      <div>
+      <h5> ${place.name}</h5>
+      <span>Kategorie: ${place.category}</span>
+      <div>
+      <span>Bewertung: ${place.rate} / 5</span>
+      <button>...</button>
+      </div>
+      </div>`;
+
       let popup = new mapboxgl.Popup({ closeButton: false })
-        .setHTML(
-          `
-        <img src=${image}/>
-        <div>
-        <h5> ${place.name}</h5>
-        <span>Kategorie: ${place.category}</span>
-        <div>
-        <span>Bewertung: ${place.rate} / 5</span>
-        <button>...</button>
-        </div>
-        </div>`
-        )
+        .setHTML(html)
         .setMaxWidth('250px')
         .addTo(map);
 

@@ -27,8 +27,10 @@ export const RateInput = styled.input`
 `;
 
 export const CameraInput = styled(Input)`
-  width: 300px;
+  size: 100px;
   font-size: 0.8rem;
+  margin: 5px;
+  margin-top: 20px;
 `;
 
 export default Input;
