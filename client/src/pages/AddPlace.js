@@ -36,7 +36,7 @@ export default function AddPlace() {
     city: '',
     zip: '',
     web: '',
-    rate: '',
+    rate: [0],
     img: '',
     lng: 0,
     lat: 0
