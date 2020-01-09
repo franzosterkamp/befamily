@@ -41,7 +41,7 @@ export default function Map() {
 
     places.map(place => {
       const html = `
-      <img src=${place.img} />
+      <img src="${place.img}" />
       <div>
       <h5> ${place.name}</h5>
       <span>Kategorie: ${place.category}</span>

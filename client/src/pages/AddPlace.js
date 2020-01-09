@@ -34,7 +34,7 @@ export default function AddPlace() {
     age: '0-2Jahre',
     street: '',
     city: '',
-    zip: '',
+    zip: 0,
     web: '',
     rate: [0],
     img: '',
@@ -94,7 +94,7 @@ export default function AddPlace() {
       zip: '',
       quarter: '',
       web: '',
-      rate: [],
+      rate: [0],
       img: '',
       lng: '',
       lat: ''
@@ -148,7 +148,14 @@ export default function AddPlace() {
         </Label>
         <Label>
           Ort
-          <Input onChange={handleChange} name="city" value={place.city} type="text" required />
+          <Input
+            onChange={handleChange}
+            name="city"
+            maxLength={15}
+            value={place.city}
+            type="text"
+            required
+          />
         </Label>
         <Label>
           Postleitzahl
@@ -157,7 +164,7 @@ export default function AddPlace() {
             name="zip"
             value={place.zip}
             type="number"
-            maxlength="5"
+            max={5}
             required
           />
         </Label>
@@ -169,6 +176,7 @@ export default function AddPlace() {
             name="quarter"
             value={place.quarter}
             type="text"
+            maxLength={20}
             required
           />
         </Label>
