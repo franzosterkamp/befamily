@@ -120,7 +120,13 @@ export default function AddPlace() {
         </Label>
         <Label>
           Beschreibung
-          <TextArea name="detail" onChange={handleChange} value={place.detail} rows="10" />
+          <TextArea
+            name="detail"
+            type="text"
+            onChange={handleChange}
+            value={place.detail}
+            rows="10"
+          />
         </Label>
         <Label>
           Altersgruppe
@@ -146,7 +152,14 @@ export default function AddPlace() {
         </Label>
         <Label>
           Postleitzahl
-          <Input onChange={handleChange} name="zip" value={place.zip} type="text" required />
+          <Input
+            onChange={handleChange}
+            name="zip"
+            value={place.zip}
+            type="number"
+            maxlength="5"
+            required
+          />
         </Label>
 
         <Label>
@@ -156,7 +169,7 @@ export default function AddPlace() {
             name="quarter"
             value={place.quarter}
             type="text"
-            required="true"
+            required
           />
         </Label>
         <Label>
@@ -169,7 +182,7 @@ export default function AddPlace() {
         </Label>
         {place.img && (
           <ImgWrapper>
-            <Img src={place.img} />{' '}
+            <Img src={place.img} />
           </ImgWrapper>
         )}
         <Headline>Bewertung</Headline>

@@ -4,7 +4,7 @@ const { dbInit } = require('./lib/database');
 const { getPlaces, setPlaces, getPlaceById, updateRate } = require('./lib/places');
 const app = express();
 const db = process.env.DB_NAME;
-const url = process.env.DB_URL;
+const url = process.env.DB_ATLAS_URL;
 const port = process.env.PORT;
 
 app.use(express.json({ extended: false }));
