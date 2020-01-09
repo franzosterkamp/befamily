@@ -20,7 +20,6 @@ export default function Map() {
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
-  const [places, setPlaces] = React.useState();
 
   async function createMap() {
     const mapData = {
