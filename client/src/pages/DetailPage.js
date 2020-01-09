@@ -1,5 +1,4 @@
 import React from 'react';
-import image from '../images/places.png';
 import { DetailContainer, RateDetailContainer } from '../components/general/Container';
 import { RateInput } from '../components/general/Input';
 import useGetFetch from '../hooks/useFetch';
@@ -53,7 +52,7 @@ export default function DetailPage() {
   return (
     <DetailContainer>
       <ImageWrapper>
-        <Img src={image} />
+        <Img src={place.img} />
       </ImageWrapper>
       <Titel>{place.name}</Titel>
       <Description>{place.detail}</Description>

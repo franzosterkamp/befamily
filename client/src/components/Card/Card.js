@@ -1,10 +1,9 @@
 import React from 'react';
 import Badge from './Badge';
-import Image from './CardImage';
 import Rate from './Rate';
 import styled from '@emotion/styled';
-import image from '../../images/places.png';
 import CardLink from './CardButton';
+import Image from './CardImage';
 
 const ImageWrapper = styled.div`
   width: 35%;
@@ -49,7 +48,7 @@ export default function Card({ name, age, rate, quarter, img, id }) {
   return (
     <Container>
       <ImageWrapper>
-        <Image src={image}></Image>
+        <Image src={img} />
       </ImageWrapper>
       <ContentWrapper>
         <Title>{name}</Title>
