@@ -3,6 +3,7 @@ import Input from '../components/general/Input';
 import TextArea from '../components/general/TextInput';
 import { Button } from '../components/general/Button';
 import { Label } from '../components/general/Label';
+import styled from '@emotion/styled';
 import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
   AddPlaceContainer as Container,
@@ -12,6 +13,18 @@ import {
 import { CameraInput } from '../components/general/Input';
 import { AddPlaceHeadline as Headline } from '../components/general/Headline';
 import { RateInput, Form } from '../components/general/Input';
+import { ImageWrapper } from '../components/general/Wrapper';
+
+const ImgWrapper = styled(ImageWrapper)`
+  height: 100px;
+  width: 35%;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+`;
 
 export default function AddPlace() {
   const [place, setPlace] = React.useState({
@@ -150,6 +163,15 @@ export default function AddPlace() {
           Webseite
           <Input onChange={handleChange} name="web" value={place.web} type="text" />
         </Label>
+        <Label>
+          Foto hinzufügen:
+          <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
+        </Label>
+        {place.img && (
+          <ImgWrapper>
+            <Img src={place.img} />{' '}
+          </ImgWrapper>
+        )}
         <Headline>Bewertung</Headline>
         <RateContainer>
           {[1, 2, 3, 4, 5].map(value => (
@@ -170,9 +192,6 @@ export default function AddPlace() {
         </RateContainer>
         <Headline>Foto</Headline>
 
-        <Label>
-          <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
-        </Label>
         <Button>bestätigen</Button>
       </Form>
     </Container>

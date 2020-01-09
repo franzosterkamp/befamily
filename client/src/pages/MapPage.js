@@ -5,6 +5,7 @@ import SatelliteIcon from '../icons/Satellite';
 import { MapButton } from '../components/general/Button';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import image from '../images/places.png';
+import useGetFetch from '../hooks/useFetch';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -21,6 +22,7 @@ export default function Map() {
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
+  const [places, setPlaces] = React.useState();
 
   async function createMap() {
     const mapData = {
@@ -39,22 +41,21 @@ export default function Map() {
 
     const response = await fetch('/api/places');
     const places = await response.json();
+
     places.map(place => {
+      const html = `
+      <img src=${place.img} />
+      <div>
+      <h5> ${place.name}</h5>
+      <span>Kategorie: ${place.category}</span>
+      <div>
+      <span>Bewertung: ${place.rate} / 5</span>
+      <button>...</button>
+      </div>
+      </div>`;
+
       let popup = new mapboxgl.Popup({ closeButton: false })
-        .setHTML(
-          `
-        <span>
-        <img src=${image}/>
-        <span/>
-        <div>
-        <h5> ${place.name}</h5>
-        <span>Kategorie: ${place.category}</span>
-        <div>
-        <span>Bewertung: ${place.rate} / 5</span>
-        <button>...</button>
-        </div>
-        </div>`
-        )
+        .setHTML(html)
         .setMaxWidth('250px')
         .addTo(map);
 
