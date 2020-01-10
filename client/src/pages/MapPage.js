@@ -15,7 +15,7 @@ const Marker = styled.div``;
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZnJhbno4NiIsImEiOiJjazRkeTF5b20wNTdoM2tuNmU5eG1kbDdqIn0.a-iKeML6h5r1j51BuXjvuA';
 
-export default function Map() {
+export default function MapPage() {
   const [lng, setLng] = React.useState(6.960279);
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);

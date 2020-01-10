@@ -67,9 +67,11 @@ export default function DetailPage() {
         <Parameter>Kategorie:</Parameter>
         <Data>{place.category}</Data>
       </Wrapper>
-      <Wrapper>
-        <Parameter>Webseite:</Parameter> <Data>{place.web}</Data>
-      </Wrapper>
+      {place.web && (
+        <Wrapper>
+          <Parameter>Webseite:</Parameter> <Data>{place.web}</Data>
+        </Wrapper>
+      )}
       <AdressWrapper>
         <Adress>Adresse:</Adress>
         <AdressBox>

@@ -44,7 +44,7 @@ const BadgeWrapper = styled.div`
   margin-bottom: 4px;
 `;
 
-export default function Card({ name, age, rate, quarter, img, id }) {
+export default function Card({ name, age, rate, quarter, img, id, category }) {
   return (
     <Container>
       <ImageWrapper>
@@ -56,7 +56,7 @@ export default function Card({ name, age, rate, quarter, img, id }) {
         <BadgeWrapper>
           <BadgeAge>{age}</BadgeAge>
           <BadgeQuarter>{quarter}</BadgeQuarter>
-          <Badge>2 km</Badge>
+          <Badge>{category}</Badge>
         </BadgeWrapper>
         <CardLink to={`/${id}`}>mehr</CardLink>
       </ContentWrapper>

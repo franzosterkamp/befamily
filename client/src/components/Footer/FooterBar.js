@@ -35,7 +35,7 @@ export default function FooterBar() {
           <p>Neu</p>
         </Wrapper>
       </FooterButton>
-      <MiddleButton>
+      <MiddleButton to="/filter">
         <Wrapper>
           <SortIcon />
           <p>Filter</p>
