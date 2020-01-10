@@ -16,12 +16,13 @@ export const Titel = styled.span`
 `;
 
 export const AddPlaceHeadline = styled.div`
-  width: 100%;
+  width: 80%;
   margin-bottom: 20px;
+  margin-top: 20px;
   height: 30px;
   line-height: 30px;
   background-color: ${props => props.theme.colors.text};
   text-align: center;
   font-size: 1rem;
-  border-bottom: solid 2px black;
+  border-bottom: solid 2px ${props => props.theme.colors.primary};
 `;

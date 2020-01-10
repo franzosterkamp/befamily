@@ -7,3 +7,9 @@ export const Label = styled.label`
   width: 150px;
   margin-bottom: 15px;
 `;
+
+export const FilterLabel = styled(Label)`
+  text-align: center;
+  font-size: 1rem;
+  margin: 20px;
+`;

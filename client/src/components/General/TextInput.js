@@ -8,6 +8,9 @@ const TextInput = styled.textarea`
   width: 120%;
   outline: none;
   border: 1px solid ${props => props.theme.colors.primary};
+  &:focus {
+    border: 1px solid ${props => props.theme.colors.extra};
+  }
 `;
 
 export default TextInput;
