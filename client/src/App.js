@@ -13,6 +13,7 @@ import DetailPage from './pages/DetailPage';
 import FilterPage from './pages/FilterPage';
 import MapPage from './pages/MapPage';
 import useGetFetch from './hooks/useFetch';
+import InfoPage from './pages/InfoPage';
 
 const Container = styled.div`
   display: flex;
@@ -84,6 +85,9 @@ function App() {
               </Route>
               <Route path="/filter">
                 <FilterPage filter={filter} handleChange={handleChange} unsetFilter={unsetFilter} />
+              </Route>
+              <Route path="/info">
+                <InfoPage />
               </Route>
               <Route path="/:placeId">
                 <DetailPage />
