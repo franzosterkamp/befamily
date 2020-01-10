@@ -3,6 +3,7 @@ import Input from '../components/general/Input';
 import TextArea from '../components/general/TextInput';
 import { Button } from '../components/general/Button';
 import { Label } from '../components/general/Label';
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
@@ -222,7 +223,7 @@ export default function AddPlace() {
           ))}
         </RateContainer>
 
-        <Button>bestätigen</Button>
+        <Button>betätigen</Button>
       </Form>
     </Container>
   );

@@ -74,6 +74,7 @@ export const CommentButton = styled(RateButton)`
 
 export const SubmitButton = styled(RateButton)`
   width: fit-content;
+  ${props => props.theme.colors.extra};
   font-size: 0.85rem;
   height: 30px;
 `;

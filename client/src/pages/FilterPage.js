@@ -34,11 +34,23 @@ const Option = styled.option`
   margin: 0 auto;
 `;
 
-const LabelWrapper = styled.div`
+const AgeLabelWrapper = styled.div`
+  margin-top: 30px;
   display: flex;
   flex-flow: column;
   align-items: center;
-  width: 100%;
+  width: 80%;
+  border-radius: 10px;
+  background-color: ${props => props.theme.colors.special};
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+`;
+
+const CategoryLabelWrapper = styled(AgeLabelWrapper)`
+  background-color: ${props => props.theme.colors.extra};
+`;
+
+const QuarterLabelWrapper = styled(AgeLabelWrapper)`
+  background-color: ${props => props.theme.colors.rate};
 `;
 
 const FilterLabel = styled(Label)`
@@ -51,7 +63,7 @@ export default function FilterPage({ filter, handleChange, unsetFilter }) {
   return (
     <FilterContainer>
       <Headline>Filter</Headline>
-      <LabelWrapper>
+      <AgeLabelWrapper>
         <FilterLabel>
           Altersgruppe:
           <Select name="age" onChange={handleChange} value={filter.age}>
@@ -62,8 +74,8 @@ export default function FilterPage({ filter, handleChange, unsetFilter }) {
             <Option value="ab 11 Jahre">ab 11 Jahre</Option>
           </Select>
         </FilterLabel>
-      </LabelWrapper>
-      <LabelWrapper>
+      </AgeLabelWrapper>
+      <CategoryLabelWrapper>
         <FilterLabel>
           Kategorie:
           <Select name="category" onChange={handleChange} value={filter.category}>
@@ -73,8 +85,8 @@ export default function FilterPage({ filter, handleChange, unsetFilter }) {
             <Option value="Cafe">Cafe</Option>
           </Select>
         </FilterLabel>
-      </LabelWrapper>
-      <LabelWrapper>
+      </CategoryLabelWrapper>
+      <QuarterLabelWrapper>
         <FilterLabel>
           Stadtteil:
           <Select name="quarter" onChange={handleChange} value={filter.quarter}>
@@ -85,7 +97,7 @@ export default function FilterPage({ filter, handleChange, unsetFilter }) {
             <Option value="Innendstadt">Innenstadt</Option>
           </Select>
         </FilterLabel>
-      </LabelWrapper>
+      </QuarterLabelWrapper>
       <ButtonWrapper>
         <UnsetButton onClick={unsetFilter}>Aufheben</UnsetButton>
       </ButtonWrapper>
