@@ -35,7 +35,6 @@ function App() {
 
   if (filter.category) {
     places = places.filter(place => place.category.includes(filter.category));
-    console.log(places);
   }
 
   if (filter.quarter) {
@@ -48,7 +47,6 @@ function App() {
 
   React.useEffect(async () => {
     const response = await fetch(`/api/places`);
-    console.log(`/api/places?=${filter.age}`);
     const newPlaces = await response.json();
     setPlaces(newPlaces);
   }, []);

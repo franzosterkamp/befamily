@@ -21,7 +21,6 @@ export default function MapPage({ places }) {
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
 
-  console.log(places);
   function createMap(places) {
     const mapData = {
       container: 'map_container',
@@ -36,9 +35,6 @@ export default function MapPage({ places }) {
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
     });
-
-    // const response = await fetch('/api/places');
-    // const places = await response.json();
 
     places.map(place => {
       const html = `
