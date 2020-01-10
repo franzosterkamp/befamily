@@ -45,18 +45,15 @@ function App() {
     places = places.filter(place => place.age.includes(filter.age));
   }
 
-  React.useEffect(async () => {
-    const response = await fetch(`/api/places`);
-    const newPlaces = await response.json();
-    setPlaces(newPlaces);
-  }, []);
+  React.useEffect(() => {
+    async function doFetch() {
+      const response = await fetch(`/api/places`);
+      const newPlaces = await response.json();
+      setPlaces(newPlaces);
+    }
 
-  function handleChange(event) {
-    setFilter({
-      ...filter,
-      [event.target.name]: event.target.value
-    });
-  }
+    doFetch();
+  }, []);
 
   function handleChange(event) {
     setFilter({

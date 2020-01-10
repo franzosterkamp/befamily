@@ -134,7 +134,9 @@ export default function AddPlace() {
           Kategorie
           <Select name="category" onChange={handleChange} value={place.category}>
             {categoryList.map(value => (
-              <Option value={value}>{value}</Option>
+              <Option key={value} value={value}>
+                {value}
+              </Option>
             ))}
           </Select>
         </Label>
@@ -153,7 +155,9 @@ export default function AddPlace() {
           Altersgruppe
           <Select name="age" onChange={handleChange} value={place.age}>
             {ageList.map(value => (
-              <Option value={value}>{value}</Option>
+              <Option key={value} value={value}>
+                {value}
+              </Option>
             ))}
           </Select>
         </Label>
@@ -206,7 +210,9 @@ export default function AddPlace() {
               required
             >
               {quarterList.map(value => (
-                <Option value={value}>{value}</Option>
+                <Option key={value} value={value}>
+                  {value}
+                </Option>
               ))}
             </Select>
           </Label>

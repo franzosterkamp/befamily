@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { FilterLabel } from '../components/general/Label';
 import { AddPlaceHeadline as Headline } from '../components/general/Headline';
 import { UnsetButton } from '../components/general/Button';
