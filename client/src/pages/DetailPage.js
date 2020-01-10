@@ -7,6 +7,7 @@ import { Titel } from '../components/general/Headline';
 import DetailRate from '../components/general/DetailRate';
 import {
   ImageWrapper,
+  RateWrapper,
   Wrapper,
   AdressWrapper,
   ButtonWrapper,
@@ -56,9 +57,9 @@ export default function DetailPage() {
       </ImageWrapper>
       <Titel>{place.name}</Titel>
       <Description>{place.detail}</Description>
-      <Wrapper>
+      <RateWrapper>
         <Parameter>Bewertung:</Parameter> <DetailRate rate={place.rate} />
-      </Wrapper>
+      </RateWrapper>
       <Wrapper>
         <Parameter>Alter:</Parameter> <Data>{place.age}</Data>
       </Wrapper>

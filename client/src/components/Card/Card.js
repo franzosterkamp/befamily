@@ -1,5 +1,5 @@
 import React from 'react';
-import Badge from './Badge';
+import { BadgeAge, BadgeQuarter, Badge } from './Badge';
 import Rate from './Rate';
 import styled from '@emotion/styled';
 import CardLink from './CardButton';
@@ -12,10 +12,10 @@ const ImageWrapper = styled.div`
 `;
 
 const Container = styled.div`
-  width: 90%;
+  width: 93%;
   max-width: 360px;
   margin: auto;
-  height: 140px;
+  height: 150px;
   display: flex;
   justify-content: flex-start;
   border-radius: 10px;
@@ -38,10 +38,10 @@ const Title = styled.p`
 `;
 
 const BadgeWrapper = styled.div`
-  margin-top: 8px;
   display: flex;
   align-content: flex-start;
   flex-wrap: wrap;
+  margin-bottom: 4px;
 `;
 
 export default function Card({ name, age, rate, quarter, img, id }) {
@@ -54,8 +54,8 @@ export default function Card({ name, age, rate, quarter, img, id }) {
         <Title>{name}</Title>
         <Rate rate={rate} />
         <BadgeWrapper>
-          <Badge>{age}</Badge>
-          <Badge>{quarter}</Badge>
+          <BadgeAge>{age}</BadgeAge>
+          <BadgeQuarter>{quarter}</BadgeQuarter>
           <Badge>2 km</Badge>
         </BadgeWrapper>
         <CardLink to={`/${id}`}>mehr</CardLink>

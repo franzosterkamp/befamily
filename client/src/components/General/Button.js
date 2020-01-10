@@ -6,11 +6,15 @@ export const Button = styled.button`
   min-height: 10px;
   height: fit-content;
   width: fit-content;
-  background-color: ${props => props.theme.colors.rate};
+  background-color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.text};
+  letter-spacing: 1px;
   border-radius: 8px;
-  padding: 5px;
+  padding: 10px;
+  margin-top: 10px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   outline: none;
+  border: none;
   font-size: 0.8rem;
   font-weight: bold;
 `;

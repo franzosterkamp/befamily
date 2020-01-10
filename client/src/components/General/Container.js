@@ -30,6 +30,7 @@ export const RateContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 30px;
+  margin-bottom: 15px;
   align-content: top;
 `;
 
@@ -51,5 +52,5 @@ export const MapContainer = styled.div`
   margin: 5px;
   margin-bottom: 20px;
   border-radius: 3px;
-  border: 2px solid black;
+  border: 2px solid ${props => props.theme.colors.primary};
 `;

@@ -6,6 +6,7 @@ const Input = styled.input`
   border-radius: 8px;
   font-size: 0.9rem;
   outline: none;
+  border: 1px solid ${props => props.theme.colors.primary};
 `;
 
 export const Form = styled.form`
@@ -28,6 +29,7 @@ export const RateInput = styled.input`
 
 export const CameraInput = styled(Input)`
   size: 100px;
+  border: none;
   font-size: 0.8rem;
   margin: 5px;
   margin-top: 20px;

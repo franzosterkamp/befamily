@@ -31,6 +31,11 @@ export const Wrapper = styled.div`
   padding: 10px 0px 10px 0;
 `;
 
+export const RateWrapper = styled(Wrapper)`
+  margin-top: 20px;
+  border-bottom: 1px solid black;
+`;
+
 export const AdressBox = styled.div`
   display: flex;
   flex-flow: column;
