@@ -32,13 +32,11 @@ app.get('/api/places/:placeId', async (req, res) => {
 
 app.post('/api/places', (req, res) => {
   const placesData = req.body;
-  console.log(placesData);
   setPlaces(placesData);
   res.end();
 });
 
 app.patch(`/api/places/:placeId`, (req, res) => {
-  console.log(req.body);
   const placeId = req.params.placeId;
   const newRate = req.body;
   updateRate(newRate, placeId);
