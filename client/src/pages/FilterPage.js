@@ -15,11 +15,6 @@ const FilterContainer = styled.div`
   align-items: center;
 `;
 
-const SetButton = styled(Button)`
-  background: ${props => props.theme.colors.extra};
-  width: 30%;
-`;
-
 const UnsetButton = styled(Button)`
   background: ${props => props.theme.colors.secondary};
   width: 30%;

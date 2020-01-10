@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../components/card/Card';
-import useGetFetch from '../hooks/useFetch';
 import { PlacesContainer } from '../components/general/Container';
 
 export default function Placelist({ places }) {
