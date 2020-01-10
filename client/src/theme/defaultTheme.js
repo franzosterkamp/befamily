@@ -6,7 +6,8 @@ const main = {
     special: '#D7F4FF',
     text: '#FFFFFF',
     rate: '#ffd626',
-    norate: 'grey'
+    norate: 'grey',
+    extra: '#77dd77'
   }
 };
 

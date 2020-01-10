@@ -26,10 +26,9 @@ export default function DetailRate({ rate }) {
   const balls = [];
 
   function Rating(rate) {
-    const intRate = parseFloat(rate);
-    console.log(intRate);
+    const roundedRate = Math.round(rate);
     let count = 0;
-    while (count < intRate) {
+    while (count < roundedRate) {
       balls.push(<YellowBall key={count} />);
       count++;
     }
@@ -42,7 +41,7 @@ export default function DetailRate({ rate }) {
 
   return (
     <RateContainer>
-      <P>({rate})</P>
+      <P>{rate}</P>
       {Rating(rate)}
     </RateContainer>
   );

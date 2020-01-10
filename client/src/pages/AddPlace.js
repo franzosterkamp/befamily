@@ -26,6 +26,14 @@ const Img = styled.img`
   border-radius: 8px;
 `;
 
+const LngWarning = styled.div`
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  height: fit-content;
+  color: red;
+`;
+
 export default function AddPlace() {
   const [place, setPlace] = React.useState({
     name: '',
@@ -34,13 +42,15 @@ export default function AddPlace() {
     age: '0-2Jahre',
     street: '',
     city: '',
-    zip: 0,
+    zip: '',
     web: '',
     rate: [0],
     img: '',
     lng: 0,
     lat: 0
   });
+
+  const [noLng, setNoLng] = React.useState(false);
 
   function handleImage(event) {
     const formData = new FormData();
@@ -53,7 +63,6 @@ export default function AddPlace() {
     formData.append('file', event.target.files[0], createDate);
     formData.append('name', createDate);
     formData.append('public_id,', createDate);
-    console.log(createDate);
     xhr.send(formData);
     xhr.onreadystatechange = function(e) {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -76,6 +85,11 @@ export default function AddPlace() {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    if (place.lng === 0) {
+      setNoLng(!noLng);
+      return;
+    }
+
     await fetch('/api/places', {
       method: 'POST',
       headers: {
@@ -88,7 +102,7 @@ export default function AddPlace() {
       name: '',
       category: 'Spielplatz',
       detail: '',
-      age: '0-2Jahre',
+      age: '0-2 Jahre',
       street: '',
       city: '',
       zip: '',
@@ -123,6 +137,7 @@ export default function AddPlace() {
           <TextArea
             name="detail"
             type="text"
+            required
             onChange={handleChange}
             value={place.detail}
             rows="10"
@@ -138,6 +153,7 @@ export default function AddPlace() {
           </select>
         </Label>
         <Headline>Karte</Headline>
+        {noLng && <LngWarning>Bitte setzte einen Marker!</LngWarning>}
         <MapContainer>
           <AddMarkerMap />
         </MapContainer>
@@ -147,11 +163,11 @@ export default function AddPlace() {
           <Input onChange={handleChange} value={place.street} name="street" type="text" required />
         </Label>
         <Label>
-          Ort
+          Stadt
           <Input
             onChange={handleChange}
             name="city"
-            maxLength={15}
+            maxLength={20}
             value={place.city}
             type="text"
             required
@@ -159,14 +175,7 @@ export default function AddPlace() {
         </Label>
         <Label>
           Postleitzahl
-          <Input
-            onChange={handleChange}
-            name="zip"
-            value={place.zip}
-            type="number"
-            max={5}
-            required
-          />
+          <Input onChange={handleChange} name="zip" value={place.zip} type="number" required />
         </Label>
 
         <Label>
@@ -184,8 +193,9 @@ export default function AddPlace() {
           Webseite
           <Input onChange={handleChange} name="web" value={place.web} type="text" />
         </Label>
+        <Headline>Foto</Headline>
+
         <Label>
-          Foto hinzufügen:
           <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
         </Label>
         {place.img && (
@@ -211,7 +221,6 @@ export default function AddPlace() {
             />
           ))}
         </RateContainer>
-        <Headline>Foto</Headline>
 
         <Button>bestätigen</Button>
       </Form>

@@ -20,7 +20,7 @@ function GlobalStyles() {
         }
         .mapboxgl-popup-content {
           border-radius: 7px;
-          background-color: whitesmoke;
+          background-color: ${theme.colors.background};
           display: flex;
           margin: 0;
           padding: 0;
@@ -41,6 +41,11 @@ function GlobalStyles() {
           }
         }
         .mapboxgl-popup-content > div > span {
+          background-color: ${theme.colors.rate};
+          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
+
+          border-radius: 5px;
+          padding: 0 5px 0 5px;
           font-size: 0.72rem;
           margin-bottom: 10px;
         }
@@ -52,17 +57,19 @@ function GlobalStyles() {
           font-size: 0.8rem;
           margin: 5px 0px 10px 0px;
         }
-        .mapboxgl-popup-content > div > div > button {
-          font-size: 0.6rem;
-          background-color: ${theme.colors.special};
-          padding: 3px;
+        .mapboxgl-popup-content > div > div > a > button {
+          font-size: 0.67rem;
+          background-color: ${theme.colors.secondary};
+          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
           border: none;
-          font-weight: bolder;
-          height: 14px;
+          outline: none;
+          color: white;
+          font-weight: bold;
+          padding: 2% 0px;
+          height: 15px;
           width: 25px;
           border-radius: 5px;
-          margin-top: 3px;
-          margin-left: 15px;
+          margin: 3px 3px 0px 10px;
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         }
         .mapboxgl-popup-content > div > div {

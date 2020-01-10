@@ -44,10 +44,10 @@ export default function Map() {
       <img src="${place.img}" />
       <div>
       <h5> ${place.name}</h5>
-      <span>Kategorie: ${place.category}</span>
+      <span>${place.category}</span>
       <div>
       <span>Bewertung: ${place.rate} / 5</span>
-      <button>...</button>
+      <a href="http://localhost:3000/${place._id}"><button> > </button><a/>
       </div>
       </div>`;
 

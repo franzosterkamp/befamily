@@ -1,14 +1,21 @@
 import styled from '@emotion/styled';
 
-const Badege = styled.span`
+export const Badge = styled.span`
   height: fit-content;
   width: fit-content;
-  font-size: 0.6rem;
-  background-color: ${props => props.theme.colors.primary};
+  font-size: 0.62rem;
+  font-style: bold;
+  background-color: ${props => props.theme.colors.extra};
   padding: 5px;
   border-radius: 10px;
-  margin: 1px;
+  margin-right: 8px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 
-export default Badege;
+export const BadgeAge = styled(Badge)`
+  background-color: ${props => props.theme.colors.special};
+`;
+
+export const BadgeQuarter = styled(Badge)`
+  background-color: ${props => props.theme.colors.rate};
+`;
