@@ -241,7 +241,7 @@ export default function AddPlace() {
           ))}
         </RateContainer>
 
-        <Button>betätigen</Button>
+        <Button>Ort hinzufügen</Button>
       </Form>
     </Container>
   );
