@@ -7,8 +7,8 @@ export default function List(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20pt"
-      height="20pt"
+      width="13pt"
+      height="13pt"
       viewBox="0 0 26 26"
       version="1.1"
       {...props}

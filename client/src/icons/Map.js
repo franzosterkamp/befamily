@@ -7,8 +7,8 @@ export default function Map(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width="23pt"
-      height="23pt"
+      width="18pt"
+      height="18pt"
       viewBox="0 0 24 24"
       version="1.1"
       {...props}
