@@ -52,7 +52,8 @@ export default function AddPlace() {
     lat: ''
   });
 
-  const [isMarkerSet, setIsMarkerSet] = React.useState(false);
+  const [isMarkerSet, setIsMarkerSet] = React.useState(true);
+  const [isSubmit, setIsSubmit] = React.useState(true);
 
   const history = useHistory();
 
@@ -88,6 +89,7 @@ export default function AddPlace() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsSubmit(false);
 
     if (!sessionStorage.getItem('markerLng')) {
       setIsMarkerSet(!isMarkerSet);
@@ -178,7 +180,7 @@ export default function AddPlace() {
 
         <Headline id="card">Karte</Headline>
 
-        {isMarkerSet && <LngWarning>Bitte setzte einen Marker!</LngWarning>}
+        {!isMarkerSet && !isSubmit && <LngWarning>Bitte setzte einen Marker!</LngWarning>}
         <MapContainer>
           <AddMarkerMap />
         </MapContainer>
