@@ -12,7 +12,6 @@ const Header = styled.header`
   align-items: center;
   height: 59px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-
   width: 100%;
 `;
 

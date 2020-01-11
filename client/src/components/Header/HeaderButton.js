@@ -7,8 +7,7 @@ export const Button = styled(Link)`
   height: 75%;
   text-transform: uppercase;
   border-radius: 7px;
-  border: solid 2px
-    ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text)};
+  border: solid 2px ${props => props.theme.colors.text};
   outline: none;
   font-size: 0.7rem;
   font-weight: bold;
