@@ -30,7 +30,7 @@ export const RateContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 25px;
-  margin-bottom: 5px;
+  margin-bottom: 35px;
   align-content: top;
 `;
 
