@@ -14,7 +14,7 @@ import FilterPage from './pages/FilterPage';
 import MapPage from './pages/MapPage';
 import InfoPage from './pages/InfoPage';
 
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   height: 100vh;

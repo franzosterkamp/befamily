@@ -29,8 +29,8 @@ export const RateContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  height: 30px;
-  margin-bottom: 15px;
+  height: 25px;
+  margin-bottom: 5px;
   align-content: top;
 `;
 
@@ -42,7 +42,7 @@ export const RateDetailContainer = styled(RateContainer)`
 
 export const PlacesContainer = styled.div`
   display: flex;
-  flex-flow: column;
+  flex-wrap: wrap;
 `;
 
 export const MapContainer = styled.div`

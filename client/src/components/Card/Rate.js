@@ -3,23 +3,26 @@ import React from 'react';
 import Ball from '../../icons/Ball';
 import { RateContainer } from '../general/Container';
 
-const P = styled.p`
-  font-size: 0.8rem;
-  margin-right: 5px;
+const RateTitle = styled.span`
+  font-size: 0.7rem;
+  margin-left: 10px;
   font-weight: bold;
   font-style: italic;
 `;
 
+const RateNumber = styled(RateTitle)`
+  margin-left: -3px;
+`;
 const NormalBall = styled(Ball)`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
   fill: ${props => props.theme.colors.norate};
 `;
 
 const YellowBall = styled(Ball)`
-  fill: ${props => props.theme.colors.rate};
-  width: 1.5rem;
-  height: 1.5rem;
+  fill: ${props => props.theme.colors.primary};
+  width: 1.3rem;
+  height: 1.3rem;
 `;
 
 export default function Rate({ rate }) {
@@ -40,8 +43,8 @@ export default function Rate({ rate }) {
 
   return (
     <RateContainer>
-      <P>Bewertung: </P>
-      <P>{rate}</P>
+      <RateTitle>Bewertung: </RateTitle>
+      <RateNumber>{rate}</RateNumber>
       {Rating(rate)}
     </RateContainer>
   );
