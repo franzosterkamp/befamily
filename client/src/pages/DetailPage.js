@@ -1,7 +1,6 @@
 import React from 'react';
 import { DetailContainer, RateDetailContainer } from '../components/general/Container';
 import { RateInput } from '../components/general/Input';
-import doFetch from '../hooks/doFetch';
 import { useParams } from 'react-router-dom';
 import { Titel } from '../components/general/Headline';
 import DetailRate from '../components/general/DetailRate';
@@ -31,17 +30,24 @@ import {
 } from '../components/general/Output';
 
 export default function DetailPage() {
-  const id = useParams();
-
-  const place = doFetch(`/api/places/${id.placeId}`);
-
+  const [id, setId] = React.useState(useParams().placeId);
   const [newRate, setNewRate] = React.useState(0);
   const [rateClicked, setRateClicked] = React.useState(false);
+  const [place, setPlace] = React.useState([]);
+
+  React.useEffect(() => {
+    async function doFetch() {
+      const response = await fetch(`/api/places/${id}`);
+      const newPlaces = await response.json();
+      setPlace(newPlaces);
+    }
+    doFetch();
+  }, [newRate]);
 
   async function handleSubmit() {
     setRateClicked(!rateClicked);
 
-    await fetch(`/api/places/${id.placeId}`, {
+    await fetch(`/api/places/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
