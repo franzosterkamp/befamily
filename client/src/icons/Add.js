@@ -1,16 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const Svg = styled.svg`
-  fill: ${props => props.theme.colors.text};
-`;
+const Svg = styled.svg``;
 
 export default function Add(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20pt"
-      height="20pt"
+      width="15pt"
+      height="15pt"
       viewBox="0 0 32 32"
       version="1.1"
       {...props}

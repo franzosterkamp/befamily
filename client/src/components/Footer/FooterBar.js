@@ -4,9 +4,12 @@ import FooterButton from './FooterButton';
 import AddIcon from '../../icons/Add';
 import SortIcon from '../../icons/Sort';
 import MenuIcon from '../../icons/Menu';
+import { useLocation } from 'react-router-dom';
 
 const Footer = styled.footer`
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   background-color: ${props => props.theme.colors.primary};
   height: 40px;
   width: 100%;
@@ -14,37 +17,42 @@ const Footer = styled.footer`
 `;
 
 const Wrapper = styled.div`
+  height: 40px;
   display: flex;
   justify-content: space-evenly;
-  height: 100%;
   align-items: center;
-  text-align: center;
+  width: 70%;
+  margin-left: 15%;
+  background-color: ${props =>
+    props.active ? props.theme.colors.text : props.theme.colors.primary};
+  color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text)};
+  fill: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text)};
+  border-top: 3px solid ${props => props.theme.colors.primary};
 `;
 
-const MiddleButton = styled(FooterButton)`
-  border-left: 2px solid ${props => props.theme.colors.text};
-  border-right: 2px solid ${props => props.theme.colors.text};
-`;
+const Text = styled.div``;
 
 export default function FooterBar() {
+  const location = useLocation();
+
   return (
     <Footer>
-      <FooterButton to="/add">
-        <Wrapper>
+      <FooterButton active={location.pathname === '/add'} to="/add">
+        <Wrapper active={location.pathname === '/add'}>
           <AddIcon />
-          <p>Neu</p>
+          <Text>Neu</Text>
         </Wrapper>
       </FooterButton>
-      <MiddleButton to="/filter">
-        <Wrapper>
+      <FooterButton active={location.pathname === '/filter'} to="/filter">
+        <Wrapper active={location.pathname === '/filter'}>
           <SortIcon />
-          <p>Filter</p>
+          <Text>Filter</Text>
         </Wrapper>
-      </MiddleButton>
+      </FooterButton>
       <FooterButton>
         <Wrapper>
           <MenuIcon />
-          <p>Menü</p>
+          <Text>Menü</Text>
         </Wrapper>
       </FooterButton>
     </Footer>
