@@ -75,6 +75,13 @@ function GlobalStyles() {
         .mapboxgl-popup-content > div > div {
           display: flex;
         }
+        .mapboxgl-marker {
+          > svg > g {
+            g:nth-child(2) {
+              fill: ${theme.colors.secondary};
+            }
+          }
+        }
       `}
     />
   );

@@ -6,9 +6,9 @@ export const Badge = styled.span`
   font-size: 0.62rem;
   font-style: bold;
   background-color: ${props => props.theme.colors.extra};
-  padding: 5px;
   border-radius: 10px;
-  margin-right: 8px;
+  padding: 7px;
+  margin: 0 5px 0 5px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 

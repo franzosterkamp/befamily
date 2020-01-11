@@ -32,6 +32,10 @@ const LngWarning = styled.div`
   color: red;
 `;
 
+const SubmitButton = styled(Button)`
+  margin-bottom: 60px;
+`;
+
 export default function AddPlace() {
   const [place, setPlace] = React.useState({
     name: '',
@@ -241,7 +245,7 @@ export default function AddPlace() {
           ))}
         </RateContainer>
 
-        <Button>betätigen</Button>
+        <SubmitButton>Ort hinzufügen</SubmitButton>
       </Form>
     </Container>
   );

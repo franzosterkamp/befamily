@@ -6,17 +6,19 @@ import CardLink from './CardButton';
 import Image from './CardImage';
 
 const ImageWrapper = styled.div`
-  width: 35%;
+  width: 100%;
+  height: 40%;
   margin-right: 10px;
   overflow: hidden;
 `;
 
 const Container = styled.div`
-  width: 93%;
-  max-width: 360px;
+  width: 75%;
+  max-width: 250px;
   margin: auto;
-  height: 150px;
+  height: 250px;
   display: flex;
+  flex-flow: column;
   justify-content: flex-start;
   border-radius: 10px;
   background-color: white;
@@ -32,16 +34,30 @@ const ContentWrapper = styled.div`
 `;
 
 const Title = styled.p`
+  align-self: flex-start;
   padding: 0px;
-  font-size: 1rem;
+  margin-left: 20px;
+  font-size: 0.8rem;
   font-weight: bold;
+`;
+
+const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
 `;
 
 const BadgeWrapper = styled.div`
   display: flex;
-  align-content: flex-start;
+  align-content: center;
+  justify-content: space-evenly;
+  width: 90%;
+  margin: 2px auto 5px auto;
+  padding: 13px 0px 13px 0px;
   flex-wrap: wrap;
-  margin-bottom: 4px;
+  height: 50px;
+  border-bottom: 1px solid ${props => props.theme.colors.primary};
+  border-top: 1px solid ${props => props.theme.colors.primary};
 `;
 
 export default function Card({ name, age, rate, quarter, img, id, category }) {
@@ -50,15 +66,19 @@ export default function Card({ name, age, rate, quarter, img, id, category }) {
       <ImageWrapper>
         <Image src={img} />
       </ImageWrapper>
+      <Title>{name}</Title>
+
       <ContentWrapper>
-        <Title>{name}</Title>
-        <Rate rate={rate} />
         <BadgeWrapper>
           <BadgeAge>{age}</BadgeAge>
           <BadgeQuarter>{quarter}</BadgeQuarter>
           <Badge>{category}</Badge>
         </BadgeWrapper>
-        <CardLink to={`/${id}`}>mehr</CardLink>
+        <Rate rate={rate} />
+
+        <LinkWrapper>
+          <CardLink to={`/${id}`}>Mehr</CardLink>
+        </LinkWrapper>
       </ContentWrapper>
     </Container>
   );
