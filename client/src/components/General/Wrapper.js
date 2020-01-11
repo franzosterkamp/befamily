@@ -40,3 +40,36 @@ export const AdressBox = styled.div`
   display: flex;
   flex-flow: column;
 `;
+
+export const AgeLabelWrapper = styled.div`
+  margin-top: 30px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 80%;
+  border-radius: 10px;
+  background-color: ${props => props.theme.colors.special};
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+`;
+
+export const CategoryLabelWrapper = styled(AgeLabelWrapper)`
+  background-color: ${props => props.theme.colors.extra};
+`;
+
+export const QuarterLabelWrapper = styled(AgeLabelWrapper)`
+  background-color: ${props => props.theme.colors.rate};
+`;
+
+export const ImgWrapper = styled(ImageWrapper)`
+  height: 100px;
+  width: 35%;
+  margin-bottom: 30px;
+`;
+
+export const SelectWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: fit-content;
+  padding: 5px;
+`;

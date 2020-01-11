@@ -19,6 +19,11 @@ export const Button = styled.button`
   font-weight: bold;
 `;
 
+export const UnsetButton = styled(Button)`
+  background: ${props => props.theme.colors.secondary};
+  width: 30%;
+`;
+
 export const StartButton = styled(Link)`
   width: fit-content;
   text-decoration: none;

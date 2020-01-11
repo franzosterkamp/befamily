@@ -7,6 +7,9 @@ const Input = styled.input`
   font-size: 0.9rem;
   outline: none;
   border: 1px solid ${props => props.theme.colors.primary};
+  &:focus {
+    border: 1px solid ${props => props.theme.colors.extra};
+  }
 `;
 
 export const Form = styled.form`

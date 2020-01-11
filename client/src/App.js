@@ -7,12 +7,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HeaderNav from './components/header/HeaderNav';
 import FooterBar from './components/footer/FooterBar';
 import PlaceList from './pages/PlaceList';
-import AddPage from './pages/AddPlace';
+import AddPage from './pages/AddPlacePage';
 import Landingpage from './pages/LandingPage';
 import DetailPage from './pages/DetailPage';
 import FilterPage from './pages/FilterPage';
 import MapPage from './pages/MapPage';
-import useGetFetch from './hooks/useFetch';
 import InfoPage from './pages/InfoPage';
 
 const Container = styled.div`
@@ -27,13 +26,34 @@ const Main = styled.main`
 `;
 
 function App() {
-  let places = useGetFetch('/api/places');
-
+  let [places, setPlaces] = React.useState(null);
   const [filter, setFilter] = React.useState({
     age: '',
     category: '',
     quarter: ''
   });
+
+  if (filter.category) {
+    places = places.filter(place => place.category.includes(filter.category));
+  }
+
+  if (filter.quarter) {
+    places = places.filter(place => place.quarter.includes(filter.quarter));
+  }
+
+  if (filter.age) {
+    places = places.filter(place => place.age.includes(filter.age));
+  }
+
+  React.useEffect(() => {
+    async function doFetch() {
+      const response = await fetch(`/api/places`);
+      const newPlaces = await response.json();
+      setPlaces(newPlaces);
+    }
+
+    doFetch();
+  }, []);
 
   function handleChange(event) {
     setFilter({
@@ -46,23 +66,6 @@ function App() {
     setFilter({ age: '', category: '', quarter: '' });
   }
 
-  if (filter.age) {
-    console.log(filter.age);
-    places = places.filter(place => place.age.includes(filter.age));
-  }
-
-  if (filter.category) {
-    console.log(filter.category);
-    places = places.filter(place => place.category.includes(filter.category));
-  }
-
-  if (filter.quarter) {
-    console.log(filter.quarter);
-    places = places.filter(place => place.quarter.includes(filter.quarter));
-  }
-
-  console.log(filter);
-
   return (
     <ThemeProvider theme={main}>
       <GlobalStyles />
@@ -74,9 +77,7 @@ function App() {
               <Route exact path="/">
                 <Landingpage />
               </Route>
-              <Route path="/card">
-                <MapPage />
-              </Route>
+              <Route path="/card">{places && <MapPage places={places} />}</Route>
               <Route path="/list">
                 <PlaceList places={places} />
               </Route>

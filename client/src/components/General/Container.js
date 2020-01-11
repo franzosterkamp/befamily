@@ -54,3 +54,13 @@ export const MapContainer = styled.div`
   border-radius: 3px;
   border: 2px solid ${props => props.theme.colors.primary};
 `;
+
+export const FilterContainer = styled.div`
+  width: 100%;
+  height: 90%;
+  margin: 20px 0 20px 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+`;

@@ -15,13 +15,13 @@ const Marker = styled.div``;
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZnJhbno4NiIsImEiOiJjazRkeTF5b20wNTdoM2tuNmU5eG1kbDdqIn0.a-iKeML6h5r1j51BuXjvuA';
 
-export default function MapPage() {
+export default function MapPage({ places }) {
   const [lng, setLng] = React.useState(6.960279);
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
 
-  async function createMap() {
+  function createMap(places) {
     const mapData = {
       container: 'map_container',
       style: mapStyle,
@@ -35,9 +35,6 @@ export default function MapPage() {
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
     });
-
-    const response = await fetch('/api/places');
-    const places = await response.json();
 
     places.map(place => {
       const html = `
@@ -83,7 +80,7 @@ export default function MapPage() {
   }
 
   React.useEffect(() => {
-    createMap();
+    createMap(places);
   }, [mapStyle]);
 
   return (

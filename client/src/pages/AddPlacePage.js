@@ -14,12 +14,9 @@ import {
 import { CameraInput } from '../components/general/Input';
 import { AddPlaceHeadline as Headline } from '../components/general/Headline';
 import { RateInput, Form } from '../components/general/Input';
-import { ImageWrapper } from '../components/general/Wrapper';
-
-const ImgWrapper = styled(ImageWrapper)`
-  height: 100px;
-  width: 35%;
-`;
+import { ImgWrapper, SelectWrapper } from '../components/general/Wrapper';
+import { quarterList, ageList, categoryList } from '../components/data/array';
+import { Option, Select } from '../components/general/SelectBox';
 
 const Img = styled.img`
   width: 100%;
@@ -38,20 +35,21 @@ const LngWarning = styled.div`
 export default function AddPlace() {
   const [place, setPlace] = React.useState({
     name: '',
-    category: 'Spielplatz',
+    category: '',
     detail: '',
-    age: '0-2Jahre',
+    age: '',
     street: '',
     city: '',
     zip: '',
     web: '',
     rate: [0],
     img: '',
-    lng: 0,
-    lat: 0
+    lng: '',
+    lat: ''
   });
 
-  const [noLng, setNoLng] = React.useState(false);
+  const [isMarkerSet, setIsMarkerSet] = React.useState(false);
+
   const history = useHistory();
 
   function handleImage(event) {
@@ -79,44 +77,48 @@ export default function AddPlace() {
     setPlace({
       ...place,
       [event.target.name]: event.target.value,
-      lng: JSON.parse(sessionStorage.getItem('markerlng')),
-      lat: JSON.parse(sessionStorage.getItem('markerlat'))
+      lng: JSON.parse(sessionStorage.getItem('markerLng')),
+      lat: JSON.parse(sessionStorage.getItem('markerLat'))
     });
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (place.lng === 0) {
-      setNoLng(!noLng);
+    if (!sessionStorage.getItem('markerLng')) {
+      setIsMarkerSet(!isMarkerSet);
+      window.location = 'http://localhost:3000/add/#card';
       return;
+    } else {
+      await fetch('/api/places', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(place)
+      });
+
+      history.push('../info');
+
+      sessionStorage.removeItem('markerLng');
+      sessionStorage.removeItem('markerLat');
+
+      setPlace({
+        name: '',
+        category: '',
+        detail: '',
+        age: '',
+        street: '',
+        city: '',
+        zip: '',
+        quarter: '',
+        web: '',
+        rate: [0],
+        img: '',
+        lng: '',
+        lat: ''
+      });
     }
-
-    await fetch('/api/places', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(place)
-    });
-
-    history.push('../info');
-
-    setPlace({
-      name: '',
-      category: 'Spielplatz',
-      detail: '',
-      age: '0-2 Jahre',
-      street: '',
-      city: '',
-      zip: '',
-      quarter: '',
-      web: '',
-      rate: [0],
-      img: '',
-      lng: '',
-      lat: ''
-    });
   }
 
   return (
@@ -130,11 +132,13 @@ export default function AddPlace() {
         </Label>
         <Label>
           Kategorie
-          <select name="category" onChange={handleChange} value={place.category}>
-            <option value="Spielplatz">Spielplatz</option>
-            <option value="Schwimmbad">Schwimmbad</option>
-            <option value="Cafe">Cafe</option>
-          </select>
+          <Select name="category" onChange={handleChange} value={place.category}>
+            {categoryList.map(value => (
+              <Option key={value} value={value}>
+                {value}
+              </Option>
+            ))}
+          </Select>
         </Label>
         <Label>
           Beschreibung
@@ -149,15 +153,28 @@ export default function AddPlace() {
         </Label>
         <Label>
           Altersgruppe
-          <select name="age" onChange={handleChange} value={place.age}>
-            <option value="0-2 Jahre">0-2 Jahre</option>
-            <option value="3-6 Jahre">3-6 Jahre</option>
-            <option value="7-10 Jahre">7-10 Jahre</option>
-            <option value="ab 11 Jahre">ab 11 Jahre</option>
-          </select>
+          <Select name="age" onChange={handleChange} value={place.age}>
+            {ageList.map(value => (
+              <Option key={value} value={value}>
+                {value}
+              </Option>
+            ))}
+          </Select>
         </Label>
-        <Headline>Karte</Headline>
-        {noLng && <LngWarning>Bitte setzte einen Marker!</LngWarning>}
+        <Headline>Foto</Headline>
+
+        <Label>
+          <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
+        </Label>
+        {place.img && (
+          <ImgWrapper>
+            <Img src={place.img} />
+          </ImgWrapper>
+        )}
+
+        <Headline id="card">Karte</Headline>
+
+        {isMarkerSet && <LngWarning>Bitte setzte einen Marker!</LngWarning>}
         <MapContainer>
           <AddMarkerMap />
         </MapContainer>
@@ -181,32 +198,30 @@ export default function AddPlace() {
           Postleitzahl
           <Input onChange={handleChange} name="zip" value={place.zip} type="number" required />
         </Label>
-
-        <Label>
-          Stadtteil
-          <Input
-            onChange={handleChange}
-            name="quarter"
-            value={place.quarter}
-            type="text"
-            maxLength={20}
-            required
-          />
-        </Label>
+        <SelectWrapper>
+          <Label>
+            Stadtteil
+            <Select
+              onChange={handleChange}
+              name="quarter"
+              value={place.quarter}
+              type="text"
+              maxLength={20}
+              required
+            >
+              {quarterList.map(value => (
+                <Option key={value} value={value}>
+                  {value}
+                </Option>
+              ))}
+            </Select>
+          </Label>
+        </SelectWrapper>
         <Label>
           Webseite
           <Input onChange={handleChange} name="web" value={place.web} type="text" />
         </Label>
-        <Headline>Foto</Headline>
 
-        <Label>
-          <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
-        </Label>
-        {place.img && (
-          <ImgWrapper>
-            <Img src={place.img} />
-          </ImgWrapper>
-        )}
         <Headline>Bewertung</Headline>
         <RateContainer>
           {[1, 2, 3, 4, 5].map(value => (

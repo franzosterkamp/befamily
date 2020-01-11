@@ -24,9 +24,8 @@ const YellowBall = styled(Ball)`
 
 export default function Rate({ rate }) {
   const balls = [];
-
   function Rating(rate) {
-    const intRate = parseFloat(rate);
+    const intRate = Math.round(rate);
     let count = 0;
     while (count < intRate) {
       balls.push(<YellowBall key={count} />);

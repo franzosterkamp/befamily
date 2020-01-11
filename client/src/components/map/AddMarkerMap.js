@@ -51,9 +51,8 @@ export default function Map() {
     map.on('click', event => {
       const coords = `lat: ${event.lngLat.lat}  lng: ${event.lngLat.lng}`;
       const popup = new mapboxgl.Popup().setText(coords);
-      sessionStorage.setItem('markerlat', event.lngLat.lat);
-      sessionStorage.setItem('markerlng', event.lngLat.lng);
-      console.log(event.lngLat);
+      sessionStorage.setItem('markerLat', event.lngLat.lat);
+      sessionStorage.setItem('markerLng', event.lngLat.lng);
 
       if (marker === null) {
         marker = new mapboxgl.Marker(Marker)
@@ -69,7 +68,7 @@ export default function Map() {
       }
     });
 
-    return map;
+    return;
   }
 
   function handleClickMap() {
