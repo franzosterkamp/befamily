@@ -40,7 +40,6 @@ export default function DetailPage() {
       const response = await fetch(`/api/places/${id}`);
       const newPlaces = await response.json();
       setPlace(newPlaces);
-      console.log(place);
     }
     doFetch();
   }, [newRate]);
