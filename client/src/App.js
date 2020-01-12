@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HeaderNav from './components/header/HeaderNav';
 import FooterBar from './components/footer/FooterBar';
-import PlaceListPage from './pages/PlaceList';
+import PlaceListPage from './pages/PlaceListPage';
 import AddPlacePage from './pages/AddPlacePage';
 import Landingpage from './pages/LandingPage';
 import DetailPage from './pages/DetailPage';

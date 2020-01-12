@@ -9,7 +9,8 @@ import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
   AddPlaceContainer as Container,
   MapContainer,
-  RateContainer
+  RateContainer,
+  PlacesContainer
 } from '../components/general/Container';
 import { CameraInput } from '../components/general/Input';
 import { AddPlaceHeadline as Headline } from '../components/general/Headline';
@@ -75,6 +76,40 @@ export default function AddPlacePage({ getUpdate }) {
     };
   }
 
+  React.useEffect(() => {
+    sessionStorage.removeItem('markerLng');
+    sessionStorage.removeItem('markerLat');
+  }, []);
+
+  React.useEffect(() => {
+    async function reserveGeoCode() {
+      if (sessionStorage.getItem('markerLng')) {
+        const lng = JSON.parse(sessionStorage.getItem('markerLng'));
+        const lat = JSON.parse(sessionStorage.getItem('markerLat'));
+        const response = await fetch(
+          `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
+        );
+        const fetchedResults = await response.json();
+        const adressComponents = fetchedResults.results[0].components;
+
+        console.log(adressComponents);
+
+        if (adressComponents) {
+          setPlace({
+            ...place,
+            street: adressComponents.road + ' ' + adressComponents.house_number,
+            zip: adressComponents.postcode,
+            city: adressComponents.city
+          });
+        }
+        if (adressComponents.house_number === undefined) {
+          setPlace({ ...place, street: adressComponents.road });
+        }
+      }
+    }
+    reserveGeoCode();
+  }, [place.category, place.age]);
+
   function handleChange(event) {
     setPlace({
       ...place,
@@ -130,16 +165,7 @@ export default function AddPlacePage({ getUpdate }) {
           Name des Ortes
           <Input type="text" name="name" required value={place.name} onChange={handleChange} />
         </Label>
-        <Label>
-          Kategorie
-          <Select name="category" onChange={handleChange} value={place.category}>
-            {categoryList.map(value => (
-              <Option key={value} value={value}>
-                {value}
-              </Option>
-            ))}
-          </Select>
-        </Label>
+
         <Label>
           Beschreibung
           <TextArea
@@ -151,16 +177,7 @@ export default function AddPlacePage({ getUpdate }) {
             rows="10"
           />
         </Label>
-        <Label>
-          Altersgruppe
-          <Select name="age" onChange={handleChange} value={place.age}>
-            {ageList.map(value => (
-              <Option key={value} value={value}>
-                {value}
-              </Option>
-            ))}
-          </Select>
-        </Label>
+
         <Headline>Foto</Headline>
         <Label>
           <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
@@ -175,6 +192,27 @@ export default function AddPlacePage({ getUpdate }) {
         <MapContainer>
           <AddMarkerMap />
         </MapContainer>
+        <Headline>Katergorie und Altergruppe</Headline>
+        <Label>
+          Kategorie
+          <Select name="category" onChange={handleChange} value={place.category}>
+            {categoryList.map(value => (
+              <Option key={value} value={value}>
+                {value}
+              </Option>
+            ))}
+          </Select>
+        </Label>
+        <Label>
+          Altersgruppe
+          <Select name="age" onChange={handleChange} value={place.age}>
+            {ageList.map(value => (
+              <Option key={value} value={value}>
+                {value}
+              </Option>
+            ))}
+          </Select>
+        </Label>
         <Headline> Adresse </Headline>
         <Label>
           Straße/Hausnummer

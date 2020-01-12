@@ -5,7 +5,7 @@ const TextInput = styled.textarea`
   font-style: bold;
   resize: none;
   border-radius: 10px;
-  width: 120%;
+  width: 100%;
   font-family: 'Roboto', sans-serif;
   outline: none;
   border: 1px solid ${props => props.theme.colors.primary};

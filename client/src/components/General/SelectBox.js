@@ -25,6 +25,8 @@ export const FilterOption = styled.option`
 export const Select = styled.select`
   font-size: 0.8rem;
   display: block;
+  margin-top: 3px;
+  width: 100px;
   border: 1px solid black;
   border: solid 1px ${props => props.theme.colors.primary};
   background: ${props => props.theme.colors.background};
