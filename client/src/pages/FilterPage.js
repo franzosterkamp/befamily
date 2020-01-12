@@ -12,14 +12,14 @@ import { quarterList, ageList, categoryList } from '../components/data/array';
 import { FilterSelect as Select, FilterOption as Option } from '../components/general/SelectBox';
 import { FilterContainer } from '../components/general/Container';
 
-export default function FilterPage({ filter, handleChange, unsetFilter }) {
+export default function FilterPage({ filters, handleChange, unsetFilters }) {
   return (
     <FilterContainer>
       <Headline>Filter</Headline>
       <AgeLabelWrapper>
         <FilterLabel>
           Altersgruppe:
-          <Select name="age" onChange={handleChange} value={filter.age}>
+          <Select name="age" onChange={handleChange} value={filters.age}>
             {ageList.map(value => (
               <Option value={value}>{value}</Option>
             ))}
@@ -29,7 +29,7 @@ export default function FilterPage({ filter, handleChange, unsetFilter }) {
       <CategoryLabelWrapper>
         <FilterLabel>
           Kategorie:
-          <Select name="category" onChange={handleChange} value={filter.category}>
+          <Select name="category" onChange={handleChange} value={filters.category}>
             {categoryList.map(value => (
               <Option value={value}>{value}</Option>
             ))}
@@ -39,7 +39,7 @@ export default function FilterPage({ filter, handleChange, unsetFilter }) {
       <QuarterLabelWrapper>
         <FilterLabel>
           Stadtteil:
-          <Select name="quarter" onChange={handleChange} value={filter.quarter}>
+          <Select name="quarter" onChange={handleChange} value={filters.quarter}>
             {quarterList.map(value => (
               <Option value={value}>{value}</Option>
             ))}
@@ -47,7 +47,7 @@ export default function FilterPage({ filter, handleChange, unsetFilter }) {
         </FilterLabel>
       </QuarterLabelWrapper>
       <ButtonWrapper>
-        <UnsetButton onClick={unsetFilter}>Aufheben</UnsetButton>
+        <UnsetButton onClick={unsetFilters}>Aufheben</UnsetButton>
       </ButtonWrapper>
     </FilterContainer>
   );
