@@ -7,7 +7,7 @@ import Image from './CardImage';
 
 const ImageWrapper = styled.div`
   width: 100%;
-  height: 40%;
+  height: 50%;
   margin-right: 10px;
   overflow: hidden;
 `;
@@ -16,7 +16,7 @@ const Container = styled.div`
   width: 75%;
   max-width: 250px;
   margin: auto;
-  height: 250px;
+  height: 340px;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -75,7 +75,6 @@ export default function Card({ name, age, rate, quarter, img, id, category }) {
           <Badge>{category}</Badge>
         </BadgeWrapper>
         <Rate rate={rate} />
-
         <LinkWrapper>
           <CardLink to={`/${id}`}>Mehr</CardLink>
         </LinkWrapper>
