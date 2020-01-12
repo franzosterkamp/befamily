@@ -19,7 +19,7 @@ First on the server side
  npm install
 ```
 
-as soon as installation finished do this:
+then on the client side:
 
 ```
 client
