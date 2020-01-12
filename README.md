@@ -1,17 +1,50 @@
 # befamily
 
-## befamily
-A webapp to help familys to find the right places for their children.
+## About?
 
-## Project title
-"befamily" is just a working title. Creative suggestions for a title are very welcome.
+Welcome to the repository of befamily. This app helps partens to find the right place for their childern.
+As a user u can display the places on a map or as a list, sort and rate them. For every user it is possilbe to add a new place and rate it.
 
-## Motivation
-This project will be my final work for the intensive Web Development Course @neuefische in Cologne, which we will complete by the end of January 2020. 
+## Getting Started
 
-## Screenshots
-## Tech/framework used
+These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
+### Installing
+
+After cloning this to your machine, you need to install node_modules on both client and server
+
+First on the server side
+
+```
+ npm install
+```
+
+as soon as installation finished do this:
+
+```
+client
+npm install
+```
+
+### Running the application
+
+A step by step series of examples that tell you how to get a development env running
+
+Open two terminals next to eachother
+
+First terminal
+
+```
+npm run client
+```
+
+Second Terminal
+
+```
+npm run server
+```
+
+Head to your browser with one of the links given to you in the first terminal and enjoy befamily.
 
 Built with
 
