@@ -13,6 +13,7 @@ import DetailPage from './pages/DetailPage';
 import FilterPage from './pages/FilterPage';
 import MapPage from './pages/MapPage';
 import InfoPage from './pages/InfoPage';
+import { Menu } from './components/menu/Menu';
 
 const Container = styled.main`
   display: flex;
@@ -26,7 +27,9 @@ const Main = styled.main`
 `;
 
 function App() {
-  const [places, setPlaces] = React.useState(null);
+  const [places, setPlaces] = React.useState([]);
+  const [menuClick, setMenuClick] = React.useState(false);
+
   const [filters, setFilters] = React.useState({
     age: '',
     category: '',
@@ -103,7 +106,8 @@ function App() {
               </Route>
             </Switch>
           </Main>
-          <FooterBar />
+          {menuClick && <Menu />}
+          <FooterBar onClick={() => setMenuClick(!menuClick)} menuClick={menuClick} />
         </Container>
       </Router>
     </ThemeProvider>

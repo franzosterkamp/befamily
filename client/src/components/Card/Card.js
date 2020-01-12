@@ -7,7 +7,7 @@ import Image from './CardImage';
 
 const ImageWrapper = styled.div`
   width: 100%;
-  height: 50%;
+  height: 45%;
   margin-right: 10px;
   overflow: hidden;
 `;
@@ -16,7 +16,7 @@ const Container = styled.div`
   width: 75%;
   max-width: 250px;
   margin: auto;
-  height: 340px;
+  height: 290px;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;

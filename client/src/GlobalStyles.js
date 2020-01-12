@@ -28,7 +28,7 @@ function GlobalStyles() {
           width: 160px;
           margin: 0;
           padding: 0;
-          height: 170px;
+          height: 165px;
           border: 3px solid ${theme.colors.primary};
           box-shadow: 14px 15px 20px -4px rgba(0, 0, 0, 0.75);
           > div {
@@ -45,7 +45,7 @@ function GlobalStyles() {
           > span {
             background-color: ${theme.colors.rate};
             box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
-            margin: 5px 0px 5px 8px;
+            margin: 5px 0px 2px 8px;
             border-radius: 5px;
             height: fit-content;
             width: fit-content;
@@ -61,7 +61,7 @@ function GlobalStyles() {
 
         .mapboxgl-popup-content > h5 {
           font-size: 0.8rem;
-          margin: 3px 0px 0px 10px;
+          margin: 1px 0px 0px 10px;
         }
         .mapboxgl-popup-content div > a > button {
           font-size: 0.67rem;
