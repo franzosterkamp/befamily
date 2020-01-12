@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { flipIn } from '../components/general/Animation';
 
 const Svg = styled.svg`
   fill: ${props => props.theme.colors.text};
+  animation: ${flipIn} 3s ease-in;
 `;
 
 export default function Ball(props) {
@@ -10,8 +12,8 @@ export default function Ball(props) {
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 128 128"
-      width="64px"
-      height="64px"
+      width="100px"
+      height="100px"
       {...props}
     >
       <path
