@@ -6,8 +6,8 @@ export const FilterSelect = styled.select`
   margin-top: 10px;
   width: 80%;
   font-size: 1rem;
-  border: solid 1px ${props => props.theme.colors.text};
-  background: ${props => props.theme.colors.text};
+  border: solid 1px ${props => props.theme.colors.background};
+  background: ${props => props.theme.colors.background};
   border-radius: 8px;
   font-size: 0.9rem;
   &:focus {
@@ -27,7 +27,7 @@ export const Select = styled.select`
   display: block;
   border: 1px solid black;
   border: solid 1px ${props => props.theme.colors.primary};
-  background: ${props => props.theme.colors.text};
+  background: ${props => props.theme.colors.background};
   border-radius: 8px;
   &:focus {
     border: 1px solid ${props => props.theme.colors.extra};
