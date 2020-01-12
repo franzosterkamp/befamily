@@ -6,8 +6,8 @@ import styled from '@emotion/styled';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HeaderNav from './components/header/HeaderNav';
 import FooterBar from './components/footer/FooterBar';
-import PlaceList from './pages/PlaceList';
-import AddPage from './pages/AddPlacePage';
+import PlaceListPage from './pages/PlaceList';
+import AddPlacePage from './pages/AddPlacePage';
 import Landingpage from './pages/LandingPage';
 import DetailPage from './pages/DetailPage';
 import FilterPage from './pages/FilterPage';
@@ -29,6 +29,7 @@ const Main = styled.main`
 function App() {
   const [places, setPlaces] = React.useState(null);
   const [menuClick, setMenuClick] = React.useState(false);
+  const [update, setUpdate] = React.useState(null);
 
   const [filters, setFilters] = React.useState({
     age: '',
@@ -60,13 +61,17 @@ function App() {
     }
 
     doFetch();
-  }, [filters.age, filters.category, filters.quarter]);
+  }, [filters.age, filters.category, filters.quarter, update]);
 
   function handleChange(event) {
     setFilters({
       ...filters,
       [event.target.name]: event.target.value
     });
+  }
+
+  function getUpdate(value) {
+    setUpdate(value);
   }
 
   function unsetFilters() {
@@ -86,10 +91,10 @@ function App() {
               </Route>
               <Route path="/card">{places && <MapPage places={places} />}</Route>
               <Route path="/list">
-                <PlaceList places={places} />
+                <PlaceListPage places={places} />
               </Route>
               <Route path="/add">
-                <AddPage />
+                <AddPlacePage getUpdate={getUpdate} />
               </Route>
               <Route path="/filter">
                 <FilterPage

@@ -3,7 +3,7 @@ import Card from '../components/card/Card';
 import { PlacesContainer } from '../components/general/Container';
 import PropTypes from 'prop-types';
 
-export default function Placelist({ places }) {
+export default function PlacelistPage({ places }) {
   return (
     <PlacesContainer>
       {places &&
@@ -23,6 +23,6 @@ export default function Placelist({ places }) {
   );
 }
 
-Placelist.propTypes = {
+PlacelistPage.propTypes = {
   places: PropTypes.object
 };
