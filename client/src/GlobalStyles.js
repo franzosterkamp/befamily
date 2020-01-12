@@ -43,7 +43,7 @@ function GlobalStyles() {
             border-radius: 4px 4px 0px 0px;
           }
           > span {
-            background-color: ${theme.colors.rate};
+            background-color: ${theme.colors.extra};
             box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
             margin: 5px 0px 2px 8px;
             border-radius: 5px;
@@ -64,19 +64,25 @@ function GlobalStyles() {
           margin: 1px 0px 0px 10px;
         }
         .mapboxgl-popup-content div > a > button {
-          font-size: 0.67rem;
+          font-size: 0.6rem;
           background-color: ${theme.colors.secondary};
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
+          text-align: center;
           border: none;
           outline: none;
           color: white;
           font-weight: bold;
           margin-top: 7px;
-          padding: 1px 2px 2px 2px;
+          padding: 0px 2px 2px 0px;
+          line-height: 15px;
           height: 15px;
           width: 35px;
           border-radius: 5px;
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        }
+
+        .mapboxgl-popup-tip {
+          border-bottom-color: ${theme.colors.primary} !important;
         }
 
         .mapboxgl-marker {

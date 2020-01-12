@@ -50,7 +50,8 @@ export const InfoButton = styled.button`
 
 export const MapButton = styled.button`
   z-index: 1;
-  margin: 15px;
+  margin: 4px;
+  margin-top: 5px;
   border: none;
   outline: none;
   padding: 0px;
@@ -59,7 +60,7 @@ export const MapButton = styled.button`
   background-color: transparent;
   fill: ${props =>
     props.mapStyle === 'mapbox://styles/mapbox/streets-v11'
-      ? props => props.theme.colors.secondary
+      ? props => props.theme.colors.extra
       : props => props.theme.colors.background};
 `;
 

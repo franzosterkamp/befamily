@@ -24,12 +24,11 @@ const Img = styled.img`
   border-radius: 8px;
 `;
 
-const LngWarning = styled.div`
+const MarkerInfo = styled.div`
   width: 100%;
   margin: auto;
   text-align: center;
   height: fit-content;
-  color: red;
 `;
 
 const SubmitButton = styled(Button)`
@@ -51,9 +50,6 @@ export default function AddPlace() {
     lng: '',
     lat: ''
   });
-
-  const [isMarkerSet, setIsMarkerSet] = React.useState(true);
-  const [isSubmit, setIsSubmit] = React.useState(true);
 
   const history = useHistory();
 
@@ -89,10 +85,8 @@ export default function AddPlace() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setIsSubmit(false);
 
     if (!sessionStorage.getItem('markerLng')) {
-      setIsMarkerSet(!isMarkerSet);
       window.location = 'http://localhost:3000/add/#card';
       return;
     } else {
@@ -131,7 +125,6 @@ export default function AddPlace() {
     <Container>
       <Form onSubmit={handleSubmit}>
         <Headline>Neuen Ort eintragen</Headline>
-
         <Label>
           Name des Ortes
           <Input type="text" name="name" required value={place.name} onChange={handleChange} />
@@ -168,7 +161,6 @@ export default function AddPlace() {
           </Select>
         </Label>
         <Headline>Foto</Headline>
-
         <Label>
           <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
         </Label>
@@ -177,10 +169,8 @@ export default function AddPlace() {
             <Img src={place.img} />
           </ImgWrapper>
         )}
-
         <Headline id="card">Karte</Headline>
-
-        {!isMarkerSet && !isSubmit && <LngWarning>Bitte setzte einen Marker!</LngWarning>}
+        <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
         <MapContainer>
           <AddMarkerMap />
         </MapContainer>
@@ -227,7 +217,6 @@ export default function AddPlace() {
           Webseite
           <Input onChange={handleChange} name="web" value={place.web} type="text" />
         </Label>
-
         <Headline>Bewertung</Headline>
         <RateContainer>
           {[1, 2, 3, 4, 5].map(value => (
@@ -246,7 +235,6 @@ export default function AddPlace() {
             />
           ))}
         </RateContainer>
-
         <SubmitButton>Ort hinzufügen</SubmitButton>
       </Form>
     </Container>

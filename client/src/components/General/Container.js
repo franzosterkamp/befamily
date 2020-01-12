@@ -47,7 +47,7 @@ export const PlacesContainer = styled.div`
 
 export const MapContainer = styled.div`
   width: 100%;
-  height: 200px;
+  height: 300px;
   max-width: 300px;
   margin: 5px;
   margin-bottom: 20px;

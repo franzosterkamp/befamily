@@ -14,6 +14,7 @@ import FilterPage from './pages/FilterPage';
 import MapPage from './pages/MapPage';
 import InfoPage from './pages/InfoPage';
 import { Menu } from './components/menu/Menu';
+import { useLocation } from 'react-router-dom';
 
 const Container = styled.main`
   display: flex;
@@ -27,7 +28,7 @@ const Main = styled.main`
 `;
 
 function App() {
-  const [places, setPlaces] = React.useState([]);
+  const [places, setPlaces] = React.useState(null);
   const [menuClick, setMenuClick] = React.useState(false);
 
   const [filters, setFilters] = React.useState({
