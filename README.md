@@ -46,13 +46,16 @@ npm run server
 
 Head to your browser with one of the links given to you in the first terminal and enjoy befamily.
 
-Built with
+## Built with
 
-Features
-Code Example
-Installation
-API Reference
-Tests
-How to use?
-Credits
-License
+- HTML
+- CSS
+- Javascript
+- React
+- emotion
+- storybook
+- Node.js
+- express
+- mapbox
+- MongoDB Atlas
+- Cloudinary
