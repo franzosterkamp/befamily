@@ -39,18 +39,16 @@ export default function MapPage({ places }) {
     places.map(place => {
       const html = `
       <img src="${place.img}" />
-      <div>
       <h5> ${place.name}</h5>
       <span>${place.category}</span>
       <div>
       <span>Bewertung: ${place.rate} / 5</span>
-      <a href="http://localhost:3000/${place._id}"><button> > </button><a/>
+      <a href="http://localhost:3000/${place._id}"><button> Mehr </button><a/>
       </div>
-      </div>`;
-
+      `;
       let popup = new mapboxgl.Popup({ closeButton: false })
         .setHTML(html)
-        .setMaxWidth('250px')
+        .setMaxWidth('170px')
         .addTo(map);
 
       new mapboxgl.Marker(Marker)

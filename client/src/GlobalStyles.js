@@ -21,43 +21,49 @@ function GlobalStyles() {
         .mapboxgl-popup-content {
           border-radius: 7px;
           background-color: ${theme.colors.background};
+          width: 100%;
           display: flex;
+          flex-flow: column;
+          align-items: flex-start;
+          width: 160px;
           margin: 0;
           padding: 0;
+          height: 170px;
           border: 3px solid ${theme.colors.primary};
           box-shadow: 14px 15px 20px -4px rgba(0, 0, 0, 0.75);
           > div {
-            width: 100%;
             display: flex;
-            flex-flow: column;
-            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+            height: 30px;
           }
           > img {
-            width: 37%;
-            height: 90px;
-            border-radius: 4px 0 0px 6px;
-            margin-right: 10px;
-            margin-left: 0.2%;
+            width: 100%;
+            height: 80px;
+            border-radius: 4px 4px 0px 0px;
+          }
+          > span {
+            background-color: ${theme.colors.rate};
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
+            margin: 5px 0px 5px 8px;
+            border-radius: 5px;
+            height: fit-content;
+            width: fit-content;
+            padding: 2px 5px 2px 5px;
+            font-size: 0.7rem;
           }
         }
         .mapboxgl-popup-content > div > span {
-          background-color: ${theme.colors.rate};
-          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
-
-          border-radius: 5px;
-          padding: 0 5px 0 5px;
-          font-size: 0.72rem;
-          margin-bottom: 10px;
-        }
-        .mapboxgl-popup-content > div > div > span {
-          font-size: 0.72rem;
+          margin: 5px 0 5px 10px;
           font-style: italic;
+          font-size: 0.7rem;
         }
-        .mapboxgl-popup-content > div > h5 {
+
+        .mapboxgl-popup-content > h5 {
           font-size: 0.8rem;
-          margin: 5px 0px 10px 0px;
+          margin: 3px 0px 0px 10px;
         }
-        .mapboxgl-popup-content > div > div > a > button {
+        .mapboxgl-popup-content div > a > button {
           font-size: 0.67rem;
           background-color: ${theme.colors.secondary};
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.26) !important;
@@ -65,16 +71,14 @@ function GlobalStyles() {
           outline: none;
           color: white;
           font-weight: bold;
-          padding: 2% 0px;
+          margin-top: 7px;
+          padding: 1px 2px 2px 2px;
           height: 15px;
-          width: 25px;
+          width: 35px;
           border-radius: 5px;
-          margin: 3px 3px 0px 10px;
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         }
-        .mapboxgl-popup-content > div > div {
-          display: flex;
-        }
+
         .mapboxgl-marker {
           > svg > g {
             g:nth-child(2) {

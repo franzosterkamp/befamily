@@ -57,7 +57,7 @@ function App() {
     }
 
     doFetch();
-  }, [filters]);
+  }, [filters.age, filters.category, filters.quarter]);
 
   function handleChange(event) {
     setFilters({
