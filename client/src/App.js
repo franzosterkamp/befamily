@@ -14,7 +14,6 @@ import FilterPage from './pages/FilterPage';
 import MapPage from './pages/MapPage';
 import InfoPage from './pages/InfoPage';
 import { Menu } from './components/menu/Menu';
-import { useLocation } from 'react-router-dom';
 
 const Container = styled.main`
   display: flex;

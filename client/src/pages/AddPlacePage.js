@@ -66,7 +66,7 @@ export default function AddPlace() {
     formData.append('public_id,', createDate);
     xhr.send(formData);
     xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
+      if (xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
         var url = response.secure_url;
         setPlace({ ...place, img: url });

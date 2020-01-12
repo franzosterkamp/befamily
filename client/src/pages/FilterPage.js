@@ -11,6 +11,7 @@ import {
 import { quarterList, ageList, categoryList } from '../components/data/array';
 import { FilterSelect as Select, FilterOption as Option } from '../components/general/SelectBox';
 import { FilterContainer } from '../components/general/Container';
+import PropTypes from 'prop-types';
 
 export default function FilterPage({ filters, handleChange, unsetFilters }) {
   return (
@@ -21,7 +22,9 @@ export default function FilterPage({ filters, handleChange, unsetFilters }) {
           Altersgruppe:
           <Select name="age" onChange={handleChange} value={filters.age}>
             {ageList.map(value => (
-              <Option value={value}>{value}</Option>
+              <Option key={value} value={value}>
+                {value}
+              </Option>
             ))}
           </Select>
         </FilterLabel>
@@ -31,7 +34,9 @@ export default function FilterPage({ filters, handleChange, unsetFilters }) {
           Kategorie:
           <Select name="category" onChange={handleChange} value={filters.category}>
             {categoryList.map(value => (
-              <Option value={value}>{value}</Option>
+              <Option key={value} value={value}>
+                {value}
+              </Option>
             ))}
           </Select>
         </FilterLabel>
@@ -41,7 +46,9 @@ export default function FilterPage({ filters, handleChange, unsetFilters }) {
           Stadtteil:
           <Select name="quarter" onChange={handleChange} value={filters.quarter}>
             {quarterList.map(value => (
-              <Option value={value}>{value}</Option>
+              <Option key={value} value={value}>
+                {value}
+              </Option>
             ))}
           </Select>
         </FilterLabel>
@@ -52,3 +59,9 @@ export default function FilterPage({ filters, handleChange, unsetFilters }) {
     </FilterContainer>
   );
 }
+
+FilterPage.propTypes = {
+  filters: PropTypes.object,
+  unsetFilters: PropTypes.func,
+  handleChange: PropTypes.func
+};

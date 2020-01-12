@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../icons/Satellite';
 import { MapButton } from '../components/general/Button';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import PropTypes from 'prop-types';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -90,3 +91,7 @@ export default function MapPage({ places }) {
     </MapContainer>
   );
 }
+
+MapPage.propTypes = {
+  places: PropTypes.object
+};
