@@ -5,11 +5,12 @@ export const Button = styled(Link)`
   text-align: center;
   width: 40%;
   height: 75%;
+  line-height: 75%;
   text-transform: uppercase;
   border-radius: 7px;
   border: solid 2px ${props => props.theme.colors.text};
   outline: none;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-decoration: none;
   letter-spacing: 0.1rem;

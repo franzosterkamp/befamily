@@ -73,3 +73,27 @@ export const SelectWrapper = styled.div`
   width: fit-content;
   padding: 5px;
 `;
+
+export const FooterWrapper = styled.div`
+  height: 40px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70%;
+  margin-left: 15%;
+  background-color: ${props =>
+    props.active ? props.theme.colors.text : props.theme.colors.primary};
+  color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text)};
+  fill: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text)};
+  border-top: 3px solid ${props => props.theme.colors.primary};
+`;
+
+export const MenuWrapper = styled(FooterWrapper)`
+  background-color: ${props =>
+    props.menuClick ? props => props.theme.colors.text : props => props.theme.colors.primary};
+  color: ${props =>
+    props.menuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
+  fill: ${props =>
+    props.menuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
+  border-top: 3px solid ${props => props.theme.colors.primary};
+`;
