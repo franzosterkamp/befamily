@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../components/card/Card';
 import { PlacesContainer } from '../components/general/Container';
+import PropTypes from 'prop-types';
 
 export default function Placelist({ places }) {
   return (
@@ -21,3 +22,7 @@ export default function Placelist({ places }) {
     </PlacesContainer>
   );
 }
+
+Placelist.propTypes = {
+  places: PropTypes.object
+};
