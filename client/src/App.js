@@ -26,44 +26,48 @@ const Main = styled.main`
 `;
 
 function App() {
-  let [places, setPlaces] = React.useState(null);
-  const [filter, setFilter] = React.useState({
+  const [places, setPlaces] = React.useState(null);
+  const [filters, setFilters] = React.useState({
     age: '',
     category: '',
     quarter: ''
   });
 
-  if (filter.category) {
-    places = places.filter(place => place.category.includes(filter.category));
-  }
+  function filterPlaces(newPlaces) {
+    if (filters.category) {
+      newPlaces = newPlaces.filter(place => place.category.includes(filters.category));
+    }
 
-  if (filter.quarter) {
-    places = places.filter(place => place.quarter.includes(filter.quarter));
-  }
+    if (filters.quarter) {
+      newPlaces = newPlaces.filter(place => place.quarter.includes(filters.quarter));
+    }
 
-  if (filter.age) {
-    places = places.filter(place => place.age.includes(filter.age));
+    if (filters.age) {
+      newPlaces = newPlaces.filter(place => place.age.includes(filters.age));
+    }
+    return newPlaces;
   }
 
   React.useEffect(() => {
     async function doFetch() {
       const response = await fetch(`/api/places`);
-      const newPlaces = await response.json();
+      const fetchedPlaces = await response.json();
+      const newPlaces = filterPlaces(fetchedPlaces);
       setPlaces(newPlaces);
     }
 
     doFetch();
-  }, []);
+  }, [filters]);
 
   function handleChange(event) {
-    setFilter({
-      ...filter,
+    setFilters({
+      ...filters,
       [event.target.name]: event.target.value
     });
   }
 
-  function unsetFilter() {
-    setFilter({ age: '', category: '', quarter: '' });
+  function unsetFilters() {
+    setFilters({ age: '', category: '', quarter: '' });
   }
 
   return (
@@ -85,7 +89,11 @@ function App() {
                 <AddPage />
               </Route>
               <Route path="/filter">
-                <FilterPage filter={filter} handleChange={handleChange} unsetFilter={unsetFilter} />
+                <FilterPage
+                  filters={filters}
+                  handleChange={handleChange}
+                  unsetFilters={unsetFilters}
+                />
               </Route>
               <Route path="/info">
                 <InfoPage />
