@@ -284,7 +284,3 @@ export default function AddPlacePage() {
     </Container>
   );
 }
-
-AddPlacePage.propTypes = {
-  getUpdate: PropTypes.func
-};
