@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import Ball from '../../icons/Ball';
-import { RateContainer } from '../general/Container';
+import { RateContainer } from '../General/Container';
 
 const RateTitle = styled.span`
   font-size: 0.7rem;

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from './node_modules/@emotion/styled';
 
 const Input = styled.input`
   width: 190px;

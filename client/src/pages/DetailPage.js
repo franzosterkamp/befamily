@@ -1,9 +1,9 @@
 import React from 'react';
-import { DetailContainer, RateDetailContainer } from '../components/general/Container';
-import { RateInput } from '../components/general/Input';
+import { DetailContainer, RateDetailContainer } from '../components/General/Container';
+import { RateInput } from '../components/General/Input';
 import { useParams } from 'react-router-dom';
-import { Titel } from '../components/general/Headline';
-import DetailRate from '../components/general/DetailRate';
+import { Titel } from '../components/General/Headline';
+import DetailRate from '../components/General/DetailRate';
 import {
   ImageWrapper,
   RateWrapper,
@@ -11,13 +11,13 @@ import {
   AdressWrapper,
   ButtonWrapper,
   AdressBox
-} from '../components/general/Wrapper';
+} from '../components/General/Wrapper';
 import {
   CommentButton,
   RateButton,
   CancelButton,
   SubmitButton
-} from '../components/general/Button';
+} from '../components/General/Button';
 import {
   Img,
   Description,
@@ -27,7 +27,7 @@ import {
   City,
   Parameter,
   Data
-} from '../components/general/Output';
+} from '../components/General/Output';
 
 export default function DetailPage() {
   const [id, setId] = React.useState(useParams().placeId);

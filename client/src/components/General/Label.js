@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from './node_modules/@emotion/styled';
 
 export const Label = styled.label`
   font-weight: bold;

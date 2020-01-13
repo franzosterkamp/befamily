@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import React from 'react';
+import styled from './node_modules/@emotion/styled';
+import React from './node_modules/react';
 import Ball from '../../icons/Ball';
 import { RateContainer } from './Container';
 

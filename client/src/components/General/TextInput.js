@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from './node_modules/@emotion/styled';
 
 const TextInput = styled.textarea`
   font-size: 0.7rem;

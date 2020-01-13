@@ -1,4 +1,4 @@
-import { keyframes } from '@emotion/core';
+import { keyframes } from './node_modules/@emotion/core';
 
 export const bounce = keyframes` 
     from,

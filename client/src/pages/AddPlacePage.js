@@ -1,8 +1,8 @@
 import React from 'react';
-import Input from '../components/general/Input';
-import TextArea from '../components/general/TextInput';
-import { Button } from '../components/general/Button';
-import { Label } from '../components/general/Label';
+import Input from '../components/General/Input';
+import TextArea from '../components/General/TextInput';
+import { Button } from '../components/General/Button';
+import { Label } from '../components/General/Label';
 import { useHistory } from 'react-router-dom';
 import styled from '@emotion/styled';
 import AddMarkerMap from '../components/map/AddMarkerMap';
@@ -10,13 +10,13 @@ import {
   AddPlaceContainer as Container,
   MapContainer,
   RateContainer
-} from '../components/general/Container';
-import { CameraInput } from '../components/general/Input';
-import { AddPlaceHeadline as Headline } from '../components/general/Headline';
-import { RateInput, Form } from '../components/general/Input';
-import { ImgWrapper, SelectWrapper } from '../components/general/Wrapper';
+} from '../components/General/Container';
+import { CameraInput } from '../components/General/Input';
+import { AddPlaceHeadline as Headline } from '../components/General/Headline';
+import { RateInput, Form } from '../components/General/Input';
+import { ImgWrapper, SelectWrapper } from '../components/General/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
-import { Option, Select } from '../components/general/SelectBox';
+import { Option, Select } from '../components/General/SelectBox';
 import PropTypes from 'prop-types';
 
 const Img = styled.img`

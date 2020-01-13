@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import FamilyIcon from '../icons/Family';
-import { StartButton, InfoButton } from '../components/general/Button';
-import { Container } from '../components/general/Container';
-import { Headline } from '../components/general/Headline';
+import { StartButton, InfoButton } from '../components/General/Button';
+import { Container } from '../components/General/Container';
+import { Headline } from '../components/General/Headline';
 
 const InfoBox = styled.article`
   width: 90%;

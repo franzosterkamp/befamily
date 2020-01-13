@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React from './node_modules/react';
+import styled from './node_modules/@emotion/styled';
 import { FooterButton, FilterButton, MenuButton } from './FooterButton';
 import AddIcon from '../../icons/Add';
 import SortIcon from '../../icons/Sort';
 import MenuIcon from '../../icons/Menu';
-import { useLocation } from 'react-router-dom';
-import { FooterWrapper as Wrapper, MenuWrapper } from '../general/Wrapper';
+import { useLocation } from './node_modules/react-router-dom';
+import { FooterWrapper as Wrapper, MenuWrapper } from '../General/Wrapper';
 
 const Footer = styled.footer`
   display: flex;
