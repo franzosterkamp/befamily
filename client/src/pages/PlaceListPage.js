@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '../components/card/Card';
-import { PlacesContainer } from '../components/general/Container';
+import Card from '../components/Card/Card';
+import { PlacesContainer } from '../components/General/Container';
 import PropTypes from 'prop-types';
 
 export default function PlacelistPage({ places }) {

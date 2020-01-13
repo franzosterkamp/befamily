@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../../icons/Satellite';
-import { MapButton } from '../general/Button';
+import { MapButton } from '../General/Button';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MapContainer = styled.div`

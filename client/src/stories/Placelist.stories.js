@@ -1,10 +1,10 @@
 import React from 'react';
-import PlaceList from '../pages/PlaceList';
+import PlaceListPage from '../pages/PlaceListPage';
 
 export default {
   title: 'PlaceList'
 };
 
 export function MapBox() {
-  return <PlaceList></PlaceList>;
+  return <PlaceListPage></PlaceListPage>;
 }

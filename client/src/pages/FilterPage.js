@@ -1,16 +1,16 @@
 import React from 'react';
-import { FilterLabel } from '../components/general/Label';
-import { AddPlaceHeadline as Headline } from '../components/general/Headline';
-import { UnsetButton } from '../components/general/Button';
+import { FilterLabel } from '../components/General/Label';
+import { AddPlaceHeadline as Headline } from '../components/General/Headline';
+import { UnsetButton } from '../components/General/Button';
 import {
   ButtonWrapper,
   AgeLabelWrapper,
   CategoryLabelWrapper,
   QuarterLabelWrapper
-} from '../components/general/Wrapper';
+} from '../components/General/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
-import { FilterSelect as Select, FilterOption as Option } from '../components/general/SelectBox';
-import { FilterContainer } from '../components/general/Container';
+import { FilterSelect as Select, FilterOption as Option } from '../components/General/SelectBox';
+import { FilterContainer } from '../components/General/Container';
 import PropTypes from 'prop-types';
 
 export default function FilterPage({ filters, handleChange, unsetFilters }) {

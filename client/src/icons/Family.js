@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { flipIn } from '../components/general/Animation';
+import { flipIn } from '../components/General/Animation';
 
 const Svg = styled.svg`
   fill: ${props => props.theme.colors.text};

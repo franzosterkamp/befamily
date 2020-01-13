@@ -6,6 +6,7 @@ const app = express();
 const db = process.env.DB_NAME;
 const url = process.env.DB_ATLAS_URL;
 const port = process.env.PORT;
+const path = require('path');
 
 app.use(express.json({ extended: false }));
 
@@ -41,6 +42,14 @@ app.patch(`/api/places/:placeId`, (req, res) => {
   const newRate = req.body;
   updateRate(newRate, placeId);
   res.end();
+});
+
+// Serve any static files
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Handle React routing, return all requests to React app
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 dbInit(url, db).then(async () => {

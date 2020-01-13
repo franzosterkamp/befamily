@@ -5,7 +5,7 @@ import AddIcon from '../../icons/Add';
 import SortIcon from '../../icons/Sort';
 import MenuIcon from '../../icons/Menu';
 import { useLocation } from 'react-router-dom';
-import { FooterWrapper as Wrapper, MenuWrapper } from '../general/Wrapper';
+import { FooterWrapper as Wrapper, MenuWrapper } from '../General/Wrapper';
 
 const Footer = styled.footer`
   display: flex;
