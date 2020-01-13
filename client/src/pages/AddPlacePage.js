@@ -35,7 +35,8 @@ const MarkerInfo = styled.div`
 `;
 
 const SubmitButton = styled(Button)`
-  width: 130px;
+  width: 170px;
+  margin-top: 20px;
   height: 40px;
   font-size: 0.8rem;
 `;
@@ -44,6 +45,7 @@ const ButtonLabel = styled(Label)`
   text-align: center;
   margin-top: 5px;
   height: 50px;
+  width: 100%;
 `;
 
 const SubmitButtonLabel = styled(ButtonLabel)`
@@ -52,9 +54,10 @@ const SubmitButtonLabel = styled(ButtonLabel)`
 
 const AdressButton = styled(SubmitButton)`
   margin-top: 1px;
+  width: 60px;
   margin-bottom: 1px;
   font-size: 0.6rem;
-  max-height: 40px;
+  height: 50px;
   min-height: 40px;
 `;
 
