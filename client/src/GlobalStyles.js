@@ -81,10 +81,6 @@ function GlobalStyles() {
           box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         }
 
-        .mapboxgl-popup-tip {
-          border-bottom-color: ${theme.colors.primary} !important;
-        }
-
         .mapboxgl-marker {
           > svg > g {
             g:nth-child(2) {
