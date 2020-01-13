@@ -1,5 +1,5 @@
-import styled from './node_modules/@emotion/styled';
-import { Link } from './node_modules/react-router-dom';
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const Button = styled.button`
   min-width: 20px;

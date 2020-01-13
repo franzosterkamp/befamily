@@ -1,9 +1,9 @@
-import React from './node_modules/react';
-import styled from './node_modules/@emotion/styled';
+import React from 'react';
+import styled from '@emotion/styled';
 import { Button } from './HeaderButton';
 import MapIcon from '../../icons/Map';
 import ListIcon from '../../icons/List';
-import { useLocation } from './node_modules/react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Header = styled.header`
   display: flex;

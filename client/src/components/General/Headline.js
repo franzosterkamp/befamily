@@ -1,4 +1,4 @@
-import styled from './node_modules/@emotion/styled';
+import styled from '@emotion/styled';
 import { pulse } from './Animation';
 
 export const Headline = styled.h2`

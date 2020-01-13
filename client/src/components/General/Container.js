@@ -1,4 +1,4 @@
-import styled from './node_modules/@emotion/styled';
+import styled from '@emotion/styled';
 
 export const Rate = styled.div`
   margin-bottom: 15px;
