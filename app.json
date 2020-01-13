@@ -1,0 +1,24 @@
+{
+  "name": "befamily",
+  "scripts": {},
+  "env": {
+    "DB_ATLAS_URL": {
+      "required": true
+    },
+    "DB_NAME": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "stack": "heroku-18"
+}
