@@ -33,16 +33,7 @@ export const RateInput = styled.input`
 `;
 
 export const CameraInput = styled(Input)`
-  border: none;
-  width: 190px;
-  height: 40px;
-  background-color: ${props => props.theme.colors.secondary};
-  padding: 9px 9px 2px 15px;
-  color: transparent;
-  text-align: center;
-  font-size: 0.8rem;
-  margin: 5px;
-  margin-top: 20px;
+  display: none;
 `;
 
 export default Input;
