@@ -37,7 +37,7 @@ const MarkerInfo = styled.div`
 const SubmitButton = styled(Button)`
   margin-bottom: 60px;
   margin-top: 40px;
-  width: 100px;
+  width: 130px;
   height: 40px;
   font-size: 0.8rem;
 `;
@@ -58,6 +58,7 @@ const AdressButton = styled(SubmitButton)`
 
 const CameraLabel = styled(Label)`
   display: inline-block;
+  margin-top: 0px;
   background-color: ${props => props.theme.colors.secondary};
   width: 60px;
   height: 40px;
@@ -232,11 +233,12 @@ export default function AddPlacePage({ getUpdate }) {
           <Camera />
         </CameraLabel>
         <CameraInput type="file" name="img" id="file" accepnt="image/*" onChange={handleImage} />
-
         {place.img && (
-          <ImgWrapper>
-            <Img src={place.img} />
-          </ImgWrapper>
+          <Label>
+            <ImgWrapper>
+              <Img src={place.img} />
+            </ImgWrapper>
+          </Label>
         )}
         <Headline id="card">Karte</Headline>
         <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
