@@ -35,8 +35,6 @@ const MarkerInfo = styled.div`
 `;
 
 const SubmitButton = styled(Button)`
-  margin-bottom: 60px;
-  margin-top: 40px;
   width: 130px;
   height: 40px;
   font-size: 0.8rem;
@@ -45,7 +43,11 @@ const SubmitButton = styled(Button)`
 const ButtonLabel = styled(Label)`
   text-align: center;
   margin-top: 5px;
-  height: fit-content;
+  height: 50px;
+`;
+
+const SubmitButtonLabel = styled(ButtonLabel)`
+  margin-bottom: 50px;
 `;
 
 const AdressButton = styled(SubmitButton)`
@@ -310,9 +312,9 @@ export default function AddPlacePage({ getUpdate }) {
             />
           ))}
         </RateContainer>
-        <ButtonLabel>
+        <SubmitButtonLabel>
           <SubmitButton>Ort hinzufügen</SubmitButton>
-        </ButtonLabel>
+        </SubmitButtonLabel>
       </Form>
     </Container>
   );

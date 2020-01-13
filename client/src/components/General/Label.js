@@ -5,7 +5,7 @@ export const Label = styled.label`
   font-size: 0.8rem;
   display: block;
   width: 220px;
-  margin-top: 10%;
+  margin-top: 15px;
 `;
 
 export const FilterLabel = styled(Label)`
