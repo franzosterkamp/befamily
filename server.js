@@ -2,11 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const { dbInit } = require('./lib/database');
 const { getPlaces, setPlaces, getPlaceById, updateRate } = require('./lib/places');
+const path = require('path');
+
 const app = express();
 const db = process.env.DB_NAME;
 const url = process.env.DB_ATLAS_URL;
 const port = process.env.PORT;
-const path = require('path');
 
 app.use(express.json({ extended: false }));
 
@@ -16,7 +17,7 @@ app.get('/api/places', async (req, res) => {
     res.send(result);
   } catch (error) {
     console.error(error);
-    res.send(error);
+    res.status(500).send(error.message);
   }
 });
 
@@ -24,23 +25,26 @@ app.get('/api/places/:placeId', async (req, res) => {
   try {
     const placeId = req.params.placeId;
     const place = await getPlaceById(placeId);
+    if (!place) {
+      return res.status(404).end();
+    }
     res.send(place);
   } catch (error) {
     console.error(error);
-    return res.status(404).end('Error');
+    return res.status(500).end(error.message);
   }
 });
 
-app.post('/api/places', (req, res) => {
+app.post('/api/places', async (req, res) => {
   const placesData = req.body;
-  setPlaces(placesData);
+  await setPlaces(placesData);
   res.end();
 });
 
-app.patch(`/api/places/:placeId`, (req, res) => {
+app.patch(`/api/places/:placeId`, async (req, res) => {
   const placeId = req.params.placeId;
   const newRate = req.body;
-  updateRate(newRate, placeId);
+  await updateRate(newRate, placeId);
   res.end();
 });
 

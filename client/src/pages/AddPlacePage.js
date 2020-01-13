@@ -35,26 +35,35 @@ const MarkerInfo = styled.div`
 `;
 
 const SubmitButton = styled(Button)`
-  margin-bottom: 60px;
-  margin-top: 40px;
-  width: 35%;
-  max-width: 190px;
-  height: 3%;
+  width: 170px;
+  margin-top: 20px;
+  height: 40px;
   font-size: 0.8rem;
 `;
 
+const ButtonLabel = styled(Label)`
+  text-align: center;
+  margin-top: 5px;
+  height: 50px;
+  width: 100%;
+`;
+
+const SubmitButtonLabel = styled(ButtonLabel)`
+  margin-bottom: 50px;
+`;
+
 const AdressButton = styled(SubmitButton)`
-  margin-bottom: 20px;
   margin-top: 1px;
+  width: 60px;
+  margin-bottom: 1px;
   font-size: 0.6rem;
-  padding: 7px;
-  height: 3%;
-  width: 15%;
-  max-width: 70px;
+  height: 50px;
+  min-height: 40px;
 `;
 
 const CameraLabel = styled(Label)`
   display: inline-block;
+  margin-top: 0px;
   background-color: ${props => props.theme.colors.secondary};
   width: 60px;
   height: 40px;
@@ -64,7 +73,30 @@ const CameraLabel = styled(Label)`
   cursor: pointer;
 `;
 
-export default function AddPlacePage({ getUpdate }) {
+function uploadImage(image) {
+  return new Promise(resolve => {
+    const formData = new FormData();
+    const createDate = Date.now();
+    const xhr = new XMLHttpRequest();
+    const url = `https://api.cloudinary.com/v1_1/befamily/upload`;
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    formData.append('upload_preset', 'nd1vsnsz');
+    formData.append('file', image, createDate);
+    formData.append('name', createDate);
+    formData.append('public_id,', createDate);
+    xhr.send(formData);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        const url = response.secure_url;
+        resolve(url);
+      }
+    };
+  });
+}
+
+export default function AddPlacePage({ onAddPlace }) {
   const [place, setPlace] = React.useState({
     name: '',
     category: '',
@@ -79,60 +111,50 @@ export default function AddPlacePage({ getUpdate }) {
     lng: '',
     lat: ''
   });
+  const [markerPos, setMarkerPos] = React.useState(null);
 
   const history = useHistory();
 
-  function handleImage(event) {
-    const formData = new FormData();
-    const createDate = Date.now();
-    const xhr = new XMLHttpRequest();
-    const url = `https://api.cloudinary.com/v1_1/befamily/upload`;
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    formData.append('upload_preset', 'nd1vsnsz');
-    formData.append('file', event.target.files[0], createDate);
-    formData.append('name', createDate);
-    formData.append('public_id,', createDate);
-    xhr.send(formData);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        var url = response.secure_url;
-        setPlace({ ...place, img: url });
-      }
-    };
+  async function handleImage(event) {
+    const url = await uploadImage(event.target.files[0]);
+    setPlace({ ...place, img: url });
   }
 
   React.useEffect(() => {
-    sessionStorage.removeItem('markerLng');
-    sessionStorage.removeItem('markerLat');
-  }, []);
+    const timeoutId = setTimeout(() => {
+      if (markerPos) {
+        reserveGeoCode(markerPos);
+      }
+    }, 200);
 
-  async function reserveGeoCode() {
-    if (sessionStorage.getItem('markerLng')) {
-      const lng = JSON.parse(sessionStorage.getItem('markerLng'));
-      const lat = JSON.parse(sessionStorage.getItem('markerLat'));
-      const response = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
-      );
-      const fetchedResults = await response.json();
-      const adressComponents = fetchedResults.results[0].components;
-      console.log(adressComponents);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [markerPos]);
+
+  async function reserveGeoCode(markerPos) {
+    const [lat, lng] = markerPos;
+    const response = await fetch(
+      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
+    );
+    const fetchedResults = await response.json();
+    const adressComponents = fetchedResults.results[0].components;
+    console.log(adressComponents);
+
+    if (adressComponents.house_number === undefined) {
+      setPlace({
+        ...place,
+        street: adressComponents.road,
+        zip: adressComponents.postcode,
+        city: adressComponents.city
+      });
+    } else {
       setPlace({
         ...place,
         street: adressComponents.road + ' ' + adressComponents.house_number,
         zip: adressComponents.postcode,
         city: adressComponents.city
       });
-
-      if (adressComponents.house_number === undefined) {
-        setPlace({
-          ...place,
-          street: adressComponents.road,
-          zip: adressComponents.postcode,
-          city: adressComponents.city
-        });
-      }
     }
   }
 
@@ -148,8 +170,8 @@ export default function AddPlacePage({ getUpdate }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (!sessionStorage.getItem('markerLng')) {
-      window.location = 'http://localhost:3000/add/#card';
+    if (!markerPos) {
+      window.location = '/add/#card';
       return;
     } else {
       await fetch('/api/places', {
@@ -160,10 +182,8 @@ export default function AddPlacePage({ getUpdate }) {
         body: JSON.stringify(place)
       });
 
-      history.push('../info');
+      history.push('/info');
 
-      sessionStorage.removeItem('markerLng');
-      sessionStorage.removeItem('markerLat');
       setPlace({
         name: '',
         category: '',
@@ -179,7 +199,7 @@ export default function AddPlacePage({ getUpdate }) {
         lng: '',
         lat: ''
       });
-      getUpdate(place);
+      onAddPlace(place);
     }
   }
 
@@ -229,22 +249,24 @@ export default function AddPlacePage({ getUpdate }) {
           <Camera />
         </CameraLabel>
         <CameraInput type="file" name="img" id="file" accepnt="image/*" onChange={handleImage} />
-
         {place.img && (
-          <ImgWrapper>
-            <Img src={place.img} />
-          </ImgWrapper>
+          <Label>
+            <ImgWrapper>
+              <Img src={place.img} />
+            </ImgWrapper>
+          </Label>
         )}
         <Headline id="card">Karte</Headline>
         <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
         <MapContainer>
-          <AddMarkerMap />
+          <AddMarkerMap
+            onMarkerSet={(lat, lng) => {
+              setMarkerPos([lat, lng]);
+            }}
+          />
         </MapContainer>
 
         <Headline> Adresse </Headline>
-        <AdressButton type="button" onClick={reserveGeoCode}>
-          <Locate />
-        </AdressButton>
         <Label>
           Straße/Hausnummer
           <Input onChange={handleChange} value={place.street} name="street" type="text" required />
@@ -303,12 +325,14 @@ export default function AddPlacePage({ getUpdate }) {
             />
           ))}
         </RateContainer>
-        <SubmitButton>Ort hinzufügen</SubmitButton>
+        <SubmitButtonLabel>
+          <SubmitButton>Ort hinzufügen</SubmitButton>
+        </SubmitButtonLabel>
       </Form>
     </Container>
   );
 }
 
 AddPlacePage.propTypes = {
-  getUpdate: PropTypes.func
+  onAddPlace: PropTypes.func
 };

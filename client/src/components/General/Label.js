@@ -2,14 +2,30 @@ import styled from '@emotion/styled';
 
 export const Label = styled.label`
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   display: block;
-  width: 190px;
-  margin-bottom: 15px;
+  width: 220px;
+  margin-top: 15px;
 `;
 
 export const FilterLabel = styled(Label)`
   text-align: center;
+  line-height: center;
+  height: 150px;
+  width: 75%;
+  border-radius: 10px;
+  background-color: ${props => props.theme.colors.rate};
   font-size: 1rem;
-  margin: 20px;
+`;
+
+export const AgeFilterLabel = styled(FilterLabel)`
+  background-color: ${props => props.theme.colors.special};
+`;
+
+export const CategoryFilterLabel = styled(FilterLabel)`
+  background-color: ${props => props.theme.colors.extra};
+`;
+
+export const QuarterFilterLabel = styled(FilterLabel)`
+  background-color: ${props => props.theme.colors.rate};
 `;
