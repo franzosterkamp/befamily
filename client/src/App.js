@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
-import main from './theme/defaultTheme';
+import defaultTheme from './theme/defaultTheme';
 import GlobalStyles from './GlobalStyles';
 import styled from '@emotion/styled';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -14,6 +14,7 @@ import FilterPage from './pages/FilterPage';
 import MapPage from './pages/MapPage';
 import InfoPage from './pages/InfoPage';
 import { Menu } from './components/menu/Menu';
+import useFetch from './hooks/useFetch';
 
 const Container = styled.main`
   display: flex;
@@ -27,15 +28,16 @@ const Main = styled.main`
 `;
 
 function App() {
-  const [places, setPlaces] = React.useState(null);
   const [menuClick, setMenuClick] = React.useState(false);
-  const [update, setUpdate] = React.useState(null);
+  const [places, updatePlaces] = useFetch('/api/places');
 
   const [filters, setFilters] = React.useState({
     age: '',
     category: '',
     quarter: ''
   });
+
+  const filteredPlaces = filterPlaces(places || []);
 
   function filterPlaces(newPlaces) {
     if (filters.category) {
@@ -52,34 +54,18 @@ function App() {
     return newPlaces;
   }
 
-  React.useEffect(() => {
-    async function doFetch() {
-      const response = await fetch(`/api/places`);
-      const fetchedPlaces = await response.json();
-      const newPlaces = filterPlaces(fetchedPlaces);
-      setPlaces(newPlaces);
-    }
-
-    doFetch();
-  }, [filters.age, filters.category, filters.quarter, update]);
-
   function handleChange(event) {
     setFilters({
       ...filters,
       [event.target.name]: event.target.value
     });
   }
-
-  function getUpdate(value) {
-    setUpdate(value);
-  }
-
   function unsetFilters() {
     setFilters({ age: '', category: '', quarter: '' });
   }
 
   return (
-    <ThemeProvider theme={main}>
+    <ThemeProvider theme={defaultTheme}>
       <GlobalStyles />
       <Router>
         <Container>
@@ -89,14 +75,16 @@ function App() {
               <Route exact path="/">
                 <Landingpage />
               </Route>
-              <Route path="/card">{places && <MapPage places={places} />}</Route>
+              <Route path="/card">
+                <MapPage places={filteredPlaces} />
+              </Route>
               <Route path="/list">
-                <PlaceListPage places={places} />
+                <PlaceListPage places={filteredPlaces} />
               </Route>
               <Route path="/add">
-                <AddPlacePage getUpdate={getUpdate} />
+                <AddPlacePage onAddPlace={updatePlaces} />
               </Route>
-              <Route path="/filter">
+              <Route path="/filters">
                 <FilterPage
                   filters={filters}
                   handleChange={handleChange}
@@ -106,7 +94,7 @@ function App() {
               <Route path="/info">
                 <InfoPage />
               </Route>
-              <Route path="/:placeId">
+              <Route path="/places/:placeId">
                 <DetailPage />
               </Route>
             </Switch>

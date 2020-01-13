@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import SatelliteIcon from '../../icons/Satellite';
 import { MapButton } from '../General/Button';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import PropTypes from 'prop-types';
 
 const MapContainer = styled.div`
   width: 100%;
@@ -15,17 +16,18 @@ const Marker = styled.div``;
 mapboxgl.accessToken =
   'pk.eyJ1IjoiZnJhbno4NiIsImEiOiJjazRkeTF5b20wNTdoM2tuNmU5eG1kbDdqIn0.a-iKeML6h5r1j51BuXjvuA';
 
-export default function Map() {
+export default function Map({ onMarkerSet }) {
   const [lng, setLng] = React.useState(6.960279);
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
+  const mapRef = React.useRef();
 
   function createMap() {
     let marker = null;
 
     const mapData = {
-      container: 'map_container',
+      container: mapRef.current,
       style: mapStyle,
       center: [lng, lat],
       zoom: zoom
@@ -49,23 +51,12 @@ export default function Map() {
     });
 
     map.on('click', event => {
-      const coords = `lat: ${event.lngLat.lat}  lng: ${event.lngLat.lng}`;
-      const popup = new mapboxgl.Popup().setText(coords);
-
-      sessionStorage.setItem('markerLat', event.lngLat.lat);
-      sessionStorage.setItem('markerLng', event.lngLat.lng);
-
+      onMarkerSet(event.lngLat.lat, event.lngLat.lng);
       if (marker === null) {
-        marker = new mapboxgl.Marker(Marker)
-          .setLngLat(event.lngLat)
-          .setPopup(popup)
-          .addTo(map);
+        marker = new mapboxgl.Marker(Marker).setLngLat(event.lngLat).addTo(map);
       } else {
         marker.remove();
-        marker = new mapboxgl.Marker(Marker)
-          .setLngLat(event.lngLat)
-          .setPopup(popup)
-          .addTo(map);
+        marker = new mapboxgl.Marker(Marker).setLngLat(event.lngLat).addTo(map);
       }
     });
 
@@ -85,7 +76,7 @@ export default function Map() {
   }, [mapStyle]);
 
   return (
-    <MapContainer id="map_container">
+    <MapContainer ref={mapRef}>
       <MapButton onClick={handleClickMap} mapStyle={mapStyle}>
         <SatelliteIcon />
       </MapButton>
@@ -93,3 +84,6 @@ export default function Map() {
     </MapContainer>
   );
 }
+Map.propTypes = {
+  onMarkerSet: PropTypes.func
+};

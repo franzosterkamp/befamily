@@ -22,7 +22,7 @@ First on the server side
 then on the client side:
 
 ```
-client
+cd client
 npm install
 ```
 

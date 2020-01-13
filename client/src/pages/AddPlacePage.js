@@ -73,7 +73,30 @@ const CameraLabel = styled(Label)`
   cursor: pointer;
 `;
 
-export default function AddPlacePage({ getUpdate }) {
+function uploadImage(image) {
+  return new Promise(resolve => {
+    const formData = new FormData();
+    const createDate = Date.now();
+    const xhr = new XMLHttpRequest();
+    const url = `https://api.cloudinary.com/v1_1/befamily/upload`;
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    formData.append('upload_preset', 'nd1vsnsz');
+    formData.append('file', image, createDate);
+    formData.append('name', createDate);
+    formData.append('public_id,', createDate);
+    xhr.send(formData);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        const url = response.secure_url;
+        resolve(url);
+      }
+    };
+  });
+}
+
+export default function AddPlacePage({ onAddPlace }) {
   const [place, setPlace] = React.useState({
     name: '',
     category: '',
@@ -88,60 +111,50 @@ export default function AddPlacePage({ getUpdate }) {
     lng: '',
     lat: ''
   });
+  const [markerPos, setMarkerPos] = React.useState(null);
 
   const history = useHistory();
 
-  function handleImage(event) {
-    const formData = new FormData();
-    const createDate = Date.now();
-    const xhr = new XMLHttpRequest();
-    const url = `https://api.cloudinary.com/v1_1/befamily/upload`;
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    formData.append('upload_preset', 'nd1vsnsz');
-    formData.append('file', event.target.files[0], createDate);
-    formData.append('name', createDate);
-    formData.append('public_id,', createDate);
-    xhr.send(formData);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        var url = response.secure_url;
-        setPlace({ ...place, img: url });
-      }
-    };
+  async function handleImage(event) {
+    const url = await uploadImage(event.target.files[0]);
+    setPlace({ ...place, img: url });
   }
 
   React.useEffect(() => {
-    sessionStorage.removeItem('markerLng');
-    sessionStorage.removeItem('markerLat');
-  }, []);
+    const timeoutId = setTimeout(() => {
+      if (markerPos) {
+        reserveGeoCode(markerPos);
+      }
+    }, 200);
 
-  async function reserveGeoCode() {
-    if (sessionStorage.getItem('markerLng')) {
-      const lng = JSON.parse(sessionStorage.getItem('markerLng'));
-      const lat = JSON.parse(sessionStorage.getItem('markerLat'));
-      const response = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
-      );
-      const fetchedResults = await response.json();
-      const adressComponents = fetchedResults.results[0].components;
-      console.log(adressComponents);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [markerPos]);
+
+  async function reserveGeoCode(markerPos) {
+    const [lat, lng] = markerPos;
+    const response = await fetch(
+      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
+    );
+    const fetchedResults = await response.json();
+    const adressComponents = fetchedResults.results[0].components;
+    console.log(adressComponents);
+
+    if (adressComponents.house_number === undefined) {
+      setPlace({
+        ...place,
+        street: adressComponents.road,
+        zip: adressComponents.postcode,
+        city: adressComponents.city
+      });
+    } else {
       setPlace({
         ...place,
         street: adressComponents.road + ' ' + adressComponents.house_number,
         zip: adressComponents.postcode,
         city: adressComponents.city
       });
-
-      if (adressComponents.house_number === undefined) {
-        setPlace({
-          ...place,
-          street: adressComponents.road,
-          zip: adressComponents.postcode,
-          city: adressComponents.city
-        });
-      }
     }
   }
 
@@ -157,8 +170,8 @@ export default function AddPlacePage({ getUpdate }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    if (!sessionStorage.getItem('markerLng')) {
-      window.location = 'http://localhost:3000/add/#card';
+    if (!markerPos) {
+      window.location = '/add/#card';
       return;
     } else {
       await fetch('/api/places', {
@@ -169,10 +182,8 @@ export default function AddPlacePage({ getUpdate }) {
         body: JSON.stringify(place)
       });
 
-      history.push('../info');
+      history.push('/info');
 
-      sessionStorage.removeItem('markerLng');
-      sessionStorage.removeItem('markerLat');
       setPlace({
         name: '',
         category: '',
@@ -188,7 +199,7 @@ export default function AddPlacePage({ getUpdate }) {
         lng: '',
         lat: ''
       });
-      getUpdate(place);
+      onAddPlace(place);
     }
   }
 
@@ -248,15 +259,14 @@ export default function AddPlacePage({ getUpdate }) {
         <Headline id="card">Karte</Headline>
         <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
         <MapContainer>
-          <AddMarkerMap />
+          <AddMarkerMap
+            onMarkerSet={(lat, lng) => {
+              setMarkerPos([lat, lng]);
+            }}
+          />
         </MapContainer>
 
         <Headline> Adresse </Headline>
-        <ButtonLabel>
-          <AdressButton type="button" onClick={reserveGeoCode}>
-            <Locate />
-          </AdressButton>
-        </ButtonLabel>
         <Label>
           Straße/Hausnummer
           <Input onChange={handleChange} value={place.street} name="street" type="text" required />
@@ -324,5 +334,5 @@ export default function AddPlacePage({ getUpdate }) {
 }
 
 AddPlacePage.propTypes = {
-  getUpdate: PropTypes.func
+  onAddPlace: PropTypes.func
 };

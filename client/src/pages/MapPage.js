@@ -21,10 +21,11 @@ export default function MapPage({ places }) {
   const [lat, setLat] = React.useState(50.937531);
   const [zoom, setZoom] = React.useState(11);
   const [mapStyle, setMapStyle] = React.useState('mapbox://styles/mapbox/streets-v11');
+  const mapRef = React.useRef();
 
   function createMap(places) {
     const mapData = {
-      container: 'map_container',
+      container: mapRef.current,
       style: mapStyle,
       center: [lng, lat],
       zoom: zoom
@@ -80,10 +81,10 @@ export default function MapPage({ places }) {
 
   React.useEffect(() => {
     createMap(places);
-  }, [mapStyle]);
+  }, [places, mapStyle]);
 
   return (
-    <MapContainer id="map_container">
+    <MapContainer ref={mapRef}>
       <MapButton onClick={handleClickMap} mapStyle={mapStyle}>
         <SatelliteIcon />
       </MapButton>

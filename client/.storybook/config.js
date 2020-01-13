@@ -2,11 +2,11 @@ import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
 import GlobalStyles from '../src/GlobalStyles';
 import { ThemeProvider } from 'emotion-theming';
-import main from '../src/theme/defaultTheme';
+import defaultTheme from '../src/theme/defaultTheme';
 
 // add GlobalStyle for every story
 const GlobalStyleDecorator = storyFn => (
-  <ThemeProvider theme={main}>
+  <ThemeProvider theme={defaultTheme}>
     <GlobalStyles />
     {storyFn()}
   </ThemeProvider>
