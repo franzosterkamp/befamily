@@ -37,22 +37,23 @@ const MarkerInfo = styled.div`
 const SubmitButton = styled(Button)`
   margin-bottom: 60px;
   margin-top: 40px;
-  width: 35%;
-  max-width: 190px;
-  height: 5%;
-  max-height: 40px;
+  width: 100px;
+  height: 40px;
   font-size: 0.8rem;
 `;
 
+const ButtonLabel = styled(Label)`
+  text-align: center;
+  margin-top: 5px;
+  height: fit-content;
+`;
+
 const AdressButton = styled(SubmitButton)`
-  margin-bottom: 20px;
   margin-top: 1px;
+  margin-bottom: 1px;
   font-size: 0.6rem;
-  padding: 7px;
-  height: 5%;
   max-height: 40px;
-  width: 15%;
-  max-width: 70px;
+  min-height: 40px;
 `;
 
 const CameraLabel = styled(Label)`
@@ -244,9 +245,11 @@ export default function AddPlacePage({ getUpdate }) {
         </MapContainer>
 
         <Headline> Adresse </Headline>
-        <AdressButton type="button" onClick={reserveGeoCode}>
-          <Locate />
-        </AdressButton>
+        <ButtonLabel>
+          <AdressButton type="button" onClick={reserveGeoCode}>
+            <Locate />
+          </AdressButton>
+        </ButtonLabel>
         <Label>
           Straße/Hausnummer
           <Input onChange={handleChange} value={place.street} name="street" type="text" required />
@@ -305,7 +308,9 @@ export default function AddPlacePage({ getUpdate }) {
             />
           ))}
         </RateContainer>
-        <SubmitButton>Ort hinzufügen</SubmitButton>
+        <ButtonLabel>
+          <SubmitButton>Ort hinzufügen</SubmitButton>
+        </ButtonLabel>
       </Form>
     </Container>
   );

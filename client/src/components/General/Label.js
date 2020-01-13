@@ -4,9 +4,7 @@ export const Label = styled.label`
   font-weight: bold;
   font-size: 0.8rem;
   display: block;
-  width: 80%;
-  height: 20%;
-  margin-bottom: 10%;
+  width: 220px;
   margin-top: 10%;
 `;
 
