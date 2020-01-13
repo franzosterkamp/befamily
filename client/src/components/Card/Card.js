@@ -13,7 +13,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Container = styled.div`
-  width: 75%;
+  width: 80%;
   max-width: 250px;
   margin: auto;
   height: 290px;
@@ -51,9 +51,9 @@ const BadgeWrapper = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-evenly;
-  width: 90%;
-  margin: 2px auto 5px auto;
-  padding: 13px 0px 13px 0px;
+  width: 100%;
+  margin: 0 auto 2% auto;
+  padding: 2% 0px 2% 0px;
   flex-wrap: wrap;
   height: 50px;
   border-bottom: 1px solid ${props => props.theme.colors.primary};
