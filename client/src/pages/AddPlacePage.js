@@ -17,6 +17,7 @@ import { RateInput, Form } from '../components/general/Input';
 import { ImgWrapper, SelectWrapper } from '../components/general/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
 import { Option, Select } from '../components/general/SelectBox';
+import PropTypes from 'prop-types';
 
 const Img = styled.img`
   width: 100%;
@@ -43,7 +44,7 @@ const AdressButton = styled(SubmitButton)`
   font-size: 0.7rem;
   height: 30px;
 `;
-export default function AddPlacePage() {
+export default function AddPlacePage({ getUpdate }) {
   const [place, setPlace] = React.useState({
     name: '',
     category: '',
@@ -155,6 +156,7 @@ export default function AddPlacePage() {
         lng: '',
         lat: ''
       });
+      getUpdate(place);
     }
   }
 
@@ -283,3 +285,7 @@ export default function AddPlacePage() {
     </Container>
   );
 }
+
+AddPlacePage.propTypes = {
+  getUpdate: PropTypes.func
+};
