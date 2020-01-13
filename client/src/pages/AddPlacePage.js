@@ -37,6 +37,9 @@ const MarkerInfo = styled.div`
 const SubmitButton = styled(Button)`
   margin-bottom: 60px;
   margin-top: 40px;
+  width: 35%;
+  max-width: 190px;
+  height: 3%;
   font-size: 0.8rem;
 `;
 
@@ -45,8 +48,9 @@ const AdressButton = styled(SubmitButton)`
   margin-top: 1px;
   font-size: 0.6rem;
   padding: 7px;
-  height: 40px;
-  width: 40px;
+  height: 3%;
+  width: 15%;
+  max-width: 70px;
 `;
 
 const CameraLabel = styled(Label)`
