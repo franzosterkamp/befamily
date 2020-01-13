@@ -98,8 +98,6 @@ export default function AddPlacePage({ getUpdate }) {
       const fetchedResults = await response.json();
       const adressComponents = fetchedResults.results[0].components;
 
-      console.log(adressComponents);
-
       setPlace({
         ...place,
         street: adressComponents.road + ' ' + adressComponents.house_number,
