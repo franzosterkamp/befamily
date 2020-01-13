@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 export const FilterSelect = styled.select`
   display: block;
   margin: 0 auto;
-  margin-top: 5%;
-  width: 80%;
-  font-size: 1rem;
+  margin-top: 10px;
+  width: 70%;
+  font-size: 0.8rem;
   border: solid 1px ${props => props.theme.colors.background};
   background: ${props => props.theme.colors.background};
   border-radius: 8px;
@@ -18,7 +18,6 @@ export const FilterSelect = styled.select`
 
 export const FilterOption = styled.option`
   font-size: 0.8rem;
-  margin: 0 auto;
 `;
 
 export const Select = styled.select`
