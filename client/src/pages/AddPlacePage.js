@@ -4,6 +4,8 @@ import TextArea from '../components/General/TextInput';
 import { Button } from '../components/General/Button';
 import { Label } from '../components/General/Label';
 import { useHistory } from 'react-router-dom';
+import Locate from '../icons/Locate';
+import Camera from '../icons/Camera';
 import styled from '@emotion/styled';
 import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
@@ -35,15 +37,29 @@ const MarkerInfo = styled.div`
 const SubmitButton = styled(Button)`
   margin-bottom: 60px;
   margin-top: 40px;
-  font-size: 1rem;
+  font-size: 0.8rem;
 `;
 
 const AdressButton = styled(SubmitButton)`
   margin-bottom: 20px;
-  margin-top: 5px;
-  font-size: 0.7rem;
-  height: 30px;
+  margin-top: 1px;
+  font-size: 0.6rem;
+  padding: 7px;
+  height: 40px;
+  width: 40px;
 `;
+
+const CameraLabel = styled(Label)`
+  display: inline-block;
+  background-color: ${props => props.theme.colors.secondary};
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+`;
+
 export default function AddPlacePage({ getUpdate }) {
   const [place, setPlace] = React.useState({
     name: '',
@@ -97,7 +113,7 @@ export default function AddPlacePage({ getUpdate }) {
       );
       const fetchedResults = await response.json();
       const adressComponents = fetchedResults.results[0].components;
-
+      console.log(adressComponents);
       setPlace({
         ...place,
         street: adressComponents.road + ' ' + adressComponents.house_number,
@@ -106,7 +122,12 @@ export default function AddPlacePage({ getUpdate }) {
       });
 
       if (adressComponents.house_number === undefined) {
-        setPlace({ ...place, street: adressComponents.road });
+        setPlace({
+          ...place,
+          street: adressComponents.road,
+          zip: adressComponents.postcode,
+          city: adressComponents.city
+        });
       }
     }
   }
@@ -178,21 +199,6 @@ export default function AddPlacePage({ getUpdate }) {
             rows="10"
           />
         </Label>
-
-        <Headline>Foto</Headline>
-        <Label>
-          <CameraInput type="file" name="img" accepnt="image/*" onChange={handleImage} />
-        </Label>
-        {place.img && (
-          <ImgWrapper>
-            <Img src={place.img} />
-          </ImgWrapper>
-        )}
-        <Headline id="card">Karte</Headline>
-        <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
-        <MapContainer>
-          <AddMarkerMap />
-        </MapContainer>
         <Headline>Katergorie und Altergruppe</Headline>
         <Label>
           Kategorie
@@ -214,9 +220,26 @@ export default function AddPlacePage({ getUpdate }) {
             ))}
           </Select>
         </Label>
+        <Headline>Foto</Headline>
+        <CameraLabel for="file">
+          <Camera />
+        </CameraLabel>
+        <CameraInput type="file" name="img" id="file" accepnt="image/*" onChange={handleImage} />
+
+        {place.img && (
+          <ImgWrapper>
+            <Img src={place.img} />
+          </ImgWrapper>
+        )}
+        <Headline id="card">Karte</Headline>
+        <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
+        <MapContainer>
+          <AddMarkerMap />
+        </MapContainer>
+
         <Headline> Adresse </Headline>
         <AdressButton type="button" onClick={reserveGeoCode}>
-          Adresse generieren
+          <Locate />
         </AdressButton>
         <Label>
           Straße/Hausnummer
