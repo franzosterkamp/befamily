@@ -9,8 +9,7 @@ import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
   AddPlaceContainer as Container,
   MapContainer,
-  RateContainer,
-  PlacesContainer
+  RateContainer
 } from '../components/general/Container';
 import { CameraInput } from '../components/general/Input';
 import { AddPlaceHeadline as Headline } from '../components/general/Headline';
@@ -35,9 +34,17 @@ const MarkerInfo = styled.div`
 
 const SubmitButton = styled(Button)`
   margin-bottom: 60px;
+  margin-top: 40px;
+  font-size: 1rem;
 `;
 
-export default function AddPlacePage({ getUpdate }) {
+const AdressButton = styled(SubmitButton)`
+  margin-bottom: 20px;
+  margin-top: 5px;
+  font-size: 0.7rem;
+  height: 30px;
+`;
+export default function AddPlacePage() {
   const [place, setPlace] = React.useState({
     name: '',
     category: '',
@@ -81,34 +88,30 @@ export default function AddPlacePage({ getUpdate }) {
     sessionStorage.removeItem('markerLat');
   }, []);
 
-  React.useEffect(() => {
-    async function reserveGeoCode() {
-      if (sessionStorage.getItem('markerLng')) {
-        const lng = JSON.parse(sessionStorage.getItem('markerLng'));
-        const lat = JSON.parse(sessionStorage.getItem('markerLat'));
-        const response = await fetch(
-          `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
-        );
-        const fetchedResults = await response.json();
-        const adressComponents = fetchedResults.results[0].components;
+  async function reserveGeoCode() {
+    if (sessionStorage.getItem('markerLng')) {
+      const lng = JSON.parse(sessionStorage.getItem('markerLng'));
+      const lat = JSON.parse(sessionStorage.getItem('markerLat'));
+      const response = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
+      );
+      const fetchedResults = await response.json();
+      const adressComponents = fetchedResults.results[0].components;
 
-        console.log(adressComponents);
+      console.log(adressComponents);
 
-        if (adressComponents) {
-          setPlace({
-            ...place,
-            street: adressComponents.road + ' ' + adressComponents.house_number,
-            zip: adressComponents.postcode,
-            city: adressComponents.city
-          });
-        }
-        if (adressComponents.house_number === undefined) {
-          setPlace({ ...place, street: adressComponents.road });
-        }
+      setPlace({
+        ...place,
+        street: adressComponents.road + ' ' + adressComponents.house_number,
+        zip: adressComponents.postcode,
+        city: adressComponents.city
+      });
+
+      if (adressComponents.house_number === undefined) {
+        setPlace({ ...place, street: adressComponents.road });
       }
     }
-    reserveGeoCode();
-  }, [place.category, place.age]);
+  }
 
   function handleChange(event) {
     setPlace({
@@ -138,7 +141,6 @@ export default function AddPlacePage({ getUpdate }) {
 
       sessionStorage.removeItem('markerLng');
       sessionStorage.removeItem('markerLat');
-      getUpdate(place);
       setPlace({
         name: '',
         category: '',
@@ -214,6 +216,9 @@ export default function AddPlacePage({ getUpdate }) {
           </Select>
         </Label>
         <Headline> Adresse </Headline>
+        <AdressButton type="button" onClick={reserveGeoCode}>
+          Adresse generieren
+        </AdressButton>
         <Label>
           Straße/Hausnummer
           <Input onChange={handleChange} value={place.street} name="street" type="text" required />
