@@ -43,10 +43,14 @@ const SubmitButton = styled(Button)`
 const AdressButton = styled(SubmitButton)`
   margin-bottom: 20px;
   margin-top: 1px;
-  font-size: 0.6rem;
-  padding: 7px;
+  text-align: center;
   height: 40px;
-  width: 40px;
+  width: 50px;
+`;
+
+const SelectLabel = styled(Label)`
+  margin-top: 20px;
+  margin-bottom: 30px;
 `;
 
 const CameraLabel = styled(Label)`
@@ -55,7 +59,7 @@ const CameraLabel = styled(Label)`
   width: 60px;
   height: 40px;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 7px;
   border-radius: 8px;
   cursor: pointer;
 `;
@@ -187,7 +191,6 @@ export default function AddPlacePage({ getUpdate }) {
           Name des Ortes
           <Input type="text" name="name" required value={place.name} onChange={handleChange} />
         </Label>
-
         <Label>
           Beschreibung
           <TextArea
@@ -200,7 +203,7 @@ export default function AddPlacePage({ getUpdate }) {
           />
         </Label>
         <Headline>Katergorie und Altergruppe</Headline>
-        <Label>
+        <SelectLabel>
           Kategorie
           <Select name="category" onChange={handleChange} value={place.category}>
             {categoryList.map(value => (
@@ -209,8 +212,8 @@ export default function AddPlacePage({ getUpdate }) {
               </Option>
             ))}
           </Select>
-        </Label>
-        <Label>
+        </SelectLabel>
+        <SelectLabel>
           Altersgruppe
           <Select name="age" onChange={handleChange} value={place.age}>
             {ageList.map(value => (
@@ -219,13 +222,12 @@ export default function AddPlacePage({ getUpdate }) {
               </Option>
             ))}
           </Select>
-        </Label>
+        </SelectLabel>
         <Headline>Foto</Headline>
         <CameraLabel for="file">
           <Camera />
         </CameraLabel>
         <CameraInput type="file" name="img" id="file" accepnt="image/*" onChange={handleImage} />
-
         {place.img && (
           <ImgWrapper>
             <Img src={place.img} />
@@ -236,7 +238,6 @@ export default function AddPlacePage({ getUpdate }) {
         <MapContainer>
           <AddMarkerMap />
         </MapContainer>
-
         <Headline> Adresse </Headline>
         <AdressButton type="button" onClick={reserveGeoCode}>
           <Locate />
@@ -260,25 +261,23 @@ export default function AddPlacePage({ getUpdate }) {
           Postleitzahl
           <Input onChange={handleChange} name="zip" value={place.zip} type="number" required />
         </Label>
-        <SelectWrapper>
-          <Label>
-            Stadtteil
-            <Select
-              onChange={handleChange}
-              name="quarter"
-              value={place.quarter}
-              type="text"
-              maxLength={20}
-              required
-            >
-              {quarterList.map(value => (
-                <Option key={value} value={value}>
-                  {value}
-                </Option>
-              ))}
-            </Select>
-          </Label>
-        </SelectWrapper>
+        <SelectLabel>
+          Stadtteil
+          <Select
+            onChange={handleChange}
+            name="quarter"
+            value={place.quarter}
+            type="text"
+            maxLength={20}
+            required
+          >
+            {quarterList.map(value => (
+              <Option key={value} value={value}>
+                {value}
+              </Option>
+            ))}
+          </Select>
+        </SelectLabel>
         <Label>
           Webseite
           <Input onChange={handleChange} name="web" value={place.web} type="text" />
