@@ -61,9 +61,8 @@ export const QuarterLabelWrapper = styled(AgeLabelWrapper)`
 `;
 
 export const ImgWrapper = styled(ImageWrapper)`
-  height: 100px;
+  height: 10%;
   width: 35%;
-  margin-bottom: 30px;
 `;
 
 export const SelectWrapper = styled.div`

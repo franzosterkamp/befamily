@@ -16,7 +16,7 @@ import {
 import { CameraInput } from '../components/General/Input';
 import { AddPlaceHeadline as Headline } from '../components/General/Headline';
 import { RateInput, Form } from '../components/General/Input';
-import { ImgWrapper, SelectWrapper } from '../components/General/Wrapper';
+import { ImgWrapper } from '../components/General/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
 import { Option, Select } from '../components/General/SelectBox';
 import PropTypes from 'prop-types';
@@ -260,25 +260,23 @@ export default function AddPlacePage({ getUpdate }) {
           Postleitzahl
           <Input onChange={handleChange} name="zip" value={place.zip} type="number" required />
         </Label>
-        <SelectWrapper>
-          <Label>
-            Stadtteil
-            <Select
-              onChange={handleChange}
-              name="quarter"
-              value={place.quarter}
-              type="text"
-              maxLength={20}
-              required
-            >
-              {quarterList.map(value => (
-                <Option key={value} value={value}>
-                  {value}
-                </Option>
-              ))}
-            </Select>
-          </Label>
-        </SelectWrapper>
+        <Label>
+          Stadtteil
+          <Select
+            onChange={handleChange}
+            name="quarter"
+            value={place.quarter}
+            type="text"
+            maxLength={20}
+            required
+          >
+            {quarterList.map(value => (
+              <Option key={value} value={value}>
+                {value}
+              </Option>
+            ))}
+          </Select>
+        </Label>
         <Label>
           Webseite
           <Input onChange={handleChange} name="web" value={place.web} type="text" />
