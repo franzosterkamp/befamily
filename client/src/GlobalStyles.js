@@ -21,11 +21,10 @@ function GlobalStyles() {
         .mapboxgl-popup-content {
           border-radius: 7px;
           background-color: ${theme.colors.background};
-          width: 100%;
           display: flex;
           flex-flow: column;
           align-items: flex-start;
-          width: 160px;
+          min-width: 160px;
           margin: 0;
           padding: 0;
           height: 165px;
@@ -60,7 +59,7 @@ function GlobalStyles() {
         }
 
         .mapboxgl-popup-content > h5 {
-          font-size: 0.8rem;
+          font-size: 0.7rem;
           margin: 1px 0px 0px 10px;
         }
         .mapboxgl-popup-content div > a > button {

@@ -220,7 +220,14 @@ export default function AddPlacePage({ onAddPlace }) {
         <Headline>Neuen Ort eintragen</Headline>
         <Label>
           Name des Ortes
-          <Input type="text" name="name" required value={place.name} onChange={handleChange} />
+          <Input
+            type="text"
+            maxLength="23"
+            name="name"
+            required
+            value={place.name}
+            onChange={handleChange}
+          />
         </Label>
 
         <Label>
@@ -234,7 +241,7 @@ export default function AddPlacePage({ onAddPlace }) {
             rows="10"
           />
         </Label>
-        <Headline>Katergorie und Altergruppe</Headline>
+        <Headline>Katergorie und Altersgruppe</Headline>
         <Label>
           Kategorie
           <Select name="category" onChange={handleChange} value={place.category}>

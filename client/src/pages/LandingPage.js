@@ -6,8 +6,14 @@ import { Container } from '../components/General/Container';
 import { Headline } from '../components/General/Headline';
 
 const InfoBox = styled.article`
-  width: 90%;
+  margin-top: 20px;
+  width: 65%;
   height: 30%;
+  text-align: justify;
+`;
+
+const LandingContainer = styled(Container)`
+  margin-top: 70px;
 `;
 
 const HighlightSpecial = styled.span`
@@ -26,7 +32,7 @@ export default function Landingpage() {
   const [isClicked, setIsClicked] = React.useState(false);
 
   return (
-    <Container>
+    <LandingContainer>
       <FamilyIcon />
       <Headline>
         <HighlightSpecial>be</HighlightSpecial>
@@ -39,11 +45,10 @@ export default function Landingpage() {
       </InfoButton>
       {isClicked && (
         <InfoBox>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente ab quis tempore nostrum
-          mollitia repellendus doloremque quasi minima at iste, quos eos vero numquam inventore! Eos
-          iste repellat aliquid a.
+          Die befamily Webseite möchte Eltern helfen einfach und schnell den geeigneten Ort für Ihre
+          Kinder im Großraum Köln zu finden.
         </InfoBox>
       )}
-    </Container>
+    </LandingContainer>
   );
 }

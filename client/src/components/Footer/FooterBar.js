@@ -12,9 +12,9 @@ const Footer = styled.footer`
   align-items: center;
   justify-content: space-evenly;
   background-color: ${props => props.theme.colors.primary};
+  box-shadow: 0px -3px 6px rgba(0, 0, 0, 0.16);
   height: 40px;
   width: 100%;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 `;
 
 const Text = styled.div``;

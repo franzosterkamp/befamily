@@ -48,7 +48,7 @@ export const InfoButton = styled.button`
     props.isClicked ? props.theme.colors.primary : props.theme.colors.special};
 `;
 
-export const MapButton = styled.button`
+export const MapButton = styled.div`
   z-index: 1;
   margin: 4px;
   margin-top: 5px;
@@ -68,10 +68,11 @@ export const RateButton = styled.button`
   width: 30%;
   height: 40px;
   border: none;
+  margin: 0px auto;
   border-radius: 8px;
   font-size: 0.8rem;
   font-style: bold;
-  background-color: ${props => props.theme.colors.rate};
+  background-color: ${props => props.theme.colors.secondary};
 `;
 
 export const CommentButton = styled(RateButton)`
@@ -79,14 +80,16 @@ export const CommentButton = styled(RateButton)`
 `;
 
 export const SubmitButton = styled(RateButton)`
-  width: fit-content;
-  ${props => props.theme.colors.extra};
+  width: 90px;
+  background-color: ${props => props.theme.colors.rate};
   font-size: 0.85rem;
-  height: 30px;
+  text-align: center;
+  height: 35px;
 `;
 
 export const CancelButton = styled(CommentButton)`
-  width: fit-content;
+  width: 90px;
   font-size: 0.85rem;
-  height: 30px;
+  text-align: center;
+  height: 35px;
 `;

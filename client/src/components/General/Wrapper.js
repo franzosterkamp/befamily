@@ -12,7 +12,6 @@ export const ButtonWrapper = styled.div`
   margin-bottom: 20px;
   width: 100%;
   display: ${props => (props.rateClicked ? 'none' : 'flex')};
-  justify-content: space-around;
 `;
 
 export const AdressWrapper = styled.div`

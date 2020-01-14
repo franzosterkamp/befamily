@@ -30,7 +30,6 @@ const Main = styled.main`
 function App() {
   const [menuClick, setMenuClick] = React.useState(false);
   const [places, updatePlaces] = useFetch('/api/places');
-
   const [filters, setFilters] = React.useState({
     age: '',
     category: '',
