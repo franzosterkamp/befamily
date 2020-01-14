@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { fadeIn } from '../General/Animation';
 
 export const ImageWrapper = styled.div`
   width: 100%;
@@ -65,6 +66,7 @@ export const ImgWrapper = styled(ImageWrapper)`
   width: 200px;
   height: 130px;
   overflow: hidden;
+  animation: ${fadeIn} 1s ease-in;
 `;
 
 export const SelectWrapper = styled.div`

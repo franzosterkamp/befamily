@@ -21,7 +21,7 @@ import { Option, Select } from '../components/General/SelectBox';
 import Check from '../icons/Check';
 import PropTypes from 'prop-types';
 import Marker from '../icons/Marker';
-import { fadeIn } from '../components/General/Animation';
+import { fadeIn, loading } from '../components/General/Animation';
 
 const Img = styled.img`
   width: 100%;
@@ -70,6 +70,25 @@ const ButtonLabel = styled(Label)`
 
 const SubmitButtonLabel = styled(ButtonLabel)`
   margin-bottom: 50px;
+`;
+
+const Loading = styled.div`
+  display: inline-block;
+  margin: 10px auto 0px auto;
+  width: 80px;
+  height: 80px;
+  &:after {
+    content: ' ';
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: ${props => props.theme.colors.extra} transparent
+      ${props => props.theme.colors.extra} transparent;
+    animation: ${loading} 1.2s linear infinite;
+  }
 `;
 
 const CameraLabel = styled(Label)`
@@ -123,11 +142,13 @@ export default function AddPlacePage({ onAddPlace }) {
     lat: ''
   });
   const [markerPos, setMarkerPos] = React.useState(null);
-
+  const [loading, setLoading] = React.useState(false);
   const history = useHistory();
 
   async function handleImage(event) {
+    setLoading(true);
     const url = await uploadImage(event.target.files[0]);
+    setLoading(false);
     setPlace({ ...place, img: url });
   }
 
@@ -260,6 +281,7 @@ export default function AddPlacePage({ onAddPlace }) {
           <Camera />
         </CameraLabel>
         <CameraInput type="file" name="img" id="file" accepnt="image/*" onChange={handleImage} />
+        {loading && <Loading></Loading>}
         {place.img && (
           <ImgWrapper>
             <Img src={place.img} />

@@ -16,7 +16,7 @@ import InfoPage from './pages/InfoPage';
 import { Menu } from './components/menu/Menu';
 import useFetch from './hooks/useFetch';
 
-const Container = styled.main`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
