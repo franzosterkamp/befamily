@@ -7,7 +7,7 @@ const Input = styled.input`
   border-radius: 8px;
   font-size: 0.9rem;
   outline: none;
-
+  padding-left: 10px;
   border: 1px solid ${props => props.theme.colors.primary};
   &:focus {
     border: 1px solid ${props => props.theme.colors.extra};

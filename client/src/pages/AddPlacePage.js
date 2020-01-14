@@ -4,7 +4,6 @@ import TextArea from '../components/General/TextInput';
 import { Button } from '../components/General/Button';
 import { Label } from '../components/General/Label';
 import { useHistory } from 'react-router-dom';
-import Locate from '../icons/Locate';
 import Camera from '../icons/Camera';
 import styled from '@emotion/styled';
 import AddMarkerMap from '../components/map/AddMarkerMap';
@@ -24,6 +23,8 @@ import PropTypes from 'prop-types';
 const Img = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: fit;
+  object-position: top;
   border-radius: 8px;
 `;
 
@@ -50,15 +51,6 @@ const ButtonLabel = styled(Label)`
 
 const SubmitButtonLabel = styled(ButtonLabel)`
   margin-bottom: 50px;
-`;
-
-const AdressButton = styled(SubmitButton)`
-  margin-top: 1px;
-  width: 60px;
-  margin-bottom: 1px;
-  font-size: 0.6rem;
-  height: 50px;
-  min-height: 40px;
 `;
 
 const CameraLabel = styled(Label)`
@@ -125,7 +117,7 @@ export default function AddPlacePage({ onAddPlace }) {
       if (markerPos) {
         reserveGeoCode(markerPos);
       }
-    }, 200);
+    }, 300);
 
     return () => {
       clearTimeout(timeoutId);
@@ -250,11 +242,9 @@ export default function AddPlacePage({ onAddPlace }) {
         </CameraLabel>
         <CameraInput type="file" name="img" id="file" accepnt="image/*" onChange={handleImage} />
         {place.img && (
-          <Label>
-            <ImgWrapper>
-              <Img src={place.img} />
-            </ImgWrapper>
-          </Label>
+          <ImgWrapper>
+            <Img src={place.img} />
+          </ImgWrapper>
         )}
         <Headline id="card">Karte</Headline>
         <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
