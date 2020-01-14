@@ -15,6 +15,7 @@ const Input = styled.input`
 `;
 
 export const Form = styled.form`
+  all: unset;
   margin-bottom: 10px;
   display: flex;
   flex-flow: column;

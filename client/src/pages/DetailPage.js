@@ -12,12 +12,7 @@ import {
   ButtonWrapper,
   AdressBox
 } from '../components/General/Wrapper';
-import {
-  CommentButton,
-  RateButton,
-  CancelButton,
-  SubmitButton
-} from '../components/General/Button';
+import { RateButton, CancelButton, SubmitButton } from '../components/General/Button';
 import {
   Img,
   Description,
@@ -32,6 +27,7 @@ import {
 export default function DetailPage() {
   const [id, setId] = React.useState(useParams().placeId);
   const [newRate, setNewRate] = React.useState(0);
+  const [isRateUpdated, SetisRateUpdated] = React.useState(0);
   const [rateClicked, setRateClicked] = React.useState(false);
   const [place, setPlace] = React.useState([]);
 
@@ -42,10 +38,12 @@ export default function DetailPage() {
       setPlace(newPlaces);
     }
     doFetch();
-  }, [newRate]);
+    console.log(place);
+  }, [isRateUpdated]);
 
   async function handleSubmit() {
     setRateClicked(!rateClicked);
+    SetisRateUpdated(!isRateUpdated);
 
     await fetch(`/api/places/${id}`, {
       method: 'PATCH',
@@ -54,6 +52,11 @@ export default function DetailPage() {
       },
       body: JSON.stringify({ newRate })
     });
+  }
+
+  function handleCancel() {
+    setRateClicked(!rateClicked);
+    setNewRate(0);
   }
 
   return (
@@ -90,7 +93,6 @@ export default function DetailPage() {
       </AdressWrapper>
       <ButtonWrapper rateClicked={rateClicked}>
         <RateButton onClick={() => setRateClicked(!rateClicked)}>Bewerten</RateButton>
-        <CommentButton>Kommentar</CommentButton>
       </ButtonWrapper>
       <RateDetailContainer rateClicked={rateClicked}>
         {[1, 2, 3, 4, 5].map(value => (
@@ -104,7 +106,7 @@ export default function DetailPage() {
         ))}
         <ButtonWrapper>
           <SubmitButton onClick={handleSubmit}>Bewerten</SubmitButton>
-          <CancelButton onClick={() => setRateClicked(!rateClicked)}>Abbrechen</CancelButton>
+          <CancelButton onClick={handleCancel}>Abbrechen</CancelButton>
         </ButtonWrapper>
       </RateDetailContainer>
     </DetailContainer>

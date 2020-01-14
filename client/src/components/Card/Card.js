@@ -51,7 +51,7 @@ const BadgeWrapper = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-evenly;
-  width: 100%;
+  width: 90%;
   margin: 0 auto 2% auto;
   padding: 2% 0px 2% 0px;
   flex-wrap: wrap;
@@ -76,7 +76,7 @@ export default function Card({ name, age, rate, quarter, img, id, category }) {
         </BadgeWrapper>
         <Rate rate={rate} />
         <LinkWrapper>
-          <CardLink to={`/${id}`}>Mehr</CardLink>
+          <CardLink to={`/places/${id}`}>Mehr</CardLink>
         </LinkWrapper>
       </ContentWrapper>
     </Container>
