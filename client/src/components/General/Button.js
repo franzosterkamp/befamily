@@ -48,7 +48,7 @@ export const InfoButton = styled.button`
     props.isClicked ? props.theme.colors.primary : props.theme.colors.special};
 `;
 
-export const MapButton = styled.button`
+export const MapButton = styled.div`
   z-index: 1;
   margin: 4px;
   margin-top: 5px;
