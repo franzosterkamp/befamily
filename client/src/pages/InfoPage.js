@@ -8,6 +8,9 @@ const InfoBox = styled.article`
   width: 70%;
   height: 40%;
   margin-top: 40px;
+  width: 80%;
+  max-width: 300px;
+  margin: 0 auto 0 auto;
   text-align: justify;
 `;
 
