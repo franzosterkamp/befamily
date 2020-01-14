@@ -119,7 +119,7 @@ export default function AddPlacePage({ onAddPlace }) {
     lng: 0,
     lat: 0
   });
-  const [markerPos, setMarkerPos] = React.useState([0, 0]);
+  const [markerPos, setMarkerPos] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const history = useHistory();
 
@@ -155,14 +155,18 @@ export default function AddPlacePage({ onAddPlace }) {
         ...place,
         street: adressComponents.road,
         zip: adressComponents.postcode,
-        city: adressComponents.city
+        city: adressComponents.city,
+        lng: markerPos[1],
+        lat: markerPos[0]
       });
     } else {
       setPlace({
         ...place,
         street: adressComponents.road + ' ' + adressComponents.house_number,
         zip: adressComponents.postcode,
-        city: adressComponents.city
+        city: adressComponents.city,
+        lng: markerPos[1],
+        lat: markerPos[0]
       });
     }
   }
@@ -170,9 +174,7 @@ export default function AddPlacePage({ onAddPlace }) {
   function handleChange(event) {
     setPlace({
       ...place,
-      [event.target.name]: event.target.value,
-      lat: markerPos[0],
-      lng: markerPos[1]
+      [event.target.name]: event.target.value
     });
   }
 
