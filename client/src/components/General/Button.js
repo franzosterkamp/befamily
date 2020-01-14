@@ -19,9 +19,38 @@ export const Button = styled.button`
   font-weight: bold;
 `;
 
-export const UnsetButton = styled(Button)`
-  background: ${props => props.theme.colors.secondary};
-  width: 30%;
+export const UnsetButton = styled.button`
+  width: 100px;
+  height: 30px;
+  background-color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.text};
+  letter-spacing: 1px;
+  border-radius: 8px;
+  margin-top: 10px;
+  text-decoration: none;
+  text-align: center;
+  outline: none;
+  border: none;
+  line-height: 30px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 0.8rem;
+  font-weight: bold;
+`;
+
+export const AcceptButton = styled(Link)`
+  width: 100px;
+  height: 30px;
+  background-color: ${props => props.theme.colors.extra};
+  color: ${props => props.theme.colors.text};
+  letter-spacing: 1px;
+  border-radius: 8px;
+  margin-top: 10px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 30px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 0.8rem;
+  font-weight: bold;
 `;
 
 export const StartButton = styled(Link)`

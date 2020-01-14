@@ -5,8 +5,8 @@ import {
   CategoryFilterLabel
 } from '../components/General/Label';
 import { AddPlaceHeadline as Headline } from '../components/General/Headline';
-import { UnsetButton } from '../components/General/Button';
-import { ButtonWrapper } from '../components/General/Wrapper';
+import { UnsetButton, AcceptButton } from '../components/General/Button';
+import { FilterButtonWrapper } from '../components/General/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
 import { FilterSelect as Select, FilterOption as Option } from '../components/General/SelectBox';
 import { FilterContainer } from '../components/General/Container';
@@ -46,9 +46,10 @@ export default function FilterPage({ filters, handleChange, unsetFilters }) {
           ))}
         </Select>
       </QuarterFilterLabel>
-      <ButtonWrapper>
+      <FilterButtonWrapper>
         <UnsetButton onClick={unsetFilters}>Aufheben</UnsetButton>
-      </ButtonWrapper>
+        <AcceptButton to={`/card`}>Setzen</AcceptButton>
+      </FilterButtonWrapper>
     </FilterContainer>
   );
 }

@@ -14,6 +14,13 @@ export const ButtonWrapper = styled.div`
   display: ${props => (props.rateClicked ? 'none' : 'flex')};
 `;
 
+export const FilterButtonWrapper = styled.div`
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: space-evenly;
+`;
+
 export const AdressWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
