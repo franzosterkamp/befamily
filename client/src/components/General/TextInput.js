@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const TextInput = styled.textarea`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-style: bold;
   padding-left: 10px;
   padding-top: 10px;

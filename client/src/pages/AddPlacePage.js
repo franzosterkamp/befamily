@@ -22,6 +22,7 @@ import Check from '../icons/Check';
 import PropTypes from 'prop-types';
 import Marker from '../icons/Marker';
 import { fadeIn, loading } from '../components/General/Animation';
+import uploadImage from '../hooks/updloadImage';
 
 const Img = styled.img`
   width: 100%;
@@ -103,29 +104,6 @@ const CameraLabel = styled(Label)`
   cursor: pointer;
 `;
 
-function uploadImage(image) {
-  return new Promise(resolve => {
-    const formData = new FormData();
-    const createDate = Date.now();
-    const xhr = new XMLHttpRequest();
-    const url = `https://api.cloudinary.com/v1_1/befamily/upload`;
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    formData.append('upload_preset', 'nd1vsnsz');
-    formData.append('file', image, createDate);
-    formData.append('name', createDate);
-    formData.append('public_id,', createDate);
-    xhr.send(formData);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        const response = JSON.parse(xhr.responseText);
-        const url = response.secure_url;
-        resolve(url);
-      }
-    };
-  });
-}
-
 export default function AddPlacePage({ onAddPlace }) {
   const [place, setPlace] = React.useState({
     name: '',
@@ -138,8 +116,8 @@ export default function AddPlacePage({ onAddPlace }) {
     web: '',
     rate: [0],
     img: '',
-    lng: '',
-    lat: ''
+    lng: 0,
+    lat: 0
   });
   const [markerPos, setMarkerPos] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
@@ -171,21 +149,24 @@ export default function AddPlacePage({ onAddPlace }) {
     );
     const fetchedResults = await response.json();
     const adressComponents = fetchedResults.results[0].components;
-    console.log(adressComponents);
 
     if (adressComponents.house_number === undefined) {
       setPlace({
         ...place,
         street: adressComponents.road,
         zip: adressComponents.postcode,
-        city: adressComponents.city
+        city: adressComponents.city,
+        lng: markerPos[1],
+        lat: markerPos[0]
       });
     } else {
       setPlace({
         ...place,
         street: adressComponents.road + ' ' + adressComponents.house_number,
         zip: adressComponents.postcode,
-        city: adressComponents.city
+        city: adressComponents.city,
+        lng: markerPos[1],
+        lat: markerPos[0]
       });
     }
   }
@@ -193,9 +174,7 @@ export default function AddPlacePage({ onAddPlace }) {
   function handleChange(event) {
     setPlace({
       ...place,
-      [event.target.name]: event.target.value,
-      lng: JSON.parse(sessionStorage.getItem('markerLng')),
-      lat: JSON.parse(sessionStorage.getItem('markerLat'))
+      [event.target.name]: event.target.value
     });
   }
 
