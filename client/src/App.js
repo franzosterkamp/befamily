@@ -84,7 +84,7 @@ function App() {
               <Route path="/add">
                 <AddPlacePage onAddPlace={updatePlaces} />
               </Route>
-              <Route path="/filters">
+              <Route path="/filter">
                 <FilterPage
                   filters={filters}
                   handleChange={handleChange}
