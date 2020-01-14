@@ -18,7 +18,10 @@ import { RateInput, Form } from '../components/General/Input';
 import { ImgWrapper } from '../components/General/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
 import { Option, Select } from '../components/General/SelectBox';
+import Check from '../icons/Check';
 import PropTypes from 'prop-types';
+import Marker from '../icons/Marker';
+import { fadeIn } from '../components/General/Animation';
 
 const Img = styled.img`
   width: 100%;
@@ -28,17 +31,33 @@ const Img = styled.img`
   border-radius: 8px;
 `;
 
-const MarkerInfo = styled.div`
-  width: 100%;
-  margin: auto;
+const MarkerAlert = styled.div`
+  width: fit-content;
+  margin: 0px auto 5px auto;
+  height: 40px;
+  padding: 5px;
   text-align: center;
+  height: fit-content;
+  border-radius: 8px;
+  font-size: 0.9rem;
+`;
+
+const MarkerSuccessWrapper = styled.div`
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 8px;
+  margin: 0 auto 0 auto 0;
+  line-height: 30px;
+  animation: ${fadeIn} 1s ease-in;
   height: fit-content;
 `;
 
 const SubmitButton = styled(Button)`
-  width: 170px;
+  width: 50%;
   margin-top: 20px;
-  height: 40px;
+  height: 35px;
   font-size: 0.8rem;
 `;
 
@@ -117,7 +136,7 @@ export default function AddPlacePage({ onAddPlace }) {
       if (markerPos) {
         reserveGeoCode(markerPos);
       }
-    }, 300);
+    }, 800);
 
     return () => {
       clearTimeout(timeoutId);
@@ -247,7 +266,7 @@ export default function AddPlacePage({ onAddPlace }) {
           </ImgWrapper>
         )}
         <Headline id="card">Karte</Headline>
-        <MarkerInfo>Bitte setzte einen Marker</MarkerInfo>
+        {!markerPos && <MarkerAlert>Bitte setzte einen Marker</MarkerAlert>}
         <MapContainer>
           <AddMarkerMap
             onMarkerSet={(lat, lng) => {
@@ -255,7 +274,12 @@ export default function AddPlacePage({ onAddPlace }) {
             }}
           />
         </MapContainer>
-
+        {markerPos && (
+          <MarkerSuccessWrapper>
+            <Marker />
+            <Check />
+          </MarkerSuccessWrapper>
+        )}
         <Headline> Adresse </Headline>
         <Label>
           Straße/Hausnummer

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const FilterSelect = styled.select`
   display: block;
   margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 25px;
   width: 70%;
   font-size: 0.8rem;
   border: solid 1px ${props => props.theme.colors.background};

@@ -10,8 +10,7 @@ export const Label = styled.label`
 
 export const FilterLabel = styled(Label)`
   text-align: center;
-  line-height: center;
-  height: 150px;
+  height: 100px;
   width: 75%;
   border-radius: 10px;
   background-color: ${props => props.theme.colors.rate};
