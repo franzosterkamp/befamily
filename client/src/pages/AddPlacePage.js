@@ -116,10 +116,10 @@ export default function AddPlacePage({ onAddPlace }) {
     web: '',
     rate: [0],
     img: '',
-    lng: '',
-    lat: ''
+    lng: 0,
+    lat: 0
   });
-  const [markerPos, setMarkerPos] = React.useState(null);
+  const [markerPos, setMarkerPos] = React.useState([0, 0]);
   const [loading, setLoading] = React.useState(false);
   const history = useHistory();
 
@@ -149,7 +149,6 @@ export default function AddPlacePage({ onAddPlace }) {
     );
     const fetchedResults = await response.json();
     const adressComponents = fetchedResults.results[0].components;
-    console.log(adressComponents);
 
     if (adressComponents.house_number === undefined) {
       setPlace({
@@ -172,8 +171,8 @@ export default function AddPlacePage({ onAddPlace }) {
     setPlace({
       ...place,
       [event.target.name]: event.target.value,
-      lng: JSON.parse(sessionStorage.getItem('markerLng')),
-      lat: JSON.parse(sessionStorage.getItem('markerLat'))
+      lat: markerPos[0],
+      lng: markerPos[1]
     });
   }
 
