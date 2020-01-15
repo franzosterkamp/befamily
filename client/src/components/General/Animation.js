@@ -1,4 +1,5 @@
 import { keyframes } from '@emotion/core';
+import styled from '@emotion/styled';
 
 export const bounce = keyframes` 
     from,
@@ -97,3 +98,22 @@ export const loading = keyframes`{
     transform: rotate(360deg);
   }
 }`;
+
+export const Loading = styled.div`
+  display: inline-block;
+  margin: 10px auto 0px auto;
+  width: 80px;
+  height: 80px;
+  &:after {
+    content: ' ';
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: ${props => props.theme.colors.extra} transparent
+      ${props => props.theme.colors.extra} transparent;
+    animation: ${loading} 1.2s linear infinite;
+  }
+`;

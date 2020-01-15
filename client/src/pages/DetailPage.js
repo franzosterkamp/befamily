@@ -25,6 +25,7 @@ import {
 } from '../components/General/Output';
 
 export default function DetailPage() {
+  // eslint-disable-next-line
   const [id, setId] = React.useState(useParams().placeId);
   const [newRate, setNewRate] = React.useState(0);
   const [isRateUpdated, SetisRateUpdated] = React.useState(0);
@@ -38,7 +39,7 @@ export default function DetailPage() {
       setPlace(newPlaces);
     }
     doFetch();
-    console.log(place);
+    // eslint-disable-next-line
   }, [isRateUpdated]);
 
   async function handleSubmit() {

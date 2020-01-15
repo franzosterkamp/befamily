@@ -1,108 +1,29 @@
 import React from 'react';
 import Input from '../components/General/Input';
 import TextArea from '../components/General/TextInput';
-import { Button } from '../components/General/Button';
-import { Label } from '../components/General/Label';
+import { AddSubmitButton as SubmitButton } from '../components/General/Button';
+import { Label, SubmitButtonLabel, CameraLabel } from '../components/General/Label';
 import { useHistory } from 'react-router-dom';
 import Camera from '../icons/Camera';
-import styled from '@emotion/styled';
 import AddMarkerMap from '../components/map/AddMarkerMap';
 import {
   AddPlaceContainer as Container,
   MapContainer,
-  RateContainer
+  RateContainer,
+  MarkerAlert
 } from '../components/General/Container';
 import { CameraInput } from '../components/General/Input';
 import { AddPlaceHeadline as Headline } from '../components/General/Headline';
 import { RateInput, Form } from '../components/General/Input';
-import { ImgWrapper } from '../components/General/Wrapper';
+import { ImgWrapper, MarkerSuccessWrapper } from '../components/General/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
 import { Option, Select } from '../components/General/SelectBox';
 import Check from '../icons/Check';
 import PropTypes from 'prop-types';
 import Marker from '../icons/Marker';
-import { fadeIn, loading } from '../components/General/Animation';
 import uploadImage from '../hooks/updloadImage';
-
-const Img = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: fit;
-  object-position: top;
-  border-radius: 8px;
-`;
-
-const MarkerAlert = styled.div`
-  width: fit-content;
-  margin: 0px auto 5px auto;
-  height: 40px;
-  padding: 5px;
-  text-align: center;
-  height: fit-content;
-  border-radius: 8px;
-  font-size: 0.9rem;
-`;
-
-const MarkerSuccessWrapper = styled.div`
-  display: flex;
-  width: fit-content;
-  justify-content: center;
-  padding: 2px;
-  border-radius: 8px;
-  margin: 0 auto 0 auto 0;
-  line-height: 30px;
-  animation: ${fadeIn} 1s ease-in;
-  height: fit-content;
-`;
-
-const SubmitButton = styled(Button)`
-  width: 50%;
-  margin-top: 20px;
-  height: 35px;
-  font-size: 0.8rem;
-`;
-
-const ButtonLabel = styled(Label)`
-  text-align: center;
-  margin-top: 5px;
-  height: 50px;
-  width: 100%;
-`;
-
-const SubmitButtonLabel = styled(ButtonLabel)`
-  margin-bottom: 50px;
-`;
-
-const Loading = styled.div`
-  display: inline-block;
-  margin: 10px auto 0px auto;
-  width: 80px;
-  height: 80px;
-  &:after {
-    content: ' ';
-    display: block;
-    width: 60px;
-    height: 60px;
-    margin: 8px;
-    border-radius: 50%;
-    border: 6px solid #fff;
-    border-color: ${props => props.theme.colors.extra} transparent
-      ${props => props.theme.colors.extra} transparent;
-    animation: ${loading} 1.2s linear infinite;
-  }
-`;
-
-const CameraLabel = styled(Label)`
-  display: inline-block;
-  margin-top: 0px;
-  background-color: ${props => props.theme.colors.secondary};
-  width: 60px;
-  height: 40px;
-  text-align: center;
-  padding-top: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-`;
+import { Loading } from '../components/General/Animation';
+import { AddImg as Img } from '../components/General/Output';
 
 export default function AddPlacePage({ onAddPlace }) {
   const [place, setPlace] = React.useState({
@@ -140,12 +61,13 @@ export default function AddPlacePage({ onAddPlace }) {
     return () => {
       clearTimeout(timeoutId);
     };
+    // eslint-disable-next-line
   }, [markerPos]);
 
   async function reserveGeoCode(markerPos) {
     const [lat, lng] = markerPos;
     const response = await fetch(
-      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=fb9976cece424343a9c1f53332148dac`
+      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${process.env.REACT_APP_GEOKEY}`
     );
     const fetchedResults = await response.json();
     const adressComponents = fetchedResults.results[0].components;

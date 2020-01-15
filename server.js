@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express();
 const db = process.env.DB_NAME;
-const url = process.env.DB_ATLAS_URL;
+const url = process.env.MONGO_DB_URL;
 const port = process.env.PORT;
 
 app.use(express.json({ extended: false }));

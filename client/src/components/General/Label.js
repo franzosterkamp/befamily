@@ -28,3 +28,26 @@ export const CategoryFilterLabel = styled(FilterLabel)`
 export const QuarterFilterLabel = styled(FilterLabel)`
   background-color: ${props => props.theme.colors.rate};
 `;
+
+export const ButtonLabel = styled(Label)`
+  text-align: center;
+  margin-top: 5px;
+  height: 50px;
+  width: 100%;
+`;
+
+export const SubmitButtonLabel = styled(ButtonLabel)`
+  margin-bottom: 50px;
+`;
+
+export const CameraLabel = styled(Label)`
+  display: inline-block;
+  margin-top: 0px;
+  background-color: ${props => props.theme.colors.secondary};
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+`;

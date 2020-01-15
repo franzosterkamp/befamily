@@ -13,8 +13,8 @@ const MapContainer = styled.div`
 
 const Marker = styled.div``;
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoiZnJhbno4NiIsImEiOiJjazRkeTF5b20wNTdoM2tuNmU5eG1kbDdqIn0.a-iKeML6h5r1j51BuXjvuA';
+const mapkey = process.env.REACT_APP_MAPKEY;
+mapboxgl.accessToken = mapkey;
 
 export default function MapPage({ places }) {
   const [lng, setLng] = React.useState(6.960279);
@@ -37,7 +37,7 @@ export default function MapPage({ places }) {
       setLat(map.getCenter().lat.toFixed(4));
       setZoom(map.getZoom().toFixed(2));
     });
-
+    // eslint-disable-next-line
     places.map(place => {
       const html = `
       <img src="${place.img}" />
@@ -81,6 +81,7 @@ export default function MapPage({ places }) {
 
   React.useEffect(() => {
     createMap(places);
+    // eslint-disable-next-line
   }, [places, mapStyle]);
 
   return (
