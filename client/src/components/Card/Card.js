@@ -1,12 +1,12 @@
 import React from 'react';
 import { BadgeAge, BadgeQuarter, Badge } from './Badge';
-import { BadgeWrapper, ContentWrapper, LinkWrapper, CardImageWrapper } from '../General/Wrapper';
+import { BadgeWrapper, ContentWrapper, LinkWrapper, CardImageWrapper } from '../general/Wrapper';
 import Rate from './Rate';
 import CardLink from './CardButton';
 import Image from './CardImage';
 import PropTypes from 'prop-types';
-import { CardContainer } from '../General/Container';
-import { CardTitle } from '../General/Headline';
+import { CardContainer } from '../general/Container';
+import { CardTitle } from '../general/Headline';
 
 
 export default function Card({ name, age, rate, quarter, img, id, category }) {

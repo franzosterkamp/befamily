@@ -5,7 +5,7 @@ import AddIcon from '../../icons/Add';
 import SortIcon from '../../icons/Sort';
 import MenuIcon from '../../icons/Menu';
 import { useLocation } from 'react-router-dom';
-import { FooterWrapper as Wrapper, MenuWrapper } from '../General/Wrapper';
+import { FooterWrapper as Wrapper, MenuWrapper } from '../general/Wrapper';
 import PropTypes from 'prop-types';
 
 const Footer = styled.footer`

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { fadeIn } from '../General/Animation';
+import { fadeIn } from '../general/Animation';
 
 export const ImageWrapper = styled.div`
   width: 100%;

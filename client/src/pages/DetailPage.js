@@ -1,9 +1,9 @@
 import React from 'react';
-import { DetailContainer, RateDetailContainer } from '../components/General/Container';
-import { RateInput } from '../components/General/Input';
+import { DetailContainer, RateDetailContainer } from '../components/general/Container';
+import { RateInput } from '../components/general/Input';
 import { useParams } from 'react-router-dom';
-import { Titel } from '../components/General/Headline';
-import DetailRate from '../components/General/DetailRate';
+import { Titel } from '../components/general/Headline';
+import DetailRate from '../components/general/DetailRate';
 import {
   ImageWrapper,
   RateWrapper,
@@ -11,8 +11,8 @@ import {
   AdressWrapper,
   ButtonWrapper,
   AdressBox
-} from '../components/General/Wrapper';
-import { RateButton, CancelButton, SubmitButton } from '../components/General/Button';
+} from '../components/general/Wrapper';
+import { RateButton, CancelButton, SubmitButton } from '../components/general/Button';
 import {
   Img,
   Description,
@@ -22,7 +22,7 @@ import {
   City,
   Parameter,
   Data
-} from '../components/General/Output';
+} from '../components/general/Output';
 
 export default function DetailPage() {
   // eslint-disable-next-line

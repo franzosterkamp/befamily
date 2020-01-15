@@ -3,13 +3,13 @@ import {
   AgeFilterLabel,
   QuarterFilterLabel,
   CategoryFilterLabel
-} from '../components/General/Label';
-import { AddPlaceHeadline as Headline } from '../components/General/Headline';
-import { UnsetButton, AcceptButton } from '../components/General/Button';
-import { FilterButtonWrapper } from '../components/General/Wrapper';
+} from '../components/general/Label';
+import { AddPlaceHeadline as Headline } from '../components/general/Headline';
+import { UnsetButton, AcceptButton } from '../components/general/Button';
+import { FilterButtonWrapper } from '../components/general/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
-import { FilterSelect as Select, FilterOption as Option } from '../components/General/SelectBox';
-import { FilterContainer } from '../components/General/Container';
+import { FilterSelect as Select, FilterOption as Option } from '../components/general/SelectBox';
+import { FilterContainer } from '../components/general/Container';
 import PropTypes from 'prop-types';
 
 export default function FilterPage({ filters, handleChange, unsetFilters }) {
