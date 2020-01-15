@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
-export const Button = styled(Link)`
+export const ButtonLink = styled(({ active, ...rest }) => <Link {...rest} />)`
   text-align: center;
   width: 40%;
   height: 75%;

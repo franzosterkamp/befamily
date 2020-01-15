@@ -95,5 +95,5 @@ export default function MapPage({ places }) {
 }
 
 MapPage.propTypes = {
-  places: PropTypes.object
+  places: PropTypes.array
 };

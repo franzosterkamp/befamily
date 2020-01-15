@@ -24,5 +24,5 @@ export default function PlacelistPage({ places }) {
 }
 
 PlacelistPage.propTypes = {
-  places: PropTypes.object
+  places: PropTypes.array
 };
