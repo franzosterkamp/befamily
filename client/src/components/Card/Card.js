@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import { CardContainer } from '../General/Container';
 import { CardTitle } from '../General/Headline';
 
+
 export default function Card({ name, age, rate, quarter, img, id, category }) {
   return (
     <CardContainer>

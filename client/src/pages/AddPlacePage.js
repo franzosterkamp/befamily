@@ -25,6 +25,7 @@ import uploadImage from '../hooks/updloadImage';
 import { Loading } from '../components/General/Animation';
 import { AddImg as Img } from '../components/General/Output';
 
+
 export default function AddPlacePage({ onAddPlace }) {
   const [place, setPlace] = React.useState({
     name: '',
