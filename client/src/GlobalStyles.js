@@ -82,7 +82,7 @@ function GlobalStyles() {
 
         .mapboxgl-marker {
           > svg > g {
-            g:nth-child(2) {
+            g:nth-of-type(2) {
               fill: ${theme.colors.secondary};
             }
           }

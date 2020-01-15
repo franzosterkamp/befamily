@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Button } from './HeaderButton';
+import { ButtonLink } from './HeaderButton';
 import MapIcon from '../../icons/Map';
 import ListIcon from '../../icons/List';
 import { useLocation } from 'react-router-dom';
@@ -26,18 +26,18 @@ export default function HeaderNav() {
   const location = useLocation();
   return (
     <Header>
-      <Button to="/card" active={location.pathname === '/card'}>
+      <ButtonLink to="/card" active={location.pathname === '/card'}>
         <Wrapper>
           <MapIcon />
           <p>Karte</p>
         </Wrapper>
-      </Button>
-      <Button to="/list" active={location.pathname === '/list'}>
+      </ButtonLink>
+      <ButtonLink to="/list" active={location.pathname === '/list'}>
         <Wrapper>
           <ListIcon />
           <p>Orte</p>
         </Wrapper>
-      </Button>
+      </ButtonLink>
     </Header>
   );
 }
