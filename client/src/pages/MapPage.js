@@ -45,7 +45,7 @@ export default function MapPage({ places }) {
       <span>${place.category}</span>
       <div>
       <span>Bewertung: ${place.rate} / 5</span>
-      <a href="api/places/${place._id}"><button> Mehr </button><a/>
+      <a href="/places/${place._id}"><button> Mehr </button><a/>
       </div>
       `;
       let popup = new mapboxgl.Popup({ closeButton: false })
