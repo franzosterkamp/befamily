@@ -122,3 +122,10 @@ export const CancelButton = styled(CommentButton)`
   text-align: center;
   height: 35px;
 `;
+
+export const AddSubmitButton = styled(Button)`
+  width: 50%;
+  margin-top: 20px;
+  height: 35px;
+  font-size: 0.8rem;
+`;

@@ -106,3 +106,47 @@ export const MenuWrapper = styled(FooterWrapper)`
     props.menuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
   border-top: 3px solid ${props => props.theme.colors.primary};
 `;
+
+export const MarkerSuccessWrapper = styled.div`
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 8px;
+  margin: 0 auto 0 auto 0;
+  line-height: 30px;
+  animation: ${fadeIn} 1s ease-in;
+  height: fit-content;
+`;
+
+export const LinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+`;
+
+export const BadgeWrapper = styled.div`
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  width: 95%;
+  margin: 0 auto 2% auto;
+  padding: 2% 0px 2% 0px;
+  flex-wrap: wrap;
+  height: 50px;
+  border-bottom: 1px solid ${props => props.theme.colors.primary};
+  border-top: 1px solid ${props => props.theme.colors.primary};
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-content: space-around;
+`;
+
+export const CardImageWrapper = styled.div`
+  width: 100%;
+  height: 45%;
+  margin-right: 10px;
+  overflow: hidden;
+`;

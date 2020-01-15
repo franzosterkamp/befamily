@@ -64,3 +64,29 @@ export const FilterContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 `;
+
+export const MarkerAlert = styled.div`
+  width: fit-content;
+  margin: 0px auto 5px auto;
+  height: 40px;
+  padding: 5px;
+  text-align: center;
+  height: fit-content;
+  border-radius: 8px;
+  font-size: 0.9rem;
+`;
+
+export const CardContainer = styled.div`
+  width: 90%;
+  max-width: 290px;
+  margin: auto;
+  height: 290px;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 15px;
+  margin-top: 15px;
+`;

@@ -6,7 +6,7 @@ export const Headline = styled.h2`
   text-shadow: 1px 1px 1px lightgrey;
   font-size: 2.2rem;
   letter-spacing: 0.2rem;
-  animation: ${pulse} 5s infinite;
+  animation: ${pulse} 15s ease-in;
 `;
 
 export const Titel = styled.span`
@@ -26,4 +26,12 @@ export const AddPlaceHeadline = styled.div`
   text-align: center;
   font-size: 1rem;
   border-bottom: solid 2px ${props => props.theme.colors.primary};
+`;
+
+export const CardTitle = styled.p`
+  align-self: flex-start;
+  padding: 0px;
+  margin-left: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
 `;

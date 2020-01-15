@@ -6,6 +6,7 @@ import SortIcon from '../../icons/Sort';
 import MenuIcon from '../../icons/Menu';
 import { useLocation } from 'react-router-dom';
 import { FooterWrapper as Wrapper, MenuWrapper } from '../General/Wrapper';
+import PropTypes from 'prop-types';
 
 const Footer = styled.footer`
   display: flex;
@@ -45,3 +46,8 @@ export default function FooterBar({ onClick, menuClick }) {
     </Footer>
   );
 }
+
+FooterBar.propTypes = {
+  onClick: PropTypes.func,
+  menuClick: PropTypes.bool
+};
