@@ -10,6 +10,7 @@ export const Img = styled.img`
 export const Description = styled.article`
   height: 200px;
   width: 90%;
+  max-width: 500px;
   border: 1px solid black;
   border-radius: 8px;
   margin-top: 10px;
