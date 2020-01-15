@@ -99,6 +99,7 @@ const CameraLabel = styled(Label)`
   width: 60px;
   height: 40px;
   text-align: center;
+  outline: none;
   padding-top: 10px;
   border-radius: 8px;
   cursor: pointer;
