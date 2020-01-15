@@ -25,7 +25,6 @@ import uploadImage from '../hooks/updloadImage';
 import { Loading } from '../components/General/Animation';
 import { AddImg as Img } from '../components/General/Output';
 
-
 export default function AddPlacePage({ onAddPlace }) {
   const [place, setPlace] = React.useState({
     name: '',
@@ -186,7 +185,7 @@ export default function AddPlacePage({ onAddPlace }) {
           </Select>
         </Label>
         <Headline>Foto</Headline>
-        <CameraLabel for="file">
+        <CameraLabel htmlFor="file">
           <Camera />
         </CameraLabel>
         <CameraInput type="file" name="img" id="file" accepnt="image/*" onChange={handleImage} />
