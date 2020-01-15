@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import FamilyIcon from '../icons/Family';
-import { Container } from '../components/General/Container';
-import { Headline } from '../components/General/Headline';
+import { Container } from '../components/general/Container';
+import { Headline } from '../components/general/Headline';
 
 const InfoBox = styled.article`
   width: 70%;

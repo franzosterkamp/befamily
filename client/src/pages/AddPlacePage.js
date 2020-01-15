@@ -1,8 +1,8 @@
 import React from 'react';
-import Input from '../components/General/Input';
-import TextArea from '../components/General/TextInput';
-import { AddSubmitButton as SubmitButton } from '../components/General/Button';
-import { Label, SubmitButtonLabel, CameraLabel } from '../components/General/Label';
+import Input from '../components/general/Input';
+import TextArea from '../components/general/TextInput';
+import { AddSubmitButton as SubmitButton } from '../components/general/Button';
+import { Label, SubmitButtonLabel, CameraLabel } from '../components/general/Label';
 import { useHistory } from 'react-router-dom';
 import Camera from '../icons/Camera';
 import AddMarkerMap from '../components/map/AddMarkerMap';
@@ -11,19 +11,20 @@ import {
   MapContainer,
   RateContainer,
   MarkerAlert
-} from '../components/General/Container';
-import { CameraInput } from '../components/General/Input';
-import { AddPlaceHeadline as Headline } from '../components/General/Headline';
-import { RateInput, Form } from '../components/General/Input';
-import { ImgWrapper, MarkerSuccessWrapper } from '../components/General/Wrapper';
+} from '../components/general/Container';
+import { CameraInput } from '../components/general/Input';
+import { AddPlaceHeadline as Headline } from '../components/general/Headline';
+import { RateInput, Form } from '../components/general/Input';
+import { ImgWrapper, MarkerSuccessWrapper } from '../components/general/Wrapper';
 import { quarterList, ageList, categoryList } from '../components/data/array';
-import { Option, Select } from '../components/General/SelectBox';
+import { Option, Select } from '../components/general/SelectBox';
 import Check from '../icons/Check';
 import PropTypes from 'prop-types';
 import Marker from '../icons/Marker';
 import uploadImage from '../hooks/updloadImage';
-import { Loading } from '../components/General/Animation';
-import { AddImg as Img } from '../components/General/Output';
+import { Loading } from '../components/general/Animation';
+import { AddImg as Img } from '../components/general/Output';
+import getAddressByLngLat from '../hooks/getAdressByLngLat';
 
 export default function AddPlacePage({ onAddPlace }) {
   const [place, setPlace] = React.useState({
@@ -52,46 +53,18 @@ export default function AddPlacePage({ onAddPlace }) {
   }
 
   React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(async () => {
       if (markerPos) {
-        reserveGeoCode(markerPos);
+        const address = await getAddressByLngLat(markerPos);
+        setPlace({ ...place, ...address });
       }
-    }, 800);
+    }, 500);
 
     return () => {
       clearTimeout(timeoutId);
     };
     // eslint-disable-next-line
   }, [markerPos]);
-
-  async function reserveGeoCode(markerPos) {
-    const [lat, lng] = markerPos;
-    const response = await fetch(
-      `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${process.env.REACT_APP_GEOKEY}`
-    );
-    const fetchedResults = await response.json();
-    const adressComponents = fetchedResults.results[0].components;
-
-    if (adressComponents.house_number === undefined) {
-      setPlace({
-        ...place,
-        street: adressComponents.road,
-        zip: adressComponents.postcode,
-        city: adressComponents.city,
-        lng: markerPos[1],
-        lat: markerPos[0]
-      });
-    } else {
-      setPlace({
-        ...place,
-        street: adressComponents.road + ' ' + adressComponents.house_number,
-        zip: adressComponents.postcode,
-        city: adressComponents.city,
-        lng: markerPos[1],
-        lat: markerPos[0]
-      });
-    }
-  }
 
   function handleChange(event) {
     setPlace({
