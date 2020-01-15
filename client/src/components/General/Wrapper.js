@@ -3,6 +3,7 @@ import { fadeIn } from '../general/Animation';
 
 export const ImageWrapper = styled.div`
   width: 100%;
+  max-width: 500px;
   height: 300px;
   overflow: hidden;
 `;
@@ -24,6 +25,7 @@ export const FilterButtonWrapper = styled.div`
 export const AdressWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+  max-width: 500px;
   margin: 5px;
   width: 90%;
   border-bottom: 1px black solid;
@@ -35,6 +37,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   width: 90%;
+  max-width: 500px;
   padding: 10px 0px 10px 0;
 `;
 
