@@ -22,7 +22,6 @@ const Text = styled.div``;
 
 export default function FooterBar({ onClick, menuClick }) {
   const location = useLocation();
-  console.log(menuClick);
   return (
     <Footer>
       <FooterButton active={location.pathname === '/add'} to="/add">
