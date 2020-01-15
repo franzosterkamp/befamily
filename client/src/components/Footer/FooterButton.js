@@ -16,7 +16,7 @@ export const FooterButton = styled(({ active, ...rest }) => <Link {...rest} />)`
   font-size: 0.8rem;
 `;
 
-export const FilterButton = styled(({ active, ...rest }) => <Link {...rest} />)`
+export const FilterButton = styled(FooterButton)`
   border-left: 2px solid ${props => props.theme.colors.background};
   border-right: 2px solid ${props => props.theme.colors.background};
 `;
