@@ -1,4 +1,4 @@
-const main = {
+const defaultTheme = {
   colors: {
     background: '#fff',
     primary: '#F2AD2D',
@@ -11,4 +11,4 @@ const main = {
   }
 };
 
-export default main;
+export default defaultTheme;

@@ -14,7 +14,7 @@ const ImageWrapper = styled.div`
 
 const Container = styled.div`
   width: 80%;
-  max-width: 250px;
+  max-width: 300px;
   margin: auto;
   height: 290px;
   display: flex;
@@ -50,8 +50,9 @@ const LinkWrapper = styled.div`
 const BadgeWrapper = styled.div`
   display: flex;
   align-content: center;
+  flex-wrap: wrap;
   justify-content: space-evenly;
-  width: 90%;
+  width: 85%;
   margin: 0 auto 2% auto;
   padding: 2% 0px 2% 0px;
   flex-wrap: wrap;
