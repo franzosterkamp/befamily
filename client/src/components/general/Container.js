@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { fadeInLeft } from './Animation';
 
 export const Rate = styled.div`
   margin-bottom: 15px;
@@ -89,4 +90,5 @@ export const CardContainer = styled.div`
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   margin-bottom: 15px;
   margin-top: 15px;
+  animation: ${fadeInLeft} 0.7s ease-in;
 `;

@@ -85,9 +85,17 @@ export const fadeIn = keyframes`{
     opacity: 1;
   }
 }
+`;
+export const fadeInLeft = keyframes`{
+from {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
 
-.fadeIn {
-  animation-name: fadeIn;
+to {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
 }`;
 
 export const loading = keyframes`{
