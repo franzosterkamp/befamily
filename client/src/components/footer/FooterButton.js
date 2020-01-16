@@ -31,9 +31,9 @@ export const MenuButton = styled.button`
   outline: none;
   border: none;
   background-color: ${props =>
-    props.menuClick ? props => props.theme.colors.text : props => props.theme.colors.primary};
+    props.onMenuClick ? props => props.theme.colors.text : props => props.theme.colors.primary};
   color: ${props =>
-    props.menuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
+    props.onMenuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
   fill: ${props =>
-    props.menuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
+    props.onMenuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
 `;

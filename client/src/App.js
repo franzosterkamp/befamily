@@ -28,7 +28,7 @@ const Main = styled.main`
 `;
 
 function App() {
-  const [menuClick, setMenuClick] = React.useState(false);
+  const [onMenuClick, setonMenuClick] = React.useState(false);
   const [places, updatePlaces] = useFetch('/api/places');
   const [filters, setFilters] = React.useState({
     age: '',
@@ -98,8 +98,8 @@ function App() {
               </Route>
             </Switch>
           </Main>
-          {menuClick && <Menu />}
-          <FooterBar onClick={() => setMenuClick(!menuClick)} menuClick={menuClick} />
+          {onMenuClick && <Menu />}
+          <FooterBar onClick={() => setonMenuClick(!onMenuClick)} onMenuClick={onMenuClick} />
         </Container>
       </Router>
     </ThemeProvider>

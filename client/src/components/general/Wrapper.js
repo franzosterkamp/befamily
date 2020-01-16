@@ -102,11 +102,11 @@ export const FooterWrapper = styled.div`
 
 export const MenuWrapper = styled(FooterWrapper)`
   background-color: ${props =>
-    props.menuClick ? props => props.theme.colors.text : props => props.theme.colors.primary};
+    props.onMenuClick ? props => props.theme.colors.text : props => props.theme.colors.primary};
   color: ${props =>
-    props.menuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
+    props.onMenuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
   fill: ${props =>
-    props.menuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
+    props.onMenuClick ? props => props.theme.colors.primary : props => props.theme.colors.text};
   border-top: 3px solid ${props => props.theme.colors.primary};
 `;
 
