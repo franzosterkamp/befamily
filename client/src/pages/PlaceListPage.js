@@ -8,19 +8,18 @@ export default function PlacelistPage({ places }) {
   console.log(places);
   return (
     <PlacesContainer>
-      {places &&
-        places.map(place => (
-          <Card
-            key={place._id}
-            id={place._id}
-            name={place.name}
-            age={place.age}
-            quarter={place.quarter}
-            rate={place.rate}
-            img={place.img}
-            category={place.category}
-          />
-        ))}
+      {places.map(place => (
+        <Card
+          key={place._id}
+          id={place._id}
+          name={place.name}
+          age={place.age}
+          quarter={place.quarter}
+          rate={place.rate}
+          img={place.img}
+          category={place.category}
+        />
+      ))}
       {places.length === 0 ? <NoResultCard /> : ''}
     </PlacesContainer>
   );
