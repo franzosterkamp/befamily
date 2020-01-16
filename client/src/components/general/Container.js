@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { fadeInLeft } from './Animation';
+import { fadeInLeft, fadeIn } from './Animation';
 
 export const Rate = styled.div`
   margin-bottom: 15px;
@@ -14,6 +14,7 @@ export const Container = styled.div`
 `;
 
 export const AddPlaceContainer = styled.div`
+  animation: ${fadeIn} 0.5s ease-in;
   display: flex;
   flex-flow: column;
   height: 100%;
