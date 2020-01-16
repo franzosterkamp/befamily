@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { fadeInLeft } from './Animation';
 
 export const Rate = styled.div`
   margin-bottom: 15px;
@@ -56,6 +57,7 @@ export const MapContainer = styled.div`
 `;
 
 export const FilterContainer = styled.div`
+  animation: ${fadeInLeft} 0.7s ease-in;
   width: 100%;
   height: 90%;
   margin: 20px 0 20px 0;
@@ -89,4 +91,5 @@ export const CardContainer = styled.div`
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   margin-bottom: 15px;
   margin-top: 15px;
+  animation: ${fadeInLeft} 0.7s ease-in;
 `;
