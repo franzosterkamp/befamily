@@ -57,6 +57,7 @@ export const MapContainer = styled.div`
 `;
 
 export const FilterContainer = styled.div`
+  animation: ${fadeInLeft} 0.7s ease-in;
   width: 100%;
   height: 90%;
   margin: 20px 0 20px 0;
