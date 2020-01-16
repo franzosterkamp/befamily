@@ -20,7 +20,7 @@ const Footer = styled.footer`
 
 const Text = styled.div``;
 
-export default function FooterBar({ onClick, menuClick }) {
+export default function FooterBar({ onClick, onMenuClick }) {
   const location = useLocation();
   return (
     <Footer>
@@ -36,8 +36,8 @@ export default function FooterBar({ onClick, menuClick }) {
           <Text>Filter</Text>
         </Wrapper>
       </FilterButton>
-      <MenuButton onClick={onClick} menuClick={menuClick}>
-        <MenuWrapper menuClick={menuClick}>
+      <MenuButton onClick={onClick} onMenuClick={onMenuClick}>
+        <MenuWrapper onMenuClick={onMenuClick}>
           <MenuIcon />
           <Text>Menü</Text>
         </MenuWrapper>
@@ -48,5 +48,5 @@ export default function FooterBar({ onClick, menuClick }) {
 
 FooterBar.propTypes = {
   onClick: PropTypes.func,
-  menuClick: PropTypes.bool
+  onMenuClick: PropTypes.bool
 };

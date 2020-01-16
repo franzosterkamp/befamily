@@ -2,8 +2,10 @@ import React from 'react';
 import Card from '../components/card/Card';
 import { PlacesContainer } from '../components/general/Container';
 import PropTypes from 'prop-types';
+import NoResultCard from '../components/card/NoResultCard';
 
 export default function PlacelistPage({ places }) {
+  console.log(places);
   return (
     <PlacesContainer>
       {places &&
@@ -19,6 +21,7 @@ export default function PlacelistPage({ places }) {
             category={place.category}
           />
         ))}
+      {places.length === 0 ? <NoResultCard /> : ''}
     </PlacesContainer>
   );
 }
