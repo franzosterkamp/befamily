@@ -5,9 +5,9 @@ import styled from '@emotion/styled';
 import { Headline } from '../general/Headline';
 
 const NoResultFamily = styled(Family)`
-  width: 70px;
-  height: 70px;
-  margin: 30% auto;
+  width: 85px;
+  height: 85px;
+  margin: 20% auto;
 `;
 
 const NoResultHealdine = styled(Headline)`
