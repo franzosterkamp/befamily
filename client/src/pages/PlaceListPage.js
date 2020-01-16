@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import NoResultCard from '../components/card/NoResultCard';
 
 export default function PlacelistPage({ places }) {
-  console.log(places);
   return (
     <PlacesContainer>
       {places.map(place => (

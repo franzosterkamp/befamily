@@ -41,12 +41,10 @@ const TopLink = styled(MenuLink)`
 export function Menu() {
   return (
     <MenuContainer>
-      <TopLink exact to="/">
-        Startseite
-      </TopLink>
-      <MenuLink>Kontakt</MenuLink>
-      <MenuLink>Impressum</MenuLink>
-      <MenuLink>Favoriten</MenuLink>
+      <TopLink to="/">Startseite</TopLink>
+      <MenuLink to="/">Kontakt</MenuLink>
+      <MenuLink to="/">Impressum</MenuLink>
+      <MenuLink to="/">Favoriten</MenuLink>
     </MenuContainer>
   );
 }

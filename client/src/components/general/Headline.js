@@ -6,7 +6,7 @@ export const Headline = styled.h2`
   text-shadow: 1px 1px 1px lightgrey;
   font-size: 2.2rem;
   letter-spacing: 0.2rem;
-  animation: ${pulse} 15s ease-in;
+  animation: ${pulse} 3s infinite;
 `;
 
 export const Titel = styled.span`
